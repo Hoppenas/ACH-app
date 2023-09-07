@@ -9,19 +9,20 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBjMNrCKZg-50PDQeMD0S6PX4LpKY9QMNs",
-  authDomain: "ach-app-21e27.firebaseapp.com",
-  projectId: "ach-app-21e27",
-  storageBucket: "ach-app-21e27.appspot.com",
-  messagingSenderId: "484680740271",
-  appId: "1:484680740271:web:f83a21f632a6e8b45c535a",
+  apiKey: "AIzaSyC11QvEMvaiW6tSE7mrmWMLaS5kTg1nl_A",
+  authDomain: "agne-gallery.firebaseapp.com",
+  databaseURL:
+    "https://agne-gallery-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "agne-gallery",
+  storageBucket: "agne-gallery.appspot.com",
+  messagingSenderId: "732181115974",
+  appId: "1:732181115974:web:5298eb16ca4f7296918647",
 };
 
 // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const projectStorage = getStorage();
-const projectFirestore = getFirestore();
+const projectStorage = getStorage(app);
+const projectFirestore = getFirestore(app);
 
 export { projectStorage, projectFirestore };

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import useStorage from "../../../hooks/useStorage";
 import ProgressBar from "../../ProgressBar/ProgressBar";
 
 const types = ["image/png", "image/jpeg"];
@@ -7,11 +6,6 @@ const types = ["image/png", "image/jpeg"];
 const UploadForm: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
-
-  //   const { progress, error, url } = useStorage(file);
-
-  //   console.log(progress);
-  //   console.log(url);
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     let selected = e.target.files;
