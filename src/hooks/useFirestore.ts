@@ -14,6 +14,8 @@ export interface IImages {
   createAt: { seconds: number; nanoseconds: number };
 }
 
+//TODO FIX: adds twice, https://www.youtube.com/watch?v=vUe91uOx7R0
+
 const useFirestore = (collectionName: string) => {
   const [docs, setDocs] = useState<DocumentData>();
 

@@ -1,4 +1,5 @@
 import React, { Dispatch, MouseEvent, SetStateAction } from "react";
+import { motion } from "framer-motion";
 
 export interface IModal {
   selectedImg?: string;
@@ -13,9 +14,20 @@ const Modal: React.FC<IModal> = ({ selectedImg, setSelectedImg }) => {
     }
   };
   return (
-    <div className="backdrop" onClick={handleClick}>
-      <img className="img" src={selectedImg} alt="enlarged pic" />
-    </div>
+    <motion.div
+      className="backdrop"
+      onClick={handleClick}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
+      <motion.img
+        className="img"
+        src={selectedImg}
+        alt="enlarged pic"
+        initial={{ y: "-100vh" }}
+        animate={{ y: 0 }}
+      />
+    </motion.div>
   );
 };
 
