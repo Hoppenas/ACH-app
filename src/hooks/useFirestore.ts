@@ -1,18 +1,21 @@
-import { useState, useEffect, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import { projectFirestore } from "../firebase/config";
-import { collection, orderBy, onSnapshot, query } from "firebase/firestore";
+import {
+  collection,
+  orderBy,
+  onSnapshot,
+  query,
+  DocumentData,
+} from "firebase/firestore";
 
 export interface IImages {
-  url: string;
-  createAt: string;
   id: string;
+  url: string;
+  createAt: { seconds: number; nanoseconds: number };
 }
 
 const useFirestore = (collectionName: string) => {
-  const [docs, setDocs] = useState<[IImages] | []>([]);
-
-  // projectFirestore.collection(collection2)
-  collection(projectFirestore, collectionName);
+  const [docs, setDocs] = useState<DocumentData>();
 
   useEffect(() => {
     const unsub = onSnapshot(
@@ -21,9 +24,12 @@ const useFirestore = (collectionName: string) => {
         orderBy("createAt", "desc")
       ),
       (snap) => {
-        const documents: [IImages] | [] = [];
-        snap.forEach((doc) => {
-          documents.push({ ...doc.data(), id: doc.id });
+        const documents: DocumentData = [];
+        snap.docs.forEach((doc: DocumentData) => {
+          documents.push({
+            ...doc.data(),
+            id: doc.id,
+          });
         });
         setDocs(documents);
       }
