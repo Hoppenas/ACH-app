@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { projectFirestore } from "../firebase/config";
 import {
   collection,
@@ -13,8 +13,6 @@ export interface IImages {
   url: string;
   createAt: { seconds: number; nanoseconds: number };
 }
-
-//TODO FIX: adds twice, https://www.youtube.com/watch?v=vUe91uOx7R0
 
 const useFirestore = (collectionName: string) => {
   const [docs, setDocs] = useState<DocumentData>();

@@ -1,6 +1,7 @@
 import React from "react";
 import useFirestore from "../../hooks/useFirestore";
 import { motion } from "framer-motion";
+import deleteFile from "../../utils/deleteFile";
 
 export interface IImageGrid {
   setSelectedImg: (url: string) => void;
@@ -8,6 +9,7 @@ export interface IImageGrid {
 
 const ImageGrid: React.FC<IImageGrid> = ({ setSelectedImg }) => {
   const { docs } = useFirestore("images");
+
   return (
     <div className="img-grid">
       {docs &&
@@ -30,6 +32,19 @@ const ImageGrid: React.FC<IImageGrid> = ({ setSelectedImg }) => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1 }}
               />
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  right: 0,
+                  color: "red",
+                  fontSize: "24px",
+                  cursor: "pointer",
+                }}
+                onClick={() => deleteFile(doc)}
+              >
+                Delete
+              </div>
             </motion.div>
           )
         )}
