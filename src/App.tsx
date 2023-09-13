@@ -4,7 +4,7 @@ import Title from "./components/Title/Title";
 import UploadForm from "./components/Title/UploadForm/UploadForm";
 import ImageGrid from "./components/ImageGrid/ImageGrid";
 import Modal from "./components/Modal/Modal";
-import Login from "./LogIn/Login";
+import Login from "./components/LogIn/Login";
 
 function App() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);

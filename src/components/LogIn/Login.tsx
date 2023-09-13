@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import Button from "../Button/Button";
 
 export interface ILogIn {
   handleClose: () => void;
@@ -32,7 +33,11 @@ const Login: React.FC<ILogIn> = ({ handleClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <motion.div className="img" initial={{ y: "-100vh" }} animate={{ y: 0 }}>
+      <motion.div
+        className="login"
+        initial={{ y: "-100vh" }}
+        animate={{ y: 0 }}
+      >
         <h1>Login</h1>
         <input
           value={email}
@@ -45,10 +50,14 @@ const Login: React.FC<ILogIn> = ({ handleClose }) => {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleLogIn} disabled={!email || !password}>
+        <div>
+          <Button handleClick={handleLogIn} title="Sign in" />
+          <Button handleClick={handleClose} title="Cancel" />
+        </div>
+        {/* <button onClick={handleLogIn} disabled={!email || !password}>
           Sign in
         </button>
-        <button onClick={handleClose}>Cancel</button>
+        <button onClick={handleClose}>Cancel</button> */}
       </motion.div>
     </motion.div>
   );
