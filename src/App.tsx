@@ -4,17 +4,27 @@ import Title from "./components/Title/Title";
 import UploadForm from "./components/Title/UploadForm/UploadForm";
 import ImageGrid from "./components/ImageGrid/ImageGrid";
 import Modal from "./components/Modal/Modal";
+import Login from "./LogIn/Login";
 
 function App() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
+  const [showLogin, setShowLogin] = useState(false);
+
+  const keyDownHandler = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    if (event.ctrlKey && event.code === "KeyL") {
+      setShowLogin(true);
+    }
+  };
   return (
-    <div className="App">
+    <div className="App" tabIndex={0} onKeyDown={keyDownHandler}>
       <Title />
       <UploadForm />
       <ImageGrid setSelectedImg={setSelectedImg} />
       {selectedImg && (
         <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
       )}
+      {showLogin && <Login handleClose={() => setShowLogin(false)} />}
     </div>
   );
 }
