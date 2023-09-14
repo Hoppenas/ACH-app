@@ -40,22 +40,24 @@ const Login: React.FC<ILogIn> = ({ handleClose }) => {
         initial={{ y: "-100vh" }}
         animate={{ y: 0 }}
       >
-        <h1>Login</h1>
-        <Input
-          title="Username"
-          value={email}
-          handleChange={setEmail}
-          type="email"
-        />
-        <Input
-          title="password"
-          value={password}
-          handleChange={setPassword}
-          type="password"
-        />
-        <div>
-          <Button handleClick={handleLogIn} title="Sign in" />
-          <Button handleClick={handleClose} title="Cancel" />
+        <div className="login-container">
+          <h1>Login</h1>
+          <Input
+            title="Username"
+            value={email}
+            handleChange={setEmail}
+            type="email"
+          />
+          <Input
+            title="Password"
+            value={password}
+            handleChange={setPassword}
+            type="password"
+          />
+          <div className="button-container">
+            <Button handleClick={handleLogIn} title="Sign in" />
+            <Button handleClick={handleClose} title="Cancel" />
+          </div>
         </div>
       </motion.div>
     </motion.div>

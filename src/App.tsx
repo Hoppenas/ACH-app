@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./App.css";
 import Title from "./components/Title/Title";
 import UploadForm from "./components/UploadForm/UploadForm";
 import ImageGrid from "./components/ImageGrid/ImageGrid";

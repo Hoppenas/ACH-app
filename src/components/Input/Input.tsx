@@ -1,4 +1,5 @@
-import React, { ChangeEventHandler, useState } from "react";
+import React from "react";
+import "./input.css";
 
 export interface IInput {
   value: string | undefined;
@@ -8,13 +9,13 @@ export interface IInput {
 }
 
 const Input: React.FC<IInput> = ({ value, title, type, handleChange }) => {
-  const [value1, setValue1] = useState<string>();
   return (
-    <div>
-      <h5>{title}</h5>
+    <div className="input-container">
+      <p className="input-title">{title}</p>
       <input
         value={value}
-        name="Username"
+        name={title}
+        type={type}
         onChange={(e) => handleChange(e.target.value)}
       />
     </div>
