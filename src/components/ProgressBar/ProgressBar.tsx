@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect } from "react";
 import useStorage from "../../hooks/useStorage";
 import { motion } from "framer-motion";
+import "./progressBar.css";
 
 export interface IProgressBar {
   file: File;

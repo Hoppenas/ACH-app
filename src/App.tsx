@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Title from "./components/Title/Title";
-import UploadForm from "./components/Title/UploadForm/UploadForm";
+import UploadForm from "./components/UploadForm/UploadForm";
 import ImageGrid from "./components/ImageGrid/ImageGrid";
 import Modal from "./components/Modal/Modal";
 import Login from "./components/LogIn/Login";
@@ -11,7 +11,6 @@ function App() {
   const [showLogin, setShowLogin] = useState(false);
 
   const keyDownHandler = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    event.preventDefault();
     if (event.ctrlKey && event.code === "KeyL") {
       setShowLogin(true);
     }

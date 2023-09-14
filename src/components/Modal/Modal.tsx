@@ -1,5 +1,6 @@
 import React, { Dispatch, MouseEvent, SetStateAction } from "react";
 import { motion } from "framer-motion";
+import "./modal.css";
 
 export interface IModal {
   selectedImg?: string;

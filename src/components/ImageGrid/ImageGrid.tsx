@@ -2,6 +2,7 @@ import React from "react";
 import useFirestore from "../../hooks/useFirestore";
 import { motion } from "framer-motion";
 import deleteFile from "../../utils/deleteFile";
+import "./imageGrid.css";
 
 export interface IImageGrid {
   setSelectedImg: (url: string) => void;
