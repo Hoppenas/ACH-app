@@ -1,9 +1,9 @@
 import React from "react";
-import "./title.css";
+import "./header.css";
 
-const Title: React.FC = () => {
+const Header: React.FC = () => {
   return (
-    <div className="title">
+    <div className="header">
       <h1>FireGram</h1>
       <h2>Your Pictures</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -11,4 +11,4 @@ const Title: React.FC = () => {
   );
 };
 
-export default Title;
+export default Header;

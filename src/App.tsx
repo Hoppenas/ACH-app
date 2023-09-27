@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import Title from "./components/Title/Title";
+import Header from "./components/Header/Header";
 import UploadForm from "./components/UploadForm/UploadForm";
 import ImageGrid from "./components/ImageGrid/ImageGrid";
 import Modal from "./components/Modal/Modal";
 import Login from "./components/LogIn/Login";
+
+// https://www.nikkimakeup.com/
 
 function App() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
@@ -14,15 +16,18 @@ function App() {
       setShowLogin(true);
     }
   };
+
+  const handleClose = () => setShowLogin(false);
+
   return (
     <div className="App" tabIndex={0} onKeyDown={keyDownHandler}>
-      <Title />
+      <Header />
       <UploadForm />
       <ImageGrid setSelectedImg={setSelectedImg} />
       {selectedImg && (
         <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
       )}
-      {showLogin && <Login handleClose={() => setShowLogin(false)} />}
+      {showLogin && <Login handleClose={handleClose} />}
     </div>
   );
 }
