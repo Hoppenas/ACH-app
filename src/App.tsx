@@ -2,6 +2,7 @@ import React from "react";
 import HomeView from "./pages/HomeView";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
+import AboutMe from "./pages/AboutMe/AboutMe";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomeView />} />
-          <Route path="about" element={<div>About</div>} />
+          <Route path="about" element={<AboutMe />} />
           <Route path="makeup" element={<div>Makeup</div>} />
           <Route path="hair" element={<div>Hair</div>} />
           <Route
