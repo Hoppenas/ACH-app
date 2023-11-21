@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 
 const Layout = () => {
   return (
-    <Box marginTop="60px">
+    <Box height="100vh">
       <DrawerAppBar />
       <Outlet />
     </Box>

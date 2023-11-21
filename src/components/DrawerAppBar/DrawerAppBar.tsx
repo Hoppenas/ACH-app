@@ -32,7 +32,7 @@ const navItems = [
   { name: "About", route: "/about" },
   { name: "Makeup", route: "/makeup" },
   { name: "Hair", route: "/hair" },
-  { name: "Busines portrets", route: "/businessportraits" },
+  { name: "Busines portraits", route: "/businessportraits" },
   { name: "Contacts", route: "/contacts" },
 ];
 
@@ -50,8 +50,8 @@ const DrawerAppBar = (props: Props) => {
       onClick={handleDrawerToggle}
       sx={{
         textAlign: "center",
-        color: "#efb6b2",
-        background: "#f2e6da",
+        color: "#FFF",
+        background: "#0e0e0d",
         height: "100%",
       }}
     >
@@ -81,7 +81,7 @@ const DrawerAppBar = (props: Props) => {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav" sx={{ color: "#efb6b2", background: "#f2e6da" }}>
+      <AppBar component="nav" sx={{ color: "#FFF", background: "#0e0e0d" }}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -97,13 +97,13 @@ const DrawerAppBar = (props: Props) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            Agne grimas2
+            Agne grimas
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
               <Button
                 key={item.name}
-                sx={{ color: "#efb6b2" }}
+                sx={{ color: "#FFF" }}
                 onClick={() => navigate(item.route)}
               >
                 {item.name}
