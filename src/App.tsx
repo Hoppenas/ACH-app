@@ -3,6 +3,7 @@ import HomeView from "./pages/HomeView";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import AboutMe from "./pages/AboutMe/AboutMe";
+import MakeUpPage from "./pages/MakeUpPage/MakeUpPage";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomeView />} />
           <Route path="about" element={<AboutMe />} />
-          <Route path="makeup" element={<div>Makeup</div>} />
+          <Route path="makeup" element={<MakeUpPage />} />
           <Route path="hair" element={<div>Hair</div>} />
           <Route
             path="businessportraits"
