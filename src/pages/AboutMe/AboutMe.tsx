@@ -24,11 +24,17 @@ const AboutMe = (props: Props) => {
       direction={matches ? "row" : "column-reverse"}
       color="#FFF"
       sx={{ background: "#0e0e0d" }}
-      height="100%"
+      height={matches ? "100%" : "auto"}
       paddingTop="65px"
-      width="100%"
     >
-      <Grid item container xs={matches ? 6 : 12} direction="row" height="100%">
+      <Grid
+        item
+        container
+        xs={matches ? 6 : 12}
+        direction="row"
+        overflow="hidden"
+        height="100%"
+      >
         {matches && <FollowMeBar vertical={true} />}
         <Grid item xs margin="auto 0" paddingLeft={1}>
           <Box maxWidth="450px" margin="0 auto">
@@ -72,6 +78,7 @@ const AboutMe = (props: Props) => {
       </Grid>
       <Grid
         item
+        container
         margin={matches ? "none" : "auto 0"}
         xs={matches ? 6 : 12}
         overflow="hidden"
