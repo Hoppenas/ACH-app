@@ -28,11 +28,10 @@ interface Props {
 const drawerWidth = 240;
 
 const navItems = [
-  { name: "Home", route: "/" },
   { name: "About", route: "/about" },
   { name: "Makeup", route: "/makeup" },
   { name: "Hair", route: "/hair" },
-  { name: "Busines portraits", route: "/businessportraits" },
+  // { name: "Busines portraits", route: "/businessportraits" },
   { name: "Contacts", route: "/contacts" },
 ];
 

@@ -6,10 +6,15 @@ import "./progressBar.css";
 export interface IProgressBar {
   file: File;
   setFile: Dispatch<SetStateAction<File | null>>;
+  collectionName: string;
 }
 
-const ProgressBar: React.FC<IProgressBar> = ({ file, setFile }) => {
-  const { url, progress } = useStorage(file);
+const ProgressBar: React.FC<IProgressBar> = ({
+  file,
+  setFile,
+  collectionName,
+}) => {
+  const { url, progress } = useStorage(file, collectionName);
 
   useEffect(() => {
     if (url) {

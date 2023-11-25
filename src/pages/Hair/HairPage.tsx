@@ -8,7 +8,6 @@ import UploadForm from "../../components/UploadForm/UploadForm";
 import ImageGrid from "../../components/ImageGrid/ImageGrid";
 import Modal from "../../components/Modal/Modal";
 import Login from "../../components/LogIn/Login";
-import useFirestore, { IImages } from "../../hooks/useFirestore";
 
 //https://ubaimutl.github.io/react-portfolio/
 
@@ -20,11 +19,9 @@ interface Props {
   window?: () => Window;
 }
 
-const MakeUpPage = (props: Props) => {
+const HairPage = (props: Props) => {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
   const [showLogin, setShowLogin] = useState(false);
-
-  const { docs } = useFirestore("images");
 
   const keyDownHandler = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.ctrlKey && event.code === "KeyL") {
@@ -46,29 +43,25 @@ const MakeUpPage = (props: Props) => {
       height={matches ? "100%" : "auto"}
       paddingTop="65px"
       onKeyDown={keyDownHandler}
-      overflow="scroll"
     >
       <Grid
         item
         container
-        // xs={matches ? 6 : 12}
-        xs={12}
+        xs={matches ? 6 : 12}
         direction="row"
-        // overflow="hidden"
-        // height="100%"
+        overflow="hidden"
+        height="100%"
       >
         {matches && <FollowMeBar vertical={true} />}
         <Grid item xs margin="auto 0" paddingLeft={1}>
-          <Box maxWidth="1320px" width="80%" margin="0 auto">
+          <Box maxWidth="450px" margin="0 auto">
             <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
-              Makeup
+              Hair
             </Typography>
-            <MasonryImageList
-              imageList={docs as IImages[]}
-              openImage={setSelectedImg}
-            />
+            {/* <MasonryImageList imageList={gallery} /> */}
 
-            <UploadForm collection="images" />
+            <UploadForm collection="hair" />
+            <ImageGrid setSelectedImg={setSelectedImg} collection="hair" />
             {showLogin && <Login handleClose={handleClose} />}
 
             {!matches && <FollowMeBar vertical={false} />}
@@ -82,4 +75,4 @@ const MakeUpPage = (props: Props) => {
   );
 };
 
-export default MakeUpPage;
+export default HairPage;

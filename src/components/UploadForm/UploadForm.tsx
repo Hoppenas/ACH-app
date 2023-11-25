@@ -4,7 +4,11 @@ import "./uploadForm.css";
 
 const types = ["image/png", "image/jpeg"];
 
-const UploadForm: React.FC = () => {
+interface IUploadForm {
+  collection: string;
+}
+
+const UploadForm: React.FC<IUploadForm> = ({ collection }) => {
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -28,7 +32,13 @@ const UploadForm: React.FC = () => {
       <div className="output">
         {error && <div className="error">{error}</div>}
         {file && <div className="">{file.name}</div>}
-        {file && <ProgressBar file={file} setFile={setFile} />}
+        {file && (
+          <ProgressBar
+            file={file}
+            setFile={setFile}
+            collectionName={collection}
+          />
+        )}
       </div>
     </form>
   );

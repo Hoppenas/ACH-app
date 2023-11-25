@@ -1,6 +1,9 @@
 import React, { Dispatch, MouseEvent, SetStateAction } from "react";
 import { motion } from "framer-motion";
 import "./modal.css";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Grid, IconButton } from "@mui/material";
 
 export interface IModal {
   selectedImg?: string;
@@ -28,6 +31,19 @@ const Modal: React.FC<IModal> = ({ selectedImg, setSelectedImg }) => {
         initial={{ y: "-100vh" }}
         animate={{ y: 0 }}
       />
+      <div
+        style={{
+          position: "relative",
+          top: "50%",
+        }}
+      >
+        <IconButton color="inherit" sx={{ padding: 0 }}>
+          <ArrowBackIosIcon />
+        </IconButton>
+        <IconButton color="inherit" sx={{ padding: 0 }}>
+          <ArrowForwardIosIcon />
+        </IconButton>
+      </div>
     </motion.div>
   );
 };

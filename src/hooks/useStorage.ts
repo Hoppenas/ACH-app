@@ -3,7 +3,7 @@ import { projectStorage, projectFirestore } from "../firebase/config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
-const useStorage = (file: File | null) => {
+const useStorage = (file: File | null, collectionName: string) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [url, setUrl] = useState<string | null>(null);
@@ -13,10 +13,10 @@ const useStorage = (file: File | null) => {
       setError("Please choose a file first!");
       return;
     }
-    const storageRef = ref(projectStorage, `/files/${file.name}`);
+    const storageRef = ref(projectStorage, `/${collectionName}/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-    const collectionRef = collection(projectFirestore, "images");
+    const collectionRef = collection(projectFirestore, collectionName);
 
     uploadTask.on(
       "state_changed",
@@ -35,7 +35,7 @@ const useStorage = (file: File | null) => {
         });
       }
     );
-  }, [file]);
+  }, [file, collectionName]);
   return { progress, error, url };
 };
 

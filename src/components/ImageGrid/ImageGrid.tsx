@@ -6,10 +6,11 @@ import "./imageGrid.css";
 
 export interface IImageGrid {
   setSelectedImg: (url: string) => void;
+  collection: string;
 }
 
-const ImageGrid: React.FC<IImageGrid> = ({ setSelectedImg }) => {
-  const { docs } = useFirestore("images");
+const ImageGrid: React.FC<IImageGrid> = ({ setSelectedImg, collection }) => {
+  const { docs } = useFirestore(collection);
 
   return (
     <div className="img-grid">

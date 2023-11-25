@@ -26,8 +26,8 @@ function HomeView() {
         <h2>Your Pictures</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
-      <UploadForm />
-      <ImageGrid setSelectedImg={setSelectedImg} />
+      <UploadForm collection="images" />
+      <ImageGrid setSelectedImg={setSelectedImg} collection="images" />
       {selectedImg && (
         <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
       )}

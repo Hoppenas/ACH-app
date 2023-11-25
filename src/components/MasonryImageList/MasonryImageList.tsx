@@ -1,24 +1,32 @@
 import React, { FC } from "react";
 import { Box, ImageList, ImageListItem } from "@mui/material";
+import { IImages } from "../../hooks/useFirestore";
+import { motion } from "framer-motion";
 
 interface IMasonryImageList {
-  imageList: string[];
+  imageList: IImages[];
+  openImage: (url: string) => void;
 }
 
-const MasonryImageList: FC<IMasonryImageList> = ({ imageList }) => {
+const MasonryImageList: FC<IMasonryImageList> = ({ imageList, openImage }) => {
   return (
-    <Box sx={{ width: 500, height: 450, overflowY: "scroll" }}>
+    <Box>
       <ImageList variant="masonry" cols={3} gap={8}>
-        {imageList.map((item, index) => (
-          <ImageListItem key={item}>
-            <img
-              // srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              src={item}
-              // alt={item.title}
-              loading="lazy"
-            />
-          </ImageListItem>
-        ))}
+        {imageList &&
+          imageList.map((item) => (
+            <ImageListItem key={item.id}>
+              <motion.img
+                src={item.url}
+                alt="pic"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
+                loading="lazy"
+                style={{ display: "block", width: "100%" }}
+                onClick={() => openImage(item.url)}
+              />
+            </ImageListItem>
+          ))}
       </ImageList>
     </Box>
   );
