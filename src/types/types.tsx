@@ -1,4 +1,4 @@
 export enum CollectionTypes {
-  Images = "Images",
+  Images = "images",
   Hair = "hair",
 }

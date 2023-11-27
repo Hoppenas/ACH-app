@@ -3,6 +3,7 @@ import useFirestore from "../../hooks/useFirestore";
 import { motion } from "framer-motion";
 import deleteFile from "../../utils/deleteFile";
 import "./imageGrid.css";
+import { CollectionTypes } from "../../types/types";
 
 export interface IImageGrid {
   setSelectedImg: (url: string) => void;
@@ -43,7 +44,7 @@ const ImageGrid: React.FC<IImageGrid> = ({ setSelectedImg, collection }) => {
                   fontSize: "24px",
                   cursor: "pointer",
                 }}
-                onClick={() => deleteFile(doc)}
+                onClick={() => deleteFile(doc, CollectionTypes.Images)}
               >
                 Delete
               </div>

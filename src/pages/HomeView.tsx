@@ -4,6 +4,7 @@ import ImageGrid from "../components/ImageGrid/ImageGrid";
 import Modal from "../components/Modal/Modal";
 import Login from "../components/LogIn/Login";
 import "./homeView.css";
+import { CollectionTypes } from "../types/types";
 
 // https://www.nikkimakeup.com/
 
@@ -26,8 +27,11 @@ function HomeView() {
         <h2>Your Pictures</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
-      <UploadForm collection="images" />
-      <ImageGrid setSelectedImg={setSelectedImg} collection="images" />
+      <UploadForm collection={CollectionTypes.Images} />
+      <ImageGrid
+        setSelectedImg={setSelectedImg}
+        collection={CollectionTypes.Images}
+      />
       {selectedImg && (
         <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
       )}

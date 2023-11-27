@@ -36,7 +36,13 @@ const AboutMe = (props: Props) => {
         height="100%"
       >
         {matches && <FollowMeBar vertical={true} />}
-        <Grid item xs margin="auto 0" paddingLeft={1}>
+        <Grid
+          item
+          xs
+          margin="auto 0"
+          paddingLeft={1}
+          marginLeft={matches ? "35px" : 0}
+        >
           <Box maxWidth="450px" margin="0 auto">
             <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
               I'm Agne

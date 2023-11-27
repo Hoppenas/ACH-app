@@ -13,11 +13,13 @@ const FollowMeBar: FC<IFollowMeBar> = ({ vertical }) => {
       item
       container
       xs={vertical ? 0.5 : 12}
+      position={vertical ? "fixed" : "relative"}
+      top="40%"
       justifyContent="center"
       alignContent="center"
       direction={vertical ? "column" : "row-reverse"}
       gap={1}
-      margin={1}
+      margin={0.5}
     >
       <IconButton color="inherit" sx={{ padding: 0 }}>
         <InstagramIcon />
