@@ -5,7 +5,10 @@ import { Box } from "@mui/material";
 
 const Layout = () => {
   return (
-    <Box height="100vh">
+    <Box
+      height="100vh"
+      sx={{ background: "#0e0e0d", color: "#FFF", overflow: "scroll" }}
+    >
       <DrawerAppBar />
       <Outlet />
     </Box>

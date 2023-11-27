@@ -17,76 +17,17 @@ const ContactMePage = (props: Props) => {
   const matches = useMediaQuery("(min-width:768px)");
 
   return (
-    // <Grid
-    //   container
-    //   direction={matches ? "row" : "column-reverse"}
-    //   color="#FFF"
-    //   sx={{ background: "#0e0e0d" }}
-    //   // height={matches ? "100%" : "auto"}
-    //   height="100%"
-    //   paddingTop="65px"
-    // >
-    //   <Grid
-    //     item
-    //     container
-    //     xs={matches ? 6 : 12}
-    //     direction="row"
-    //     overflow="hidden"
-    //     height="100%"
-    //   >
-    //     {matches && <FollowMeBar vertical={true} />}
-    //     <Grid item xs margin="auto 0" paddingLeft={1}>
-    //       <Box maxWidth="450px" margin="0 auto">
-    //         <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
-    //           Contact Me
-    //         </Typography>
-    //         <Typography variant="h4" marginBottom={3} fontFamily="Marcellus">
-    //           Tel Email
-    //         </Typography>
-    //         {!matches && <FollowMeBar vertical={false} />}
-    //       </Box>
-    //     </Grid>
-    //   </Grid>
-    //   <Grid
-    //     item
-    //     container
-    //     margin={matches ? "none" : "auto 0"}
-    //     xs={matches ? 6 : 12}
-    //     overflow="hidden"
-    //     height="100%"
-    //   >
-    //     <img
-    //       src={profileImg}
-    //       alt="Me"
-    //       width="100%"
-    //       height="100%"
-    //       style={{ objectFit: "cover" }}
-    //     />
-    //   </Grid>
-    // </Grid>
-
     <Grid
       container
       direction={matches ? "row" : "column-reverse"}
-      color="#FFF"
-      sx={{ background: "#0e0e0d" }}
-      // height={matches ? "100%" : "auto"}
-      height="100vh"
-      width="100%"
+      height={matches ? "100vh" : "auto"}
       paddingTop="65px"
-      border="2px solid green"
     >
-      <Grid
-        item
-        container
-        xs={matches ? 6 : 12}
-        direction="row"
-        overflow="hidden"
-        height="100%"
-      >
+      <Grid item container xs={matches ? 6 : 12} direction="row">
         {matches && <FollowMeBar vertical={true} />}
         <Grid
           item
+          container
           xs
           margin="auto 0"
           paddingLeft={1}
@@ -99,17 +40,17 @@ const ContactMePage = (props: Props) => {
             <Typography variant="h4" marginBottom={3} fontFamily="Marcellus">
               Tel Email
             </Typography>
-            {!matches && <FollowMeBar vertical={false} />}
           </Box>
+          {!matches && <FollowMeBar vertical={false} />}
         </Grid>
       </Grid>
       <Grid
-        item
-        container
-        margin={matches ? "none" : "auto 0"}
+        // item
+        // container
+        // margin={matches ? "none" : "auto 0"}
         xs={matches ? 6 : 12}
-        overflow="hidden"
-        height="100%"
+        // overflow="hidden"
+        // height="100%"
       >
         <img
           src={profileImg}

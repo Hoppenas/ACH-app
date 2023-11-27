@@ -22,10 +22,10 @@ const AboutMe = (props: Props) => {
     <Grid
       container
       direction={matches ? "row" : "column-reverse"}
-      color="#FFF"
-      sx={{ background: "#0e0e0d" }}
+      // color="#FFF"
       height={matches ? "100%" : "auto"}
       paddingTop="65px"
+      overflow="scroll"
     >
       <Grid
         item

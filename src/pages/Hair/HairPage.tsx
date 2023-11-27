@@ -34,17 +34,7 @@ const HairPage = (props: Props) => {
   const matches = useMediaQuery("(min-width:768px)");
 
   return (
-    <Grid
-      container
-      direction={matches ? "row" : "column-reverse"}
-      color="#FFF"
-      sx={{ background: "#0e0e0d" }}
-      // height={matches ? "100%" : "auto"}
-      height="100%"
-      paddingTop="65px"
-      onKeyDown={keyDownHandler}
-      overflow="scroll"
-    >
+    <Grid height="100%" paddingTop="65px" onKeyDown={keyDownHandler}>
       <Grid item container xs={12} direction="row">
         {matches && <FollowMeBar vertical={true} />}
         <Grid item xs margin="auto 0" paddingLeft={1}>

@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Grid, Typography, IconButton } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import { instagramLink, facebookLink } from "../../constants/links";
 
 export interface IFollowMeBar {
   vertical: boolean;
@@ -21,10 +22,20 @@ const FollowMeBar: FC<IFollowMeBar> = ({ vertical }) => {
       gap={1}
       margin={0.5}
     >
-      <IconButton color="inherit" sx={{ padding: 0 }}>
+      <IconButton
+        color="inherit"
+        sx={{ padding: 0, cursor: "pointer" }}
+        href={instagramLink}
+        target="_blank"
+      >
         <InstagramIcon />
       </IconButton>
-      <IconButton color="inherit" sx={{ padding: 0 }}>
+      <IconButton
+        color="inherit"
+        sx={{ padding: 0, cursor: "pointer" }}
+        href={facebookLink}
+        target="_blank"
+      >
         <FacebookIcon />
       </IconButton>
       <Grid

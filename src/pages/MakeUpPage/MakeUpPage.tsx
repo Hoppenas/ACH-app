@@ -37,10 +37,6 @@ const MakeUpPage = (props: Props) => {
   return (
     <Grid
       container
-      direction={matches ? "row" : "column-reverse"}
-      color="#FFF"
-      sx={{ background: "#0e0e0d" }}
-      // height={matches ? "100%" : "auto"}
       height="100%"
       paddingTop="65px"
       onKeyDown={keyDownHandler}
