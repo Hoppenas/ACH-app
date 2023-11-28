@@ -10,6 +10,8 @@ import ContactMePage from "./pages/ContactMePage/ContactMePage";
 //TODO Move profile picture to firebase
 //TODO Check delete function
 //TODO Restyle scroll bar
+//TODO Gallery images one per row for mobile
+//TODO Add buttons for next img on modal
 
 function App() {
   return (
