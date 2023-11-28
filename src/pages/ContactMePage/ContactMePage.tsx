@@ -2,6 +2,7 @@ import * as React from "react";
 import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import profileImg from "../../images/profileImg.jpg";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
+import { minWidth } from "../../constants/styleConstants";
 
 //https://ubaimutl.github.io/react-portfolio/
 
@@ -14,14 +15,14 @@ interface Props {
 }
 
 const ContactMePage = (props: Props) => {
-  const matches = useMediaQuery("(min-width:768px)");
+  const matches = useMediaQuery(`(min-width:${minWidth})`);
 
   return (
     <Grid
       container
       direction={matches ? "row" : "column-reverse"}
-      height={matches ? "100vh" : "auto"}
-      paddingTop="65px"
+      height={matches ? "100%" : "auto"}
+      padding="65px 10px 10px"
     >
       <Grid item container xs={matches ? 6 : 12} direction="row">
         {matches && <FollowMeBar vertical={true} />}
@@ -44,14 +45,7 @@ const ContactMePage = (props: Props) => {
           {!matches && <FollowMeBar vertical={false} />}
         </Grid>
       </Grid>
-      <Grid
-        // item
-        // container
-        // margin={matches ? "none" : "auto 0"}
-        xs={matches ? 6 : 12}
-        // overflow="hidden"
-        // height="100%"
-      >
+      <Grid xs={matches ? 6 : 12} height="100%">
         <img
           src={profileImg}
           alt="Me"

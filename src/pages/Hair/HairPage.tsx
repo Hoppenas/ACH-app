@@ -7,6 +7,7 @@ import Modal from "../../components/Modal/Modal";
 import Login from "../../components/LogIn/Login";
 import { CollectionTypes } from "../../types/types";
 import useFirestore, { IImages } from "../../hooks/useFirestore";
+import { minWidth } from "../../constants/styleConstants";
 
 //https://ubaimutl.github.io/react-portfolio/
 
@@ -31,7 +32,7 @@ const HairPage = (props: Props) => {
   };
 
   const handleClose = () => setShowLogin(false);
-  const matches = useMediaQuery("(min-width:768px)");
+  const matches = useMediaQuery(`(min-width:${minWidth})`);
 
   return (
     <Grid height="100%" paddingTop="65px" onKeyDown={keyDownHandler}>

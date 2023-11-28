@@ -31,7 +31,6 @@ const navItems = [
   { name: "About", route: "/about" },
   { name: "Makeup", route: "/makeup" },
   { name: "Hair", route: "/hair" },
-  // { name: "Busines portraits", route: "/businessportraits" },
   { name: "Contacts", route: "/contacts" },
 ];
 

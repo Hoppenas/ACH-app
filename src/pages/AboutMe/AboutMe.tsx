@@ -3,6 +3,7 @@ import { Box, Button, Grid, Typography, useMediaQuery } from "@mui/material";
 import aboutMeImg from "../../images/aboutMe.jpg";
 import { useNavigate } from "react-router-dom";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
+import { minWidth } from "../../constants/styleConstants";
 
 //https://ubaimutl.github.io/react-portfolio/
 
@@ -16,16 +17,14 @@ interface Props {
 
 const AboutMe = (props: Props) => {
   const navigate = useNavigate();
-  const matches = useMediaQuery("(min-width:768px)");
+  const matches = useMediaQuery(`(min-width:${minWidth})`);
 
   return (
     <Grid
       container
       direction={matches ? "row" : "column-reverse"}
-      // color="#FFF"
       height={matches ? "100%" : "auto"}
-      paddingTop="65px"
-      overflow="scroll"
+      padding="65px 10px 10px"
     >
       <Grid
         item
@@ -58,7 +57,7 @@ const AboutMe = (props: Props) => {
             <Grid container direction="row" gap={2} margin={4}>
               <Button
                 variant="contained"
-                onClick={() => navigate("/businessportraits")}
+                onClick={() => navigate("/makeup")}
                 sx={{
                   color: "#0e0e0d",
                   background: "#FFF",

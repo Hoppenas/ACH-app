@@ -7,6 +7,7 @@ import Modal from "../../components/Modal/Modal";
 import Login from "../../components/LogIn/Login";
 import useFirestore, { IImages } from "../../hooks/useFirestore";
 import { CollectionTypes } from "../../types/types";
+import { minWidth } from "../../constants/styleConstants";
 
 //https://ubaimutl.github.io/react-portfolio/
 
@@ -32,17 +33,18 @@ const MakeUpPage = (props: Props) => {
 
   const handleClose = () => setShowLogin(false);
 
-  const matches = useMediaQuery("(min-width:768px)");
+  const matches = useMediaQuery(`(min-width:${minWidth})`);
 
   return (
-    <Grid
-      container
-      height="100%"
-      paddingTop="65px"
-      onKeyDown={keyDownHandler}
-      overflow="scroll"
-    >
-      <Grid item container xs={12} direction="row">
+    <Grid container height="100vh" paddingTop="65px" onKeyDown={keyDownHandler}>
+      <Grid
+        item
+        container
+        xs={12}
+        direction="row"
+        sx={{ overflowY: "scroll" }}
+        height="100%"
+      >
         {matches && <FollowMeBar vertical={true} />}
         <Grid item xs margin="auto 0" paddingLeft={1}>
           <Box maxWidth="1320px" width="80%" margin="0 auto">

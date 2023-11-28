@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <Box
       height="100vh"
-      sx={{ background: "#0e0e0d", color: "#FFF", overflow: "scroll" }}
+      sx={{ background: "#0e0e0d", color: "#FFF", overflow: "hidden" }}
     >
       <DrawerAppBar />
       <Outlet />
