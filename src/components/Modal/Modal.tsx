@@ -35,6 +35,7 @@ const Modal: React.FC<IModal> = ({ selectedImg, setSelectedImg }) => {
         style={{
           position: "relative",
           top: "50%",
+          border: "1px solid red",
         }}
       >
         <IconButton color="inherit" sx={{ padding: 0 }}>

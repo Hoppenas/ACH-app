@@ -5,8 +5,8 @@ import MasonryImageList from "../../components/MasonryImageList/MasonryImageList
 import UploadForm from "../../components/UploadForm/UploadForm";
 import Modal from "../../components/Modal/Modal";
 import Login from "../../components/LogIn/Login";
-import { CollectionTypes } from "../../types/types";
 import useFirestore, { IImages } from "../../hooks/useFirestore";
+import { CollectionTypes } from "../../types/types";
 import { minWidth } from "../../constants/styleConstants";
 
 //https://ubaimutl.github.io/react-portfolio/
@@ -19,11 +19,11 @@ interface Props {
   window?: () => Window;
 }
 
-const HairPage = (props: Props) => {
+const PortfolioPage = (props: Props) => {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
   const [showLogin, setShowLogin] = useState(false);
 
-  const { docs } = useFirestore(CollectionTypes.Hair);
+  const { docs } = useFirestore(CollectionTypes.Images);
 
   const keyDownHandler = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.ctrlKey && event.code === "KeyL") {
@@ -32,23 +32,31 @@ const HairPage = (props: Props) => {
   };
 
   const handleClose = () => setShowLogin(false);
+
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
   return (
-    <Grid height="100%" paddingTop="65px" onKeyDown={keyDownHandler}>
-      <Grid item container xs={12} direction="row">
+    <Grid container height="100vh" paddingTop="65px" onKeyDown={keyDownHandler}>
+      <Grid
+        item
+        container
+        xs={12}
+        direction="row"
+        sx={{ overflowY: "scroll" }}
+        height="100%"
+      >
         {matches && <FollowMeBar vertical={true} />}
         <Grid item xs margin="auto 0" paddingLeft={1}>
           <Box maxWidth="1320px" width="80%" margin="0 auto">
             <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
-              Hair
+              Portfolio
             </Typography>
             <MasonryImageList
               imageList={docs as IImages[]}
               openImage={setSelectedImg}
             />
 
-            <UploadForm collection={CollectionTypes.Hair} />
+            <UploadForm collection={CollectionTypes.Images} />
             {showLogin && <Login handleClose={handleClose} />}
 
             {!matches && <FollowMeBar vertical={false} />}
@@ -62,4 +70,4 @@ const HairPage = (props: Props) => {
   );
 };
 
-export default HairPage;
+export default PortfolioPage;
