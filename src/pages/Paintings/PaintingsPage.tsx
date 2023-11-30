@@ -27,6 +27,8 @@ const PaintingsPage = (props: Props) => {
 
   const keyDownHandler = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.ctrlKey && event.code === "KeyL") {
+      event.preventDefault();
+      console.log("hello");
       setShowLogin(true);
     }
   };

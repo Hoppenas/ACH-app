@@ -6,6 +6,7 @@ import PaintingsPage from "./pages/Paintings/PaintingsPage";
 import ContactMePage from "./pages/ContactMePage/ContactMePage";
 import ServicesPage from "./pages/Services/Services";
 import PortfolioPage from "./pages/PortfolioPage/PortfolioPage";
+import LoginPage from "./pages/Login/Login";
 
 //TODO Contact me page add contacts
 //TODO Move profile picture to firebase
@@ -31,6 +32,7 @@ function App() {
           <Route path="portfolio" element={<PortfolioPage />} />
           <Route path="paintings" element={<PaintingsPage />} />
           <Route path="contacts" element={<ContactMePage />} />
+          <Route path="login" element={<LoginPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
