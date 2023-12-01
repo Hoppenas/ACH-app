@@ -16,12 +16,10 @@ import {
   Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { getAuth, signOut } from "firebase/auth";
 
 interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
+  isLogedIn: boolean;
   window?: () => Window;
 }
 
@@ -35,13 +33,24 @@ const navItems = [
   { name: "Contacts", route: "/contacts" },
 ];
 
-const DrawerAppBar = (props: Props) => {
+const DrawerAppBar = ({ isLogedIn, window }: Props) => {
   const navigate = useNavigate();
-  const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
+  };
+
+  const auth = getAuth();
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+      });
   };
 
   const drawer = (
@@ -70,6 +79,13 @@ const DrawerAppBar = (props: Props) => {
             </ListItemButton>
           </ListItem>
         ))}
+        {isLogedIn && (
+          <ListItem disablePadding onClick={handleLogout}>
+            <ListItemButton sx={{ textAlign: "center", color: "red" }}>
+              <ListItemText primary="Sign out" />
+            </ListItemButton>
+          </ListItem>
+        )}
       </List>
     </Box>
   );
@@ -114,6 +130,11 @@ const DrawerAppBar = (props: Props) => {
                 {item.name}
               </Button>
             ))}
+            {isLogedIn && (
+              <Button sx={{ color: "red" }} onClick={handleLogout}>
+                Log out
+              </Button>
+            )}
           </Box>
         </Toolbar>
       </AppBar>

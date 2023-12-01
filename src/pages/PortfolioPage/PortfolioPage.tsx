@@ -4,7 +4,6 @@ import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import MasonryImageList from "../../components/MasonryImageList/MasonryImageList";
 import UploadForm from "../../components/UploadForm/UploadForm";
 import Modal from "../../components/Modal/Modal";
-import Login from "../../components/LogIn/Login";
 import useFirestore, { IImages } from "../../hooks/useFirestore";
 import { CollectionTypes } from "../../types/types";
 import { minWidth } from "../../constants/styleConstants";
@@ -12,31 +11,18 @@ import { minWidth } from "../../constants/styleConstants";
 //https://ubaimutl.github.io/react-portfolio/
 
 interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window?: () => Window;
+  isLogedIn: boolean;
 }
 
-const PortfolioPage = (props: Props) => {
+const PortfolioPage = ({ isLogedIn }: Props) => {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
-  const [showLogin, setShowLogin] = useState(false);
 
   const { docs } = useFirestore(CollectionTypes.Images);
-
-  const keyDownHandler = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.ctrlKey && event.code === "KeyL") {
-      setShowLogin(true);
-    }
-  };
-
-  const handleClose = () => setShowLogin(false);
 
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
   return (
-    <Grid container height="100vh" paddingTop="65px" onKeyDown={keyDownHandler}>
+    <Grid container height="100vh" paddingTop="65px">
       <Grid
         item
         container
@@ -56,8 +42,7 @@ const PortfolioPage = (props: Props) => {
               openImage={setSelectedImg}
             />
 
-            <UploadForm collection={CollectionTypes.Images} />
-            {showLogin && <Login handleClose={handleClose} />}
+            {isLogedIn && <UploadForm collection={CollectionTypes.Images} />}
 
             {!matches && <FollowMeBar vertical={false} />}
           </Box>

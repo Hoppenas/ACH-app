@@ -4,7 +4,6 @@ import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import MasonryImageList from "../../components/MasonryImageList/MasonryImageList";
 import UploadForm from "../../components/UploadForm/UploadForm";
 import Modal from "../../components/Modal/Modal";
-import Login from "../../components/LogIn/Login";
 import { CollectionTypes } from "../../types/types";
 import useFirestore, { IImages } from "../../hooks/useFirestore";
 import { minWidth } from "../../constants/styleConstants";
@@ -16,28 +15,19 @@ interface Props {
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
+  isLogedIn: boolean;
   window?: () => Window;
 }
 
-const PaintingsPage = (props: Props) => {
+const PaintingsPage = ({ isLogedIn }: Props) => {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
-  const [showLogin, setShowLogin] = useState(false);
 
   const { docs } = useFirestore(CollectionTypes.Hair);
 
-  const keyDownHandler = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.ctrlKey && event.code === "KeyL") {
-      event.preventDefault();
-      console.log("hello");
-      setShowLogin(true);
-    }
-  };
-
-  const handleClose = () => setShowLogin(false);
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
   return (
-    <Grid height="100%" paddingTop="65px" onKeyDown={keyDownHandler}>
+    <Grid height="100%" paddingTop="65px">
       <Grid item container xs={12} direction="row">
         {matches && <FollowMeBar vertical={true} />}
         <Grid item xs margin="auto 0" paddingLeft={1}>
@@ -50,8 +40,7 @@ const PaintingsPage = (props: Props) => {
               openImage={setSelectedImg}
             />
 
-            <UploadForm collection={CollectionTypes.Hair} />
-            {showLogin && <Login handleClose={handleClose} />}
+            {isLogedIn && <UploadForm collection={CollectionTypes.Hair} />}
 
             {!matches && <FollowMeBar vertical={false} />}
           </Box>
