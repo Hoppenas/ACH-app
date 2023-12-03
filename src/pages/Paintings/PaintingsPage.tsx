@@ -20,11 +20,22 @@ interface Props {
 }
 
 const PaintingsPage = ({ isLogedIn }: Props) => {
-  const [selectedImg, setSelectedImg] = useState<string | null>(null);
-
+  const [selectedImg, setSelectedImg] = useState<{
+    index: number;
+    url: string;
+  } | null>(null);
   const { docs } = useFirestore(CollectionTypes.Hair);
 
   const matches = useMediaQuery(`(min-width:${minWidth})`);
+
+  const handleopenOtherPhoto = (newIndex: number) => {
+    if (docs && selectedImg && newIndex < docs.length && newIndex >= 0) {
+      setSelectedImg({
+        index: newIndex,
+        url: docs[newIndex].url,
+      });
+    }
+  };
 
   return (
     <Grid height="100%" paddingTop="65px">
@@ -47,7 +58,11 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
         </Grid>
       </Grid>
       {selectedImg && (
-        <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
+        <Modal
+          selectedImg={selectedImg}
+          setSelectedImg={setSelectedImg}
+          handleopenOtherPhoto={handleopenOtherPhoto}
+        />
       )}
     </Grid>
   );

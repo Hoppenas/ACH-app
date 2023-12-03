@@ -3,9 +3,14 @@ import { Box, ImageList, ImageListItem } from "@mui/material";
 import { IImages } from "../../hooks/useFirestore";
 import { motion } from "framer-motion";
 
+interface IModalImage {
+  index: number;
+  url: string;
+}
+
 interface IMasonryImageList {
   imageList: IImages[];
-  openImage: (url: string) => void;
+  openImage: (img: IModalImage) => void;
 }
 
 const MasonryImageList: FC<IMasonryImageList> = ({ imageList, openImage }) => {
@@ -13,7 +18,7 @@ const MasonryImageList: FC<IMasonryImageList> = ({ imageList, openImage }) => {
     <Box>
       <ImageList variant="masonry" cols={3} gap={8}>
         {imageList &&
-          imageList.map((item) => (
+          imageList.map((item, index) => (
             <ImageListItem key={item.id}>
               <motion.img
                 src={item.url}
@@ -23,7 +28,7 @@ const MasonryImageList: FC<IMasonryImageList> = ({ imageList, openImage }) => {
                 transition={{ delay: 1 }}
                 loading="lazy"
                 style={{ display: "block", width: "100%" }}
-                onClick={() => openImage(item.url)}
+                onClick={() => openImage({ index: index, url: item.url })}
               />
             </ImageListItem>
           ))}

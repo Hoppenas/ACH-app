@@ -15,11 +15,24 @@ interface Props {
 }
 
 const PortfolioPage = ({ isLogedIn }: Props) => {
-  const [selectedImg, setSelectedImg] = useState<string | null>(null);
+  const [selectedImg, setSelectedImg] = useState<{
+    index: number;
+    url: string;
+  } | null>(null);
 
   const { docs } = useFirestore(CollectionTypes.Images);
+  console.log(docs);
 
   const matches = useMediaQuery(`(min-width:${minWidth})`);
+
+  const handleopenOtherPhoto = (newIndex: number) => {
+    if (docs && selectedImg && newIndex < docs.length && newIndex >= 0) {
+      setSelectedImg({
+        index: newIndex,
+        url: docs[newIndex].url,
+      });
+    }
+  };
 
   return (
     <Grid container height="100vh" paddingTop="65px">
@@ -49,7 +62,11 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
         </Grid>
       </Grid>
       {selectedImg && (
-        <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
+        <Modal
+          selectedImg={selectedImg}
+          setSelectedImg={setSelectedImg}
+          handleopenOtherPhoto={handleopenOtherPhoto}
+        />
       )}
     </Grid>
   );
