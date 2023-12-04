@@ -62,6 +62,7 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
           selectedImg={selectedImg}
           setSelectedImg={setSelectedImg}
           handleopenOtherPhoto={handleopenOtherPhoto}
+          totalNumberOfImages={docs ? docs.length : 0}
         />
       )}
     </Grid>

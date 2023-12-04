@@ -21,7 +21,6 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
   } | null>(null);
 
   const { docs } = useFirestore(CollectionTypes.Images);
-  console.log(docs);
 
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
@@ -66,6 +65,7 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
           selectedImg={selectedImg}
           setSelectedImg={setSelectedImg}
           handleopenOtherPhoto={handleopenOtherPhoto}
+          totalNumberOfImages={docs ? docs.length : 0}
         />
       )}
     </Grid>

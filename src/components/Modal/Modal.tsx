@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import "./modal.css";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Grid, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 
 export interface IModal {
   selectedImg?: { index: number; url: string } | null;
@@ -11,21 +11,23 @@ export interface IModal {
     SetStateAction<{ index: number; url: string } | null>
   >;
   handleopenOtherPhoto: (newIndex: number) => void;
+  totalNumberOfImages: number;
 }
 
 const Modal: React.FC<IModal> = ({
   selectedImg,
   setSelectedImg,
   handleopenOtherPhoto,
+  totalNumberOfImages,
 }) => {
   const handleClick = (event: MouseEvent<HTMLElement>) => {
-    //TODO: fix, clicking on img works same as click on backdrop
     if (event.currentTarget.classList.contains("backdrop")) {
       setSelectedImg(null);
     }
   };
 
-  const handleOpenNextPhoto = () => {
+  const handleOpenNextPhoto = (event: MouseEvent<HTMLElement>) => {
+    event.preventDefault();
     if (selectedImg) {
       handleopenOtherPhoto(selectedImg?.index - 1);
     }
@@ -36,19 +38,21 @@ const Modal: React.FC<IModal> = ({
     }
   };
   return (
-    <motion.div
-      className="backdrop"
-      onClick={handleClick}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-    >
-      <motion.img
-        className="img"
-        src={selectedImg?.url}
-        alt="enlarged pic"
-        initial={{ y: "-100vh" }}
-        animate={{ y: 0 }}
-      />
+    <>
+      <motion.div
+        className="backdrop"
+        onClick={handleClick}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        <motion.img
+          className="img"
+          src={selectedImg?.url}
+          alt="enlarged pic"
+          initial={{ y: "-100vh" }}
+          animate={{ y: 0 }}
+        />
+      </motion.div>
       <div
         style={{
           position: "absolute",
@@ -56,25 +60,19 @@ const Modal: React.FC<IModal> = ({
           width: "100%",
           justifyContent: "space-between",
           display: "flex",
-          padding: "0 10px",
+          padding: "0 10%",
         }}
       >
-        <IconButton
-          color="inherit"
-          sx={{ padding: 0 }}
-          onClick={handleOpenNextPhoto}
-        >
-          <ArrowBackIosIcon />
+        <IconButton color="inherit" onClick={handleOpenNextPhoto}>
+          {selectedImg && selectedImg?.index > 0 && <ArrowBackIosIcon />}
         </IconButton>
-        <IconButton
-          color="inherit"
-          sx={{ padding: 0 }}
-          onClick={handleOpenprevPhoto}
-        >
-          <ArrowForwardIosIcon />
+        <IconButton color="inherit" onClick={handleOpenprevPhoto}>
+          {selectedImg && selectedImg?.index < totalNumberOfImages - 1 && (
+            <ArrowForwardIosIcon />
+          )}
         </IconButton>
       </div>
-    </motion.div>
+    </>
   );
 };
 
