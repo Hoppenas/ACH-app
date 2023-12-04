@@ -5,7 +5,18 @@ import { useNavigate } from "react-router-dom";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import { minWidth } from "../../constants/styleConstants";
 
-//https://ubaimutl.github.io/react-portfolio/
+const servicesList = [
+  "Dieninis makiažas nuo 50 eur",
+  "Vakarinis, sceninis makiažas nuo 60 eur",
+  "Vestuvinis grimas nuo 70 eur",
+  "Teminis grimas/makiažas nuo 50 eur",
+  "Šukuosena nuo 50 eur",
+  "Makiažas ir šukuosena  nuo 80 eur",
+  "Grimas nuo 70 eur",
+  "Verslo portretai nuo 35 eur / žm. ",
+  "Individualūs makiažo mokymai nuo 150 eur",
+  "Individualūs šukuosenų mokymai nuo 150 eur",
+];
 
 interface Props {
   /**
@@ -44,18 +55,30 @@ const ServicesPage = (props: Props) => {
         >
           <Box maxWidth="450px" margin="0 auto">
             <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
-              Services
+              Paslaugos:
             </Typography>
-            <Typography variant="h4" marginBottom={3} fontFamily="Marcellus">
+            {/* <Typography variant="h4" marginBottom={3} fontFamily="Marcellus">
               I will help you to show your inner beauty
+            </Typography> */}
+            {servicesList.map((service, index) => (
+              <Typography key={index} variant="h6" fontFamily="Marcellus">
+                {service}
+              </Typography>
+            ))}
+            <Typography variant="h6" fontFamily="Marcellus" marginTop={3}>
+              Dėl tikslesnių kainų, labai mielai kviečiu brūkštelti
+              agne.hopp@gmail.com arba skambinti +370 611 34488
             </Typography>
-            <Typography variant="h6" fontFamily="Marcellus">
-              Service 1 Service 2 Service 3 Service 4
-            </Typography>
-            <Grid container direction="row" gap={2} margin={4}>
+            <Grid
+              container
+              direction="row"
+              gap={2}
+              marginY={4}
+              justifyContent={matches ? "left" : "space-around"}
+            >
               <Button
                 variant="contained"
-                onClick={() => navigate("/makeup")}
+                onClick={() => navigate("/portfolio")}
                 sx={{
                   color: "#0e0e0d",
                   background: "#FFF",
@@ -65,14 +88,14 @@ const ServicesPage = (props: Props) => {
                   },
                 }}
               >
-                My portfolio
+                Mano darbai
               </Button>
               <Button
                 variant="outlined"
                 color="inherit"
                 onClick={() => navigate("/contacts")}
               >
-                Contact me
+                Susisiek su manimi!
               </Button>
             </Grid>
             {!matches && <FollowMeBar vertical={false} />}

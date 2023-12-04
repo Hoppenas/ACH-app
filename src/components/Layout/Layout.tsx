@@ -11,7 +11,7 @@ const Layout = ({ isLogedIn }: Props) => {
   return (
     <Box
       height="100vh"
-      sx={{ background: "#0e0e0d", color: "#FFF", overflow: "hidden" }}
+      sx={{ background: "#0e0e0d", color: "#FFF", overflow: "scroll" }}
     >
       <DrawerAppBar isLogedIn={isLogedIn} />
       <Outlet />

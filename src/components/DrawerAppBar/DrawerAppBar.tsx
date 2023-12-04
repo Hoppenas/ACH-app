@@ -26,11 +26,11 @@ interface Props {
 const drawerWidth = 240;
 
 const navItems = [
-  { name: "About", route: "/about" },
-  { name: "Services", route: "/services" },
+  { name: "Apie mane", route: "/about" },
+  { name: "Paslaugos", route: "/services" },
   { name: "Portfolio", route: "/portfolio" },
-  { name: "Paintings", route: "/paintings" },
-  { name: "Contacts", route: "/contacts" },
+  { name: "Paveikslai", route: "/paintings" },
+  { name: "Susisiek su manim", route: "/contacts" },
 ];
 
 const DrawerAppBar = ({ isLogedIn, window }: Props) => {

@@ -38,8 +38,11 @@ const ContactMePage = (props: Props) => {
             <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
               Contact Me
             </Typography>
-            <Typography variant="h4" marginBottom={3} fontFamily="Marcellus">
-              Tel Email
+            <Typography variant="h5" marginBottom={3} fontFamily="Marcellus">
+              Email agne.hopp@gmail.com
+            </Typography>
+            <Typography variant="h5" marginBottom={3} fontFamily="Marcellus">
+              Tel +370 611 34488
             </Typography>
           </Box>
           {!matches && <FollowMeBar vertical={false} />}
