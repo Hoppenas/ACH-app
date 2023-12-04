@@ -11,10 +11,14 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 //TODO Contact me page add contacts
 //TODO Move profile picture to firebase
+//TODO ADD delete button when logged in
 //TODO Check delete function
 //TODO Restyle scroll bar
 //TODO Gallery images one per row for mobile
-//TODO Add buttons for next img on modal
+//TODO ADD text to contact me page
+//TODO ADD text to services
+//TODO Paintings, add create new painting form
+//TODO ADD dedicated page for painting
 
 // Apie mane
 // Paslaugos
