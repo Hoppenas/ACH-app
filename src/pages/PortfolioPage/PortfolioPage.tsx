@@ -52,6 +52,8 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
             <MasonryImageList
               imageList={docs as IImages[]}
               openImage={setSelectedImg}
+              collectionType={CollectionTypes.Images}
+              isLogedIn={isLogedIn}
             />
 
             {isLogedIn && <UploadForm collection={CollectionTypes.Images} />}

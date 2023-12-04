@@ -2,6 +2,8 @@ import React, { FC } from "react";
 import { Box, ImageList, ImageListItem } from "@mui/material";
 import { IImages } from "../../hooks/useFirestore";
 import { motion } from "framer-motion";
+import deleteFile from "../../utils/deleteFile";
+import { CollectionTypes } from "../../types/types";
 
 interface IModalImage {
   index: number;
@@ -11,9 +13,16 @@ interface IModalImage {
 interface IMasonryImageList {
   imageList: IImages[];
   openImage: (img: IModalImage) => void;
+  collectionType: CollectionTypes;
+  isLogedIn: boolean;
 }
 
-const MasonryImageList: FC<IMasonryImageList> = ({ imageList, openImage }) => {
+const MasonryImageList: FC<IMasonryImageList> = ({
+  imageList,
+  openImage,
+  collectionType,
+  isLogedIn,
+}) => {
   return (
     <Box>
       <ImageList variant="masonry" cols={3} gap={8}>
@@ -30,6 +39,21 @@ const MasonryImageList: FC<IMasonryImageList> = ({ imageList, openImage }) => {
                 style={{ display: "block", width: "100%" }}
                 onClick={() => openImage({ index: index, url: item.url })}
               />
+              {isLogedIn && (
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    right: 0,
+                    color: "red",
+                    fontSize: "24px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => deleteFile(item, collectionType)}
+                >
+                  Delete
+                </div>
+              )}
             </ImageListItem>
           ))}
       </ImageList>

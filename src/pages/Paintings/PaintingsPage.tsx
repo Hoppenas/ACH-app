@@ -49,6 +49,8 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
             <MasonryImageList
               imageList={docs as IImages[]}
               openImage={setSelectedImg}
+              collectionType={CollectionTypes.Hair}
+              isLogedIn={isLogedIn}
             />
 
             {isLogedIn && <UploadForm collection={CollectionTypes.Hair} />}
