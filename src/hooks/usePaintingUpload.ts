@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 import { projectStorage, projectFirestore } from "../firebase/config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  updateDoc,
+  collection,
+  serverTimestamp,
+} from "firebase/firestore";
+import { CollectionTypes } from "../types/types";
 
-const useStorage = (file: File | null, collectionName: string) => {
+const usePaintingUpload = (file: File | null) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [url, setUrl] = useState<string | null>(null);
@@ -13,10 +19,16 @@ const useStorage = (file: File | null, collectionName: string) => {
       setError("Please choose a file first!");
       return;
     }
-    const storageRef = ref(projectStorage, `/${collectionName}/${file.name}`);
+    const storageRef = ref(
+      projectStorage,
+      `/${CollectionTypes.Paintings}/${file.name}`
+    );
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-    const collectionRef = collection(projectFirestore, collectionName);
+    const collectionRef = collection(
+      projectFirestore,
+      CollectionTypes.Paintings
+    );
 
     uploadTask.on(
       "state_changed",
@@ -30,13 +42,13 @@ const useStorage = (file: File | null, collectionName: string) => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           const createAt = serverTimestamp();
-          addDoc(collectionRef, { url, createAt, images: [] });
+          addDoc(collectionRef, { url, createAt });
           setUrl(url);
         });
       }
     );
-  }, [file, collectionName]);
+  }, [file]);
   return { progress, error, url };
 };
 
-export default useStorage;
+export default usePaintingUpload;

@@ -9,13 +9,11 @@ import PortfolioPage from "./pages/PortfolioPage/PortfolioPage";
 import LoginPage from "./pages/Login/Login";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-//TODO Contact me page add contacts
 //TODO Move profile picture to firebase
-//TODO ADD delete button when logged in
 //TODO Check delete function
 //TODO Gallery images one per row for mobile
 //TODO Paintings, add create new painting form
-//TODO ADD dedicated page for painting
+//TODO ADD dedicated page for each painting
 //TODO Paintings page check collection type, now is hair
 
 // Apie mane

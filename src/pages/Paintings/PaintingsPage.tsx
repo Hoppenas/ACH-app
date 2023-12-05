@@ -19,7 +19,9 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
     index: number;
     url: string;
   } | null>(null);
+  //TODO: change below CollectionTypes.paintings
   const { docs } = useFirestore(CollectionTypes.Hair);
+  console.log(docs);
 
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
