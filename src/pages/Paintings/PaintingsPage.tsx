@@ -8,15 +8,8 @@ import { CollectionTypes } from "../../types/types";
 import useFirestore, { IImages } from "../../hooks/useFirestore";
 import { minWidth } from "../../constants/styleConstants";
 
-//https://ubaimutl.github.io/react-portfolio/
-
 interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   isLogedIn: boolean;
-  window?: () => Window;
 }
 
 const PaintingsPage = ({ isLogedIn }: Props) => {

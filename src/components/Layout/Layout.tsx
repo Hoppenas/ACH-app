@@ -1,17 +1,20 @@
 import * as React from "react";
 import { Outlet } from "react-router-dom";
 import DrawerAppBar from "../DrawerAppBar/DrawerAppBar";
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
+import { minWidth } from "../../constants/styleConstants";
 
 interface Props {
   isLogedIn: boolean;
 }
 
 const Layout = ({ isLogedIn }: Props) => {
+  const matches = useMediaQuery(`(min-width:${minWidth})`);
   return (
     <Box
       height="100vh"
-      sx={{ background: "#0e0e0d", color: "#FFF", overflow: "scroll" }}
+      overflow={matches ? "hidden" : "scroll"}
+      sx={{ background: "#0e0e0d", color: "#FFF" }}
     >
       <DrawerAppBar isLogedIn={isLogedIn} />
       <Outlet />

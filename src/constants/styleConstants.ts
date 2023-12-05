@@ -1,1 +1,1 @@
-export const minWidth = "768px";
+export const minWidth = "769px";

@@ -7,15 +7,7 @@ import { minWidth } from "../../constants/styleConstants";
 
 //https://ubaimutl.github.io/react-portfolio/
 
-interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window?: () => Window;
-}
-
-const AboutMe = (props: Props) => {
+const AboutMe = () => {
   const navigate = useNavigate();
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
@@ -36,12 +28,6 @@ const AboutMe = (props: Props) => {
           marginLeft={matches ? "35px" : 0}
         >
           <Box maxWidth="500px" margin="0 auto" paddingX={1}>
-            {/* <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
-              Abrakadarbra!
-            </Typography>
-            <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
-              Bum!
-            </Typography> */}
             <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
               Aš esu - Agnė.
             </Typography>
@@ -67,7 +53,7 @@ const AboutMe = (props: Props) => {
             <Grid
               container
               direction="row"
-              gap={2}
+              gap={1}
               marginY={4}
               justifyContent={matches ? "left" : "space-around"}
             >
@@ -89,6 +75,12 @@ const AboutMe = (props: Props) => {
                 variant="outlined"
                 color="inherit"
                 onClick={() => navigate("/contacts")}
+                sx={{
+                  ":hover": {
+                    bgcolor: "#FFF",
+                    color: "#0e0e0d",
+                  },
+                }}
               >
                 Susisiek su manimi!
               </Button>
@@ -103,7 +95,7 @@ const AboutMe = (props: Props) => {
         margin={matches ? "none" : "auto 0"}
         xs={matches ? 6 : 12}
         overflow="hidden"
-        height="100%"
+        // height="100%"
       >
         <img
           src={aboutMeImg}
