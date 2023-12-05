@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery, Button } from "@mui/material";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import MasonryImageList from "../../components/MasonryImageList/MasonryImageList";
 import UploadForm from "../../components/UploadForm/UploadForm";
@@ -7,12 +7,14 @@ import Modal from "../../components/Modal/Modal";
 import { CollectionTypes } from "../../types/types";
 import useFirestore, { IImages } from "../../hooks/useFirestore";
 import { minWidth } from "../../constants/styleConstants";
+import AddPaintingModal from "../../components/AddPaintingModal/AddPaintingModal";
 
 interface Props {
   isLogedIn: boolean;
 }
 
 const PaintingsPage = ({ isLogedIn }: Props) => {
+  const [openAddNewPaintingModal, setOpenAddNewPaintingModal] = useState(false);
   const [selectedImg, setSelectedImg] = useState<{
     index: number;
     url: string;
@@ -46,6 +48,23 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
               isLogedIn={isLogedIn}
             />
 
+            {isLogedIn && (
+              <Button
+                variant="contained"
+                onClick={() => setOpenAddNewPaintingModal(true)}
+                sx={{
+                  color: "#0e0e0d",
+                  background: "#FFF",
+                  ":hover": {
+                    bgcolor: "#0e0e0d",
+                    color: "#FFF",
+                  },
+                }}
+              >
+                Add painting
+              </Button>
+            )}
+
             {isLogedIn && <UploadForm collection={CollectionTypes.Hair} />}
 
             {!matches && <FollowMeBar vertical={false} />}
@@ -58,6 +77,11 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
           setSelectedImg={setSelectedImg}
           handleopenOtherPhoto={handleopenOtherPhoto}
           totalNumberOfImages={docs ? docs.length : 0}
+        />
+      )}
+      {openAddNewPaintingModal && (
+        <AddPaintingModal
+          handleClose={() => setOpenAddNewPaintingModal(false)}
         />
       )}
     </Grid>
