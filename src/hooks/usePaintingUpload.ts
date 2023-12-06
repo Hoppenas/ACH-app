@@ -7,9 +7,10 @@ import {
   collection,
   serverTimestamp,
 } from "firebase/firestore";
-import { CollectionTypes } from "../types/types";
+import { CollectionTypes, IPaintingData } from "../types/types";
+import { create } from "domain";
 
-const usePaintingUpload = (file: File | null) => {
+const usePaintingUpload = (file: File | null, paintingData: IPaintingData) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [url, setUrl] = useState<string | null>(null);
@@ -42,12 +43,13 @@ const usePaintingUpload = (file: File | null) => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           const createAt = serverTimestamp();
-          addDoc(collectionRef, { url, createAt });
+          const data = { ...paintingData, urls: [url], createAt: createAt };
+          addDoc(collectionRef, data);
           setUrl(url);
         });
       }
     );
-  }, [file]);
+  }, [file, paintingData]);
   return { progress, error, url };
 };
 

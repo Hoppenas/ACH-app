@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import "./uploadForm.css";
 import useStorage from "../../hooks/useStorage";
-
-const types = ["image/png", "image/jpeg"];
+import { types } from "../../constants/general";
 
 interface IUploadForm {
   collection: string;

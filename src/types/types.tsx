@@ -3,3 +3,9 @@ export enum CollectionTypes {
   Hair = "hair",
   Paintings = "paintings",
 }
+
+export interface IPaintingData {
+  name: string;
+  price: number;
+  isSold: boolean;
+}

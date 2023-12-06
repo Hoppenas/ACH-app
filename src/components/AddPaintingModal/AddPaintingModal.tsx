@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Grid, Button, TextField, Checkbox } from "@mui/material";
+import { Grid, Button, TextField, Checkbox, Typography } from "@mui/material";
+import { CollectionTypes } from "../../types/types";
+import { types } from "../../constants/general";
+import ProgressBar from "../ProgressBar/ProgressBar";
+import usePaintingUpload from "../../hooks/usePaintingUpload";
 
 export interface IAddPaintingModal {
   handleClose: () => void;
@@ -10,6 +14,40 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
   const [name, setName] = useState("");
   const [isSold, setIsSold] = useState(false);
   const [price, setPrice] = useState(0);
+  const [file, setFile] = useState<File | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const paintingInfo = { name: name, price: price, isSold: isSold };
+
+  const { url, progress } = usePaintingUpload(file, paintingInfo);
+
+  useEffect(() => {
+    if (url) {
+      setFile(null);
+    }
+  }, [url, setFile]);
+
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let selected = e.target.files;
+    if (selected && types.includes(selected[0].type)) {
+      setFile(selected[0]);
+      setError(null);
+    } else {
+      setFile(null);
+      setError("Please sellect an image (png or jpg)");
+    }
+  };
+
+  const handleAdd = () => {
+    const paintingData = {
+      name: name,
+      price: price,
+      isSold: isSold,
+    };
+    if (name && price && file) {
+      console.log(paintingData);
+    }
+  };
   return (
     <motion.div
       className="backdrop"
@@ -30,22 +68,54 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
         bgcolor="#FFF"
         justifyContent="center"
         alignItems="center"
+        color="#0e0e0d"
       >
+        <Typography>Pavadinimas</Typography>
         <TextField
-          name="Pavadinimas"
+          // label="Pavadinimas"
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
+        <Typography>Kaina</Typography>
         <TextField
-          name="Kaina"
+          // label="Kaina"
           value={price}
           onChange={(event) => setPrice(Number(event.target.value))}
         />
-        <Checkbox
-          name="sold"
-          value={isSold}
-          onChange={(event) => setIsSold(event.target.checked)}
-        />
+        <Grid
+          container
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Checkbox
+            name="sold"
+            value={isSold}
+            onChange={(event) => setIsSold(event.target.checked)}
+          />
+          <Typography>Mark as sold</Typography>
+        </Grid>
+
+        <Grid item>
+          <form>
+            <label>
+              <input type="file" onChange={changeHandler} />
+              <span>Add photo</span>
+            </label>
+            <div className="output">
+              {error && <div className="error">{error}</div>}
+              {file && <div className="">{file.name}</div>}
+              {file && (
+                <ProgressBar
+                  file={file}
+                  setFile={setFile}
+                  collectionName={CollectionTypes.Paintings}
+                  progress={progress}
+                />
+              )}
+            </div>
+          </form>
+        </Grid>
         <Grid item container width="fit-content" gap={2}>
           <Button
             variant="contained"
@@ -65,7 +135,8 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
           <Button
             //   variant="outlined"
             color="inherit"
-            // onClick={() => navigate("/contacts")}
+            onClick={handleAdd}
+            // disabled={!name || !price}
             sx={{
               height: "fit-content",
               color: "#FFF",
