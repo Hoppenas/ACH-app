@@ -8,6 +8,7 @@ import ServicesPage from "./pages/Services/Services";
 import PortfolioPage from "./pages/PortfolioPage/PortfolioPage";
 import LoginPage from "./pages/Login/Login";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 
 //TODO Move profile picture to firebase
 //TODO Check delete function
@@ -43,6 +44,10 @@ function App() {
           <Route
             path="paintings"
             element={<PaintingsPage isLogedIn={isLogedIn} />}
+          />
+          <Route
+            path="paintings/:paintingId/overveiw"
+            element={<PaintingOverview isLogedIn={isLogedIn} />}
           />
           <Route path="contacts" element={<ContactMePage />} />
           <Route path="login" element={<LoginPage />} />
