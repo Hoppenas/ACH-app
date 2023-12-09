@@ -44,7 +44,10 @@ const MasonryImageList: FC<IMasonryImageList> = ({
                 onClick={() => openImage({ index: index, url: item.url })}
               />
               {isLogedIn && imagesLoaded && (
-                <div
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
                   style={{
                     position: "absolute",
                     bottom: 0,
@@ -66,7 +69,7 @@ const MasonryImageList: FC<IMasonryImageList> = ({
                   >
                     <DeleteOutlineIcon color="error" />
                   </IconButton>
-                </div>
+                </motion.div>
               )}
             </ImageListItem>
           ))}
