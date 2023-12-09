@@ -15,7 +15,7 @@ export interface IImages {
 }
 
 const useFirestore = (collectionName: string) => {
-  const [docs, setDocs] = useState<DocumentData>();
+  const [docs, setDocs] = useState<DocumentData>([]);
 
   useEffect(() => {
     const unsub = onSnapshot(

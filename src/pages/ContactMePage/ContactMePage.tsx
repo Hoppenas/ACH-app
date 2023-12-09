@@ -48,7 +48,7 @@ const ContactMePage = (props: Props) => {
           {!matches && <FollowMeBar vertical={false} />}
         </Grid>
       </Grid>
-      <Grid xs={matches ? 6 : 12} height="100%">
+      <Grid item xs={matches ? 6 : 12} height="100%">
         <img
           src={profileImg}
           alt="Me"
