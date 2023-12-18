@@ -1,11 +1,8 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import "./progressBar.css";
 
 export interface IProgressBar {
-  file: File;
-  setFile: Dispatch<SetStateAction<File | null>>;
-  collectionName: string;
   progress: number;
 }
 

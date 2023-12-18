@@ -40,14 +40,7 @@ const UploadForm: React.FC<IUploadForm> = ({ collection }) => {
       <div className="output">
         {error && <div className="error">{error}</div>}
         {file && <div className="">{file.name}</div>}
-        {file && (
-          <ProgressBar
-            file={file}
-            setFile={setFile}
-            collectionName={collection}
-            progress={progress}
-          />
-        )}
+        {file && <ProgressBar progress={progress} />}
       </div>
     </form>
   );

@@ -19,13 +19,15 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
 
   const paintingInfo = { name: name, price: price, isSold: isSold };
 
-  const { url, progress } = usePaintingUpload(file, paintingInfo);
+  //   const { url, progress } = usePaintingUpload(file, paintingInfo);
 
-  useEffect(() => {
-    if (url) {
-      setFile(null);
-    }
-  }, [url, setFile]);
+  const { handleUploadPhoto } = usePaintingUpload();
+
+  //   useEffect(() => {
+  //     if (url) {
+  //       setFile(null);
+  //     }
+  //   }, [url, setFile]);
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     let selected = e.target.files;
@@ -105,14 +107,14 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
             <div className="output">
               {error && <div className="error">{error}</div>}
               {file && <div className="">{file.name}</div>}
-              {file && (
+              {/* {file && (
                 <ProgressBar
                   file={file}
                   setFile={setFile}
                   collectionName={CollectionTypes.Paintings}
                   progress={progress}
                 />
-              )}
+              )} */}
             </div>
           </form>
         </Grid>
@@ -135,7 +137,7 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
           <Button
             //   variant="outlined"
             color="inherit"
-            onClick={handleAdd}
+            // onClick={handleUploadPhoto}
             // disabled={!name || !price}
             sx={{
               height: "fit-content",

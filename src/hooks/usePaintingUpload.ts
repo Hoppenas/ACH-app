@@ -8,14 +8,17 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { CollectionTypes, IPaintingData } from "../types/types";
-import { create } from "domain";
 
-const usePaintingUpload = (file: File | null, paintingData: IPaintingData) => {
+const usePaintingUpload = (paintingData: IPaintingData) => {
+  // const usePaintingUpload = () => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [url, setUrl] = useState<string | null>(null);
 
-  useEffect(() => {
+  const handleUploadPhoto = (file: File | null) => {
+    console.log("upload photo");
+
+    // useEffect(() => {
     if (!file) {
       setError("Please choose a file first!");
       return;
@@ -25,11 +28,6 @@ const usePaintingUpload = (file: File | null, paintingData: IPaintingData) => {
       `/${CollectionTypes.Paintings}/${file.name}`
     );
     const uploadTask = uploadBytesResumable(storageRef, file);
-
-    const collectionRef = collection(
-      projectFirestore,
-      CollectionTypes.Paintings
-    );
 
     uploadTask.on(
       "state_changed",
@@ -42,15 +40,24 @@ const usePaintingUpload = (file: File | null, paintingData: IPaintingData) => {
       (err) => setError(err.message),
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          const createAt = serverTimestamp();
-          const data = { ...paintingData, urls: [url], createAt: createAt };
-          addDoc(collectionRef, data);
           setUrl(url);
         });
       }
     );
-  }, [file, paintingData]);
-  return { progress, error, url };
+    // }, [file, paintingData]);
+  };
+
+  const handleAddPainting = (paintingData: IPaintingData) => {
+    const collectionRef = collection(
+      projectFirestore,
+      CollectionTypes.Paintings
+    );
+    const createAt = serverTimestamp();
+    const data = { ...paintingData, urls: [url], createAt: createAt };
+    addDoc(collectionRef, data);
+  };
+
+  return { progress, error, url, handleUploadPhoto, handleAddPainting };
 };
 
 export default usePaintingUpload;
