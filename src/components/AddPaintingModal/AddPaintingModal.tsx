@@ -5,6 +5,7 @@ import { CollectionTypes } from "../../types/types";
 import { types } from "../../constants/general";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import usePaintingUpload from "../../hooks/usePaintingUpload";
+import UploadForm from "../UploadForm/UploadForm";
 
 export interface IAddPaintingModal {
   handleClose: () => void;
@@ -15,30 +16,8 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
   const [isSold, setIsSold] = useState(false);
   const [price, setPrice] = useState(0);
   const [file, setFile] = useState<File | null>(null);
-  const [error, setError] = useState<string | null>(null);
 
-  const paintingInfo = { name: name, price: price, isSold: isSold };
-
-  //   const { url, progress } = usePaintingUpload(file, paintingInfo);
-
-  const { handleUploadPhoto } = usePaintingUpload();
-
-  //   useEffect(() => {
-  //     if (url) {
-  //       setFile(null);
-  //     }
-  //   }, [url, setFile]);
-
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let selected = e.target.files;
-    if (selected && types.includes(selected[0].type)) {
-      setFile(selected[0]);
-      setError(null);
-    } else {
-      setFile(null);
-      setError("Please sellect an image (png or jpg)");
-    }
-  };
+  const { url, progress, handleAddPainting } = usePaintingUpload(file);
 
   const handleAdd = () => {
     const paintingData = {
@@ -46,8 +25,9 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
       price: price,
       isSold: isSold,
     };
-    if (name && price && file) {
-      console.log(paintingData);
+    if (name && price && url) {
+      handleAddPainting(paintingData);
+      //TODO: ADD navigate to paintings/:paintingId/overview
     }
   };
   return (
@@ -61,9 +41,8 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
         container
         direction="column"
         gap={1}
-        marginY={4}
-        width="40%"
-        height="40%"
+        padding={5}
+        width="50%"
         margin="70px auto"
         boxShadow="3px 5px 7px rgba(0, 0, 0, 0.5)"
         border="3px solid #FFF"
@@ -99,24 +78,16 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
         </Grid>
 
         <Grid item>
-          <form>
-            <label>
-              <input type="file" onChange={changeHandler} />
-              <span>Add photo</span>
-            </label>
-            <div className="output">
-              {error && <div className="error">{error}</div>}
-              {file && <div className="">{file.name}</div>}
-              {/* {file && (
-                <ProgressBar
-                  file={file}
-                  setFile={setFile}
-                  collectionName={CollectionTypes.Paintings}
-                  progress={progress}
-                />
-              )} */}
-            </div>
-          </form>
+          <UploadForm
+            file={file}
+            setFile={setFile}
+            progress={progress}
+            url={url}
+          />
+        </Grid>
+        <Grid item>
+          {file && <ProgressBar progress={progress} />}
+          {url && <img src={url} alt="painting" style={{ margin: "auto" }} />}
         </Grid>
         <Grid item container width="fit-content" gap={2}>
           <Button
@@ -135,9 +106,8 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
             Cancel
           </Button>
           <Button
-            //   variant="outlined"
             color="inherit"
-            // onClick={handleUploadPhoto}
+            onClick={handleAdd}
             // disabled={!name || !price}
             sx={{
               height: "fit-content",

@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Box, Grid, Typography, useMediaQuery, Button } from "@mui/material";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import MasonryImageList from "../../components/MasonryImageList/MasonryImageList";
-import UploadForm from "../../components/UploadForm/UploadForm";
 import Modal from "../../components/Modal/Modal";
 import { CollectionTypes } from "../../types/types";
 import useFirestore, { IImages } from "../../hooks/useFirestore";
 import { minWidth } from "../../constants/styleConstants";
 import AddPaintingModal from "../../components/AddPaintingModal/AddPaintingModal";
+import UploadFormContainer from "../../components/UploadForm/UploadFormContainer";
+import usePaintingUpload from "../../hooks/usePaintingUpload";
 
 interface Props {
   isLogedIn: boolean;
@@ -21,7 +22,7 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
   } | null>(null);
   //TODO: change below CollectionTypes.paintings
   const { docs } = useFirestore(CollectionTypes.Hair);
-  console.log(docs);
+  // const { docs } = useFirestore(CollectionTypes.Paintings);
 
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
@@ -67,7 +68,9 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
               </Button>
             )}
 
-            {isLogedIn && <UploadForm collection={CollectionTypes.Hair} />}
+            {/* {isLogedIn && (
+              <UploadFormContainer collection={CollectionTypes.Hair} />
+            )} */}
 
             {!matches && <FollowMeBar vertical={false} />}
           </Box>

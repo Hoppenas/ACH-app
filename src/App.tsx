@@ -46,7 +46,7 @@ function App() {
             element={<PaintingsPage isLogedIn={isLogedIn} />}
           />
           <Route
-            path="paintings/:paintingId/overveiw"
+            path="paintings/:paintingId/overview"
             element={<PaintingOverview isLogedIn={isLogedIn} />}
           />
           <Route path="contacts" element={<ContactMePage />} />

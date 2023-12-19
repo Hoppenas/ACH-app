@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import "./uploadForm.css";
-import useStorage from "../../hooks/useStorage";
 import { types } from "../../constants/general";
 
 interface IUploadForm {
-  collection: string;
+  file: File | null;
+  setFile: (file: File | null) => void;
+  progress: number;
+  url: string | null;
 }
 
-const UploadForm: React.FC<IUploadForm> = ({ collection }) => {
-  const [file, setFile] = useState<File | null>(null);
+const UploadForm: React.FC<IUploadForm> = ({
+  file,
+  setFile,
+  progress,
+  url,
+}) => {
   const [error, setError] = useState<string | null>(null);
-
-  const { url, progress } = useStorage(file, collection);
 
   useEffect(() => {
     if (url) {

@@ -9,16 +9,12 @@ import {
 } from "firebase/firestore";
 import { CollectionTypes, IPaintingData } from "../types/types";
 
-const usePaintingUpload = (paintingData: IPaintingData) => {
-  // const usePaintingUpload = () => {
+const usePaintingUpload = (file: File | null) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [url, setUrl] = useState<string | null>(null);
 
-  const handleUploadPhoto = (file: File | null) => {
-    console.log("upload photo");
-
-    // useEffect(() => {
+  useEffect(() => {
     if (!file) {
       setError("Please choose a file first!");
       return;
@@ -44,8 +40,7 @@ const usePaintingUpload = (paintingData: IPaintingData) => {
         });
       }
     );
-    // }, [file, paintingData]);
-  };
+  }, [file]);
 
   const handleAddPainting = (paintingData: IPaintingData) => {
     const collectionRef = collection(
@@ -57,7 +52,7 @@ const usePaintingUpload = (paintingData: IPaintingData) => {
     addDoc(collectionRef, data);
   };
 
-  return { progress, error, url, handleUploadPhoto, handleAddPainting };
+  return { progress, error, url, handleAddPainting };
 };
 
 export default usePaintingUpload;
