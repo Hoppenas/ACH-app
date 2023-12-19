@@ -6,6 +6,7 @@ import {
   onSnapshot,
   query,
   DocumentData,
+  QueryFieldFilterConstraint,
 } from "firebase/firestore";
 
 export interface IImages {

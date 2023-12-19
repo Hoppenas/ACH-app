@@ -49,7 +49,7 @@ const usePaintingUpload = (file: File | null) => {
       CollectionTypes.Paintings
     );
     const createAt = serverTimestamp();
-    const data = { ...paintingData, urls: [url], createAt: createAt };
+    const data = { ...paintingData, urls: [url], url: url, createAt: createAt };
     addDoc(collectionRef, data).then((docRef) => setId(docRef.id));
   };
 

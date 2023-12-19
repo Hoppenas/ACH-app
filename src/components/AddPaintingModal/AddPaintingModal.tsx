@@ -94,7 +94,13 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
         </Grid>
         <Grid item>
           {file && <ProgressBar progress={progress} />}
-          {url && <img src={url} alt="painting" style={{ margin: "auto" }} />}
+          {url && (
+            <img
+              src={url}
+              alt="painting"
+              style={{ margin: "auto", maxHeight: "300px" }}
+            />
+          )}
         </Grid>
         <Grid item container width="fit-content" gap={2}>
           <Button

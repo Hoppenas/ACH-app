@@ -14,15 +14,15 @@ interface Props {
   isLogedIn: boolean;
 }
 
+const collection = CollectionTypes.Paintings;
+
 const PaintingsPage = ({ isLogedIn }: Props) => {
   const [openAddNewPaintingModal, setOpenAddNewPaintingModal] = useState(false);
   const [selectedImg, setSelectedImg] = useState<{
     index: number;
     url: string;
   } | null>(null);
-  //TODO: change below CollectionTypes.paintings
-  const { docs } = useFirestore(CollectionTypes.Hair);
-  // const { docs } = useFirestore(CollectionTypes.Paintings);
+  const { docs } = useFirestore(collection);
 
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
@@ -47,7 +47,7 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
             <MasonryImageList
               imageList={docs as IImages[]}
               openImage={setSelectedImg}
-              collectionType={CollectionTypes.Hair}
+              collectionType={collection}
               isLogedIn={isLogedIn}
             />
 
@@ -69,7 +69,7 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
             )}
 
             {/* {isLogedIn && (
-              <UploadFormContainer collection={CollectionTypes.Hair} />
+              <UploadFormContainer collection={collection} />
             )} */}
 
             {!matches && <FollowMeBar vertical={false} />}

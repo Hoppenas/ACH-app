@@ -3,6 +3,11 @@ import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import { minWidth } from "../../constants/styleConstants";
 import { useParams } from "react-router-dom";
+import useFirestore from "../../hooks/useFirestore";
+import { CollectionTypes } from "../../types/types";
+import { query, where } from "firebase/firestore";
+
+// const q = query(citiesRef, where("country", "in", ["USA", "Japan"]));
 
 interface Props {
   isLogedIn: boolean;
@@ -11,6 +16,9 @@ interface Props {
 const PaintingOverview = ({ isLogedIn }: Props) => {
   const { paintingId } = useParams();
   const matches = useMediaQuery(`(min-width:${minWidth})`);
+  const collection = CollectionTypes.Paintings;
+  const { docs } = useFirestore(collection);
+  console.log(docs);
 
   return (
     <Grid height="100%" paddingTop="65px">
