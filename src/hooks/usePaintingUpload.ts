@@ -13,6 +13,7 @@ const usePaintingUpload = (file: File | null) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [url, setUrl] = useState<string | null>(null);
+  const [id, setId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!file) {
@@ -49,10 +50,10 @@ const usePaintingUpload = (file: File | null) => {
     );
     const createAt = serverTimestamp();
     const data = { ...paintingData, urls: [url], createAt: createAt };
-    addDoc(collectionRef, data);
+    addDoc(collectionRef, data).then((docRef) => setId(docRef.id));
   };
 
-  return { progress, error, url, handleAddPainting };
+  return { progress, error, url, handleAddPainting, id };
 };
 
 export default usePaintingUpload;

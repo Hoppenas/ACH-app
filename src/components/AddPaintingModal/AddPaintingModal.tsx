@@ -6,6 +6,7 @@ import { types } from "../../constants/general";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import usePaintingUpload from "../../hooks/usePaintingUpload";
 import UploadForm from "../UploadForm/UploadForm";
+import { useNavigate } from "react-router-dom";
 
 export interface IAddPaintingModal {
   handleClose: () => void;
@@ -16,8 +17,15 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
   const [isSold, setIsSold] = useState(false);
   const [price, setPrice] = useState(0);
   const [file, setFile] = useState<File | null>(null);
+  const navigate = useNavigate();
 
-  const { url, progress, handleAddPainting } = usePaintingUpload(file);
+  const { url, progress, handleAddPainting, id } = usePaintingUpload(file);
+
+  useEffect(() => {
+    if (id) {
+      navigate(`${id}/overview`);
+    }
+  }, [id, navigate]);
 
   const handleAdd = () => {
     const paintingData = {
@@ -27,7 +35,6 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
     };
     if (name && price && url) {
       handleAddPainting(paintingData);
-      //TODO: ADD navigate to paintings/:paintingId/overview
     }
   };
   return (
