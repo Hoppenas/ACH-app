@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import useFirestore from "../../hooks/useFirestore";
 import { CollectionTypes } from "../../types/types";
 import { query, where } from "firebase/firestore";
+import usePainting from "../../hooks/usePainting";
 
 // const q = query(citiesRef, where("country", "in", ["USA", "Japan"]));
 
@@ -17,8 +18,9 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
   const { paintingId } = useParams();
   const matches = useMediaQuery(`(min-width:${minWidth})`);
   const collection = CollectionTypes.Paintings;
-  const { docs } = useFirestore(collection);
-  console.log(docs);
+  // const { docs } = useFirestore(collection);
+  const { painting } = usePainting(collection);
+  console.log(painting);
 
   return (
     <Grid height="100%" paddingTop="65px">

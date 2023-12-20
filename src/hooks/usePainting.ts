@@ -7,6 +7,7 @@ import {
   query,
   DocumentData,
 } from "firebase/firestore";
+import { CollectionTypes } from "../types/types";
 
 export interface IImages {
   id: string;
@@ -14,13 +15,17 @@ export interface IImages {
   createAt: { seconds: number; nanoseconds: number };
 }
 
-const useFirestore = (collectionName: string) => {
-  const [docs, setDocs] = useState<DocumentData>([]);
+const usePainting = (collectionName: string) => {
+  const [painting, setPainting] = useState<DocumentData>([]);
 
   useEffect(() => {
     const unsub = onSnapshot(
       query(
-        collection(projectFirestore, collectionName),
+        collection(
+          projectFirestore,
+          //   CollectionTypes.Paintings + "/" + "XNLLibk6pBH2r4cLrjbr"
+          CollectionTypes.Paintings
+        ),
         orderBy("createAt", "desc")
       ),
       (snap) => {
@@ -31,13 +36,13 @@ const useFirestore = (collectionName: string) => {
             id: doc.id,
           });
         });
-        setDocs(documents);
+        setPainting(documents);
       }
     );
     return () => unsub();
   }, [collectionName]);
 
-  return { docs };
+  return { painting };
 };
 
-export default useFirestore;
+export default usePainting;

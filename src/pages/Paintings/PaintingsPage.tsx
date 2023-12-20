@@ -7,8 +7,6 @@ import { CollectionTypes } from "../../types/types";
 import useFirestore, { IImages } from "../../hooks/useFirestore";
 import { minWidth } from "../../constants/styleConstants";
 import AddPaintingModal from "../../components/AddPaintingModal/AddPaintingModal";
-import UploadFormContainer from "../../components/UploadForm/UploadFormContainer";
-import usePaintingUpload from "../../hooks/usePaintingUpload";
 
 interface Props {
   isLogedIn: boolean;
@@ -67,11 +65,6 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
                 Add painting
               </Button>
             )}
-
-            {/* {isLogedIn && (
-              <UploadFormContainer collection={collection} />
-            )} */}
-
             {!matches && <FollowMeBar vertical={false} />}
           </Box>
         </Grid>
