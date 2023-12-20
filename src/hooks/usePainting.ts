@@ -6,6 +6,8 @@ import {
   onSnapshot,
   query,
   DocumentData,
+  documentId,
+  where,
 } from "firebase/firestore";
 import { CollectionTypes } from "../types/types";
 
@@ -15,7 +17,7 @@ export interface IImages {
   createAt: { seconds: number; nanoseconds: number };
 }
 
-const usePainting = (collectionName: string) => {
+const usePainting = (collectionName: string, id: string | undefined) => {
   const [painting, setPainting] = useState<DocumentData>([]);
 
   useEffect(() => {
@@ -26,7 +28,8 @@ const usePainting = (collectionName: string) => {
           //   CollectionTypes.Paintings + "/" + "XNLLibk6pBH2r4cLrjbr"
           CollectionTypes.Paintings
         ),
-        orderBy("createAt", "desc")
+        where("id", "==", id)
+        // orderBy("createAt", "desc")
       ),
       (snap) => {
         const documents: DocumentData = [];
@@ -40,7 +43,7 @@ const usePainting = (collectionName: string) => {
       }
     );
     return () => unsub();
-  }, [collectionName]);
+  }, [collectionName, id]);
 
   return { painting };
 };

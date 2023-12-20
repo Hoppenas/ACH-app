@@ -19,7 +19,7 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
   const matches = useMediaQuery(`(min-width:${minWidth})`);
   const collection = CollectionTypes.Paintings;
   // const { docs } = useFirestore(collection);
-  const { painting } = usePainting(collection);
+  const { painting } = usePainting(collection, paintingId);
   console.log(painting);
 
   return (
