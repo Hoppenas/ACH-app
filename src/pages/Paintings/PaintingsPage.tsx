@@ -7,6 +7,8 @@ import { CollectionTypes } from "../../types/types";
 import useFirestore, { IImages } from "../../hooks/useFirestore";
 import { minWidth } from "../../constants/styleConstants";
 import AddPaintingModal from "../../components/AddPaintingModal/AddPaintingModal";
+import PaintingsImageList from "../../components/PaintingsImageList/PaintingsImageList";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   isLogedIn: boolean;
@@ -21,6 +23,8 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
     url: string;
   } | null>(null);
   const { docs } = useFirestore(collection);
+
+  const navigate = useNavigate();
 
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
@@ -42,9 +46,9 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
             <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
               Paintings
             </Typography>
-            <MasonryImageList
+            <PaintingsImageList
               imageList={docs as IImages[]}
-              openImage={setSelectedImg}
+              handleGoToPainting={(id) => navigate(`/paintings/${id}/overview`)}
               collectionType={collection}
               isLogedIn={isLogedIn}
             />
