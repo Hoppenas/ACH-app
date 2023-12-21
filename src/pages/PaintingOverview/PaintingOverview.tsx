@@ -20,7 +20,8 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
   const collection = CollectionTypes.Paintings;
   // const { docs } = useFirestore(collection);
   const { painting } = usePainting(collection, paintingId);
-  console.log(painting);
+  console.log(painting[0]);
+  console.log(paintingId);
 
   return (
     <Grid height="100%" paddingTop="65px">
