@@ -3,9 +3,7 @@ import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import { minWidth } from "../../constants/styleConstants";
 import { useParams } from "react-router-dom";
-import useFirestore from "../../hooks/useFirestore";
 import { CollectionTypes } from "../../types/types";
-import { query, where } from "firebase/firestore";
 import usePainting from "../../hooks/usePainting";
 
 // const q = query(citiesRef, where("country", "in", ["USA", "Japan"]));
@@ -18,11 +16,7 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
   const { paintingId } = useParams();
   const matches = useMediaQuery(`(min-width:${minWidth})`);
   const collection = CollectionTypes.Paintings;
-  // const { docs } = useFirestore(collection);
   const { painting } = usePainting(collection, paintingId);
-  console.log(painting[0]);
-  console.log(paintingId);
-
   return (
     <Grid height="100%" paddingTop="65px">
       <Grid item container xs={12} direction="row">
@@ -32,6 +26,17 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
             <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
               Painting id: {paintingId}
             </Typography>
+            <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
+              name: {painting.name}
+            </Typography>
+            <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
+              Price: {painting.price} eur
+            </Typography>
+            {painting.isSold && (
+              <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
+                Sold
+              </Typography>
+            )}
             {!matches && <FollowMeBar vertical={false} />}
           </Box>
         </Grid>

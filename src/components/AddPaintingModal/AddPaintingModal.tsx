@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Grid, Button, TextField, Checkbox, Typography } from "@mui/material";
-import { CollectionTypes } from "../../types/types";
-import { types } from "../../constants/general";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import usePaintingUpload from "../../hooks/usePaintingUpload";
 import UploadForm from "../UploadForm/UploadForm";
@@ -60,13 +58,11 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
       >
         <Typography>Pavadinimas</Typography>
         <TextField
-          // label="Pavadinimas"
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
         <Typography>Kaina</Typography>
         <TextField
-          // label="Kaina"
           value={price}
           onChange={(event) => setPrice(Number(event.target.value))}
         />

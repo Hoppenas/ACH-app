@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import { projectStorage, projectFirestore } from "../firebase/config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import {
-  addDoc,
-  updateDoc,
-  collection,
-  serverTimestamp,
-} from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { CollectionTypes, IPaintingData } from "../types/types";
 
 const usePaintingUpload = (file: File | null) => {
