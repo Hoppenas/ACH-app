@@ -13,15 +13,9 @@ import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 //TODO Move profile picture to firebase
 //TODO Check delete function
 //TODO Gallery images one per row for mobile
-//TODO Paintings, add create new painting form
-//TODO ADD dedicated page for each painting
-//TODO Paintings page check collection type, now is hair
+//TODO UI for painting page
 
-// Apie mane
-// Paslaugos
-// Portfolio
-// Paveikslai
-// Kontaktai
+//https://ubaimutl.github.io/react-portfolio/
 
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);

@@ -9,7 +9,6 @@ const deleteFile = async (file: DocumentData | null, collection: string) => {
   }
   const storage = getStorage();
   const storageRef = ref(storage, file.url);
-  console.log(file);
 
   deleteObject(storageRef)
     .then(() => {

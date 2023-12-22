@@ -8,8 +8,6 @@ import { CollectionTypes } from "../../types/types";
 import { minWidth } from "../../constants/styleConstants";
 import UploadFormContainer from "../../components/UploadForm/UploadFormContainer";
 
-//https://ubaimutl.github.io/react-portfolio/
-
 interface Props {
   isLogedIn: boolean;
 }

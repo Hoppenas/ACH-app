@@ -1,11 +1,9 @@
-import * as React from "react";
+import React from "react";
 import { Box, Button, Grid, Typography, useMediaQuery } from "@mui/material";
 import aboutMeImg from "../../images/aboutMe.jpg";
 import { useNavigate } from "react-router-dom";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import { minWidth } from "../../constants/styleConstants";
-
-//https://ubaimutl.github.io/react-portfolio/
 
 const AboutMe = () => {
   const navigate = useNavigate();

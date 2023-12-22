@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Grid, Typography, useMediaQuery, Button } from "@mui/material";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
-import MasonryImageList from "../../components/MasonryImageList/MasonryImageList";
 import Modal from "../../components/Modal/Modal";
 import { CollectionTypes } from "../../types/types";
 import useFirestore, { IImages } from "../../hooks/useFirestore";
@@ -44,7 +43,7 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
         <Grid item xs margin="auto 0" paddingLeft={1}>
           <Box maxWidth="1320px" width="80%" margin="0 auto">
             <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
-              Paintings
+              Paveikslai
             </Typography>
             <PaintingsImageList
               imageList={docs as IImages[]}

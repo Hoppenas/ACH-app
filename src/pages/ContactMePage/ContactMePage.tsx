@@ -1,20 +1,10 @@
-import * as React from "react";
+import React from "react";
 import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import profileImg from "../../images/profileImg.jpg";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import { minWidth } from "../../constants/styleConstants";
 
-//https://ubaimutl.github.io/react-portfolio/
-
-interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window?: () => Window;
-}
-
-const ContactMePage = (props: Props) => {
+const ContactMePage = () => {
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
   return (
@@ -36,7 +26,7 @@ const ContactMePage = (props: Props) => {
         >
           <Box maxWidth="450px" margin="0 auto">
             <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
-              Contact Me
+              Susisiek su manimi
             </Typography>
             <Typography variant="h5" marginBottom={3} fontFamily="Marcellus">
               Email agne.hopp@gmail.com
