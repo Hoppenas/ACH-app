@@ -11,7 +11,6 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 
 //TODO Move profile picture to firebase
-//TODO Check delete function
 //TODO Gallery images one per row for mobile
 //TODO UI for painting page
 
