@@ -1,11 +1,18 @@
 import React, { FC, useRef } from "react";
-import { Box, ImageList, ImageListItem, IconButton } from "@mui/material";
+import {
+  Box,
+  ImageList,
+  ImageListItem,
+  IconButton,
+  useMediaQuery,
+} from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { IImages } from "../../hooks/useFirestore";
 import { motion } from "framer-motion";
 import deleteFile from "../../utils/deleteFile";
 import { CollectionTypes } from "../../types/types";
 import { useOnLoadImages } from "../../hooks/useOnLoadImages";
+import { minWidth } from "../../constants/styleConstants";
 
 interface IModalImage {
   index: number;
@@ -27,9 +34,11 @@ const MasonryImageList: FC<IMasonryImageList> = ({
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const imagesLoaded = useOnLoadImages(wrapperRef);
+  const matches = useMediaQuery(`(min-width:${minWidth})`);
+
   return (
     <Box ref={wrapperRef}>
-      <ImageList variant="masonry" cols={3} gap={8}>
+      <ImageList variant="masonry" cols={matches ? 3 : 2} gap={8}>
         {imageList &&
           imageList.map((item, index) => (
             <ImageListItem key={item.id}>

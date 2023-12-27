@@ -10,10 +10,6 @@ import LoginPage from "./pages/Login/Login";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 
-//TODO Move profile picture to firebase
-//TODO Gallery images one per row for mobile
-//TODO UI for painting page
-
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);
   const auth = getAuth();
