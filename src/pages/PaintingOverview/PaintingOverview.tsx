@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { CollectionTypes } from "../../types/types";
 import usePainting from "../../hooks/usePainting";
 
-// const q = query(citiesRef, where("country", "in", ["USA", "Japan"]));
+//https://ubaimutl.github.io/react-portfolio/
 
 interface Props {
   isLogedIn: boolean;

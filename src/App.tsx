@@ -14,8 +14,6 @@ import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 //TODO Gallery images one per row for mobile
 //TODO UI for painting page
 
-//https://ubaimutl.github.io/react-portfolio/
-
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);
   const auth = getAuth();
