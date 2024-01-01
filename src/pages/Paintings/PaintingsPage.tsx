@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Box, Grid, Typography, useMediaQuery, Button } from "@mui/material";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import Modal from "../../components/Modal/Modal";
-import { CollectionTypes } from "../../types/types";
-import useFirestore, { IImages } from "../../hooks/useFirestore";
+import { CollectionTypes, IPaintings } from "../../types/types";
+import useFirestore from "../../hooks/useFirestore";
 import { minWidth } from "../../constants/styleConstants";
 import AddPaintingModal from "../../components/AddPaintingModal/AddPaintingModal";
 import PaintingsImageList from "../../components/PaintingsImageList/PaintingsImageList";
@@ -46,7 +46,7 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
               Paveikslai
             </Typography>
             <PaintingsImageList
-              imageList={docs as IImages[]}
+              imageList={docs as IPaintings[]}
               handleGoToPainting={(id) => navigate(`/paintings/${id}/overview`)}
               collectionType={collection}
               isLogedIn={isLogedIn}

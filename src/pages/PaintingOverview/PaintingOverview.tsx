@@ -1,10 +1,11 @@
 import React from "react";
-import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
+import { Box, Button, Grid, Typography, useMediaQuery } from "@mui/material";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import { minWidth } from "../../constants/styleConstants";
 import { useParams } from "react-router-dom";
 import { CollectionTypes } from "../../types/types";
 import usePainting from "../../hooks/usePainting";
+import UploadFormContainer from "../../components/UploadForm/UploadFormContainer";
 
 //https://ubaimutl.github.io/react-portfolio/
 
@@ -37,7 +38,26 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
                 Sold
               </Typography>
             )}
+            {/* {isLogedIn && (
+              <Button
+                variant="contained"
+                onClick={() => console.log("add img")}
+                sx={{
+                  color: "#0e0e0d",
+                  background: "#FFF",
+                  ":hover": {
+                    bgcolor: "#0e0e0d",
+                    color: "#FFF",
+                  },
+                }}
+              >
+                Add image
+              </Button>
+            )} */}
             {!matches && <FollowMeBar vertical={false} />}
+            {isLogedIn && (
+              <UploadFormContainer collection={`${collection}/${paintingId}`} />
+            )}
           </Box>
         </Grid>
       </Grid>

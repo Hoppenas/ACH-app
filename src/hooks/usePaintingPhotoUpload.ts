@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { projectStorage, projectFirestore } from "../firebase/config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { CollectionTypes, IPaintingData } from "../types/types";
+import { CollectionTypes } from "../types/types";
 
-const usePaintingUpload = (file: File | null) => {
+const collectionName = CollectionTypes.Paintings;
+
+const usePaintingPhotoUpload = (file: File | null, paintingId: string) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [url, setUrl] = useState<string | null>(null);
@@ -15,11 +17,15 @@ const usePaintingUpload = (file: File | null) => {
       setError("Please choose a file first!");
       return;
     }
-    const storageRef = ref(
-      projectStorage,
-      `/${CollectionTypes.Paintings}/${file.name}`
-    );
+    const storageRef = ref(projectStorage, `/${collectionName}/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
+
+    const collectionRef = collection(
+      projectFirestore,
+      CollectionTypes.Paintings,
+      paintingId,
+      "gallery"
+    );
 
     uploadTask.on(
       "state_changed",
@@ -32,23 +38,20 @@ const usePaintingUpload = (file: File | null) => {
       (err) => setError(err.message),
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          const createAt = serverTimestamp();
+          const data = {
+            url: url,
+            createAt: createAt,
+            id,
+          };
+          addDoc(collectionRef, data).then((docRef) => setId(docRef.id));
           setUrl(url);
         });
       }
     );
-  }, [file]);
+  }, [file, id, paintingId]);
 
-  const handleAddPainting = (paintingData: IPaintingData) => {
-    const collectionRef = collection(
-      projectFirestore,
-      CollectionTypes.Paintings
-    );
-    const createAt = serverTimestamp();
-    const data = { ...paintingData, gallery: [], url: url, createAt: createAt };
-    addDoc(collectionRef, data).then((docRef) => setId(docRef.id));
-  };
-
-  return { progress, error, url, handleAddPainting, id };
+  return { progress, error, url, id };
 };
 
-export default usePaintingUpload;
+export default usePaintingPhotoUpload;

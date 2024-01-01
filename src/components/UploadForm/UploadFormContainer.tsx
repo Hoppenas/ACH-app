@@ -12,13 +12,6 @@ const UploadFormContainer: React.FC<IUploadFormContainer> = ({
 }) => {
   const [file, setFile] = useState<File | null>(null);
   const { url, progress } = useStorage(file, collection);
-
-  //   useEffect(() => {
-  //     if (url) {
-  //       setFile(null);
-  //     }
-  //   }, [url, setFile]);
-
   return (
     <UploadForm file={file} setFile={setFile} progress={progress} url={url} />
   );
