@@ -1,4 +1,4 @@
-import React, { FC, useRef } from "react";
+import { FC, useRef } from "react";
 import {
   Box,
   ImageList,
@@ -7,10 +7,9 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { IImages } from "../../hooks/useFirestore";
 import { motion } from "framer-motion";
 import deleteFile from "../../utils/deleteFile";
-import { CollectionTypes } from "../../types/types";
+import { CollectionTypes, IPhoto } from "../../types/types";
 import { useOnLoadImages } from "../../hooks/useOnLoadImages";
 import { minWidth } from "../../constants/styleConstants";
 
@@ -20,7 +19,7 @@ interface IModalImage {
 }
 
 interface IMasonryImageList {
-  imageList: IImages[];
+  imageList: IPhoto[];
   openImage: (img: IModalImage) => void;
   collectionType: CollectionTypes;
   isLogedIn: boolean;

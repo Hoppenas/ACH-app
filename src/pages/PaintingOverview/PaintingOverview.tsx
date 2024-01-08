@@ -1,11 +1,14 @@
-import React from "react";
-import { Box, Button, Grid, Typography, useMediaQuery } from "@mui/material";
+import { useState } from "react";
+import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import { minWidth } from "../../constants/styleConstants";
 import { useParams } from "react-router-dom";
 import { CollectionTypes } from "../../types/types";
 import usePainting from "../../hooks/usePainting";
-import UploadFormContainer from "../../components/UploadForm/UploadFormContainer";
+import usePaintingPhotoUpload from "../../hooks/usePaintingPhotoUpload";
+import UploadForm from "../../components/UploadForm/UploadForm";
+import usePaintingPhoto from "../../hooks/usePaintingPhoto";
+import PaintingImagesList from "../../components/PaintingImagesList/PaintingImagesList";
 
 //https://ubaimutl.github.io/react-portfolio/
 
@@ -14,10 +17,13 @@ interface Props {
 }
 
 const PaintingOverview = ({ isLogedIn }: Props) => {
+  const [file, setFile] = useState<File | null>(null);
   const { paintingId } = useParams();
+  const { url, progress } = usePaintingPhotoUpload(file, paintingId);
   const matches = useMediaQuery(`(min-width:${minWidth})`);
   const collection = CollectionTypes.Paintings;
   const { painting } = usePainting(collection, paintingId);
+  const { paintingPhoto } = usePaintingPhoto(paintingId);
   return (
     <Grid height="100%" paddingTop="65px">
       <Grid item container xs={12} direction="row">
@@ -38,25 +44,15 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
                 Sold
               </Typography>
             )}
-            {/* {isLogedIn && (
-              <Button
-                variant="contained"
-                onClick={() => console.log("add img")}
-                sx={{
-                  color: "#0e0e0d",
-                  background: "#FFF",
-                  ":hover": {
-                    bgcolor: "#0e0e0d",
-                    color: "#FFF",
-                  },
-                }}
-              >
-                Add image
-              </Button>
-            )} */}
+            <PaintingImagesList imageList={paintingPhoto} />
             {!matches && <FollowMeBar vertical={false} />}
             {isLogedIn && (
-              <UploadFormContainer collection={`${collection}/${paintingId}`} />
+              <UploadForm
+                file={file}
+                setFile={setFile}
+                url={url}
+                progress={progress}
+              />
             )}
           </Box>
         </Grid>

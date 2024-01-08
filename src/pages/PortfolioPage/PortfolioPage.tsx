@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import MasonryImageList from "../../components/MasonryImageList/MasonryImageList";
 import Modal from "../../components/Modal/Modal";
-import useFirestore, { IImages } from "../../hooks/useFirestore";
-import { CollectionTypes } from "../../types/types";
+import useFirestore from "../../hooks/useFirestore";
+import { CollectionTypes, IPhoto } from "../../types/types";
 import { minWidth } from "../../constants/styleConstants";
 import UploadFormContainer from "../../components/UploadForm/UploadFormContainer";
 
@@ -48,7 +48,7 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
               Portfolio
             </Typography>
             <MasonryImageList
-              imageList={docs as IImages[]}
+              imageList={docs as IPhoto[]}
               openImage={setSelectedImg}
               collectionType={CollectionTypes.Images}
               isLogedIn={isLogedIn}

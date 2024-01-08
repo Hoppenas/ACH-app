@@ -8,12 +8,6 @@ import {
   DocumentData,
 } from "firebase/firestore";
 
-export interface IImages {
-  id: string;
-  url: string;
-  createAt: { seconds: number; nanoseconds: number };
-}
-
 const useFirestore = (collectionName: string) => {
   const [docs, setDocs] = useState<DocumentData>([]);
 
