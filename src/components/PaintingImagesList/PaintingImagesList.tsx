@@ -24,7 +24,7 @@ const PaintingImagesList: FC<IPaintingImagesList> = ({
 
   return (
     <Box ref={wrapperRef}>
-      <ImageList variant="masonry" cols={3} gap={8}>
+      <ImageList cols={3} gap={8}>
         {imageList &&
           imagesLoaded &&
           imageList.map((item, index) => (

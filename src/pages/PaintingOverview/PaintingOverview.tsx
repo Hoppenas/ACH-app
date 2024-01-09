@@ -49,19 +49,16 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
       <Grid item container xs={12} direction="row">
         {matches && <FollowMeBar vertical={true} />}
         <Grid item xs margin="auto 0" paddingLeft={1}>
-          <Box maxWidth="1320px" width="80%" margin="0 auto">
+          <Box maxWidth="1320px" width="80%" margin="0 auto" textAlign="center">
             <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
-              Painting id: {paintingId}
+              {painting.name}
             </Typography>
             <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
-              name: {painting.name}
-            </Typography>
-            <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
-              Price: {painting.price} eur
+              Kaina: {painting.price} eur
             </Typography>
             {painting.isSold && (
               <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
-                Sold
+                Parduota
               </Typography>
             )}
             <PaintingImagesList
