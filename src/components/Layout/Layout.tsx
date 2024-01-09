@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Outlet } from "react-router-dom";
 import DrawerAppBar from "../DrawerAppBar/DrawerAppBar";
 import { Box, useMediaQuery } from "@mui/material";
@@ -13,7 +12,7 @@ const Layout = ({ isLogedIn }: Props) => {
   return (
     <Box
       height="100vh"
-      overflow={matches ? "hidden" : "scroll"}
+      overflow={matches ? "auto" : "scroll"}
       sx={{ background: "#0e0e0d", color: "#FFF" }}
     >
       <DrawerAppBar isLogedIn={isLogedIn} />

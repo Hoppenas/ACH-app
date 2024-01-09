@@ -9,14 +9,9 @@ import {
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { motion } from "framer-motion";
 import deleteFile from "../../utils/deleteFile";
-import { CollectionTypes, IPhoto } from "../../types/types";
+import { CollectionTypes, IModalImage, IPhoto } from "../../types/types";
 import { useOnLoadImages } from "../../hooks/useOnLoadImages";
 import { minWidth } from "../../constants/styleConstants";
-
-interface IModalImage {
-  index: number;
-  url: string;
-}
 
 interface IMasonryImageList {
   imageList: IPhoto[];

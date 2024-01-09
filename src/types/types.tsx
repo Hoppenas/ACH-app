@@ -25,3 +25,8 @@ export interface IPaintings {
   price: number;
   isSold: boolean;
 }
+
+export interface IModalImage {
+  index: number;
+  url: string;
+}
