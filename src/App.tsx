@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import AboutMe from "./pages/AboutMe/AboutMe";
@@ -13,9 +13,12 @@ import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);
   const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    setIsLogedIn(!!user);
-  });
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setIsLogedIn(!!user);
+    });
+  }, [auth]);
 
   return (
     <BrowserRouter>
