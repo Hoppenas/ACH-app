@@ -44,13 +44,9 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
   const auth = getAuth();
 
   const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        // An error happened.
-      });
+    signOut(auth).catch((error) => {
+      console.log(error);
+    });
   };
 
   const drawer = (
@@ -116,7 +112,11 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block", cursor: "pointer" },
+            }}
+            onClick={() => navigate("/")}
           >
             Agne grimas
           </Typography>

@@ -33,59 +33,65 @@ const PaintingsImageList: FC<IPaintingsImageList> = ({
       <ImageList variant="masonry" cols={3} gap={8}>
         {imageList &&
           imagesLoaded &&
-          imageList.map((item, index) => (
-            <ImageListItem key={item.id}>
-              <motion.img
-                src={item.url}
-                alt="portfolio pic"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
-                loading="lazy"
-                style={{ display: "block", width: "100%" }}
-                onClick={() => handleGoToPainting(item.id)}
-              />
-              <ImageListItemBar
-                title={item.name}
-                subtitle={<span>price: {item.price}</span>}
-                actionIcon={
-                  isLogedIn ? (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 1 }}
-                      style={{
-                        position: "absolute",
-                        bottom: 0,
-                        right: 0,
-                        color: "red",
-                        fontSize: "24px",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <IconButton
-                        sx={{
-                          padding: 0.5,
-                          margin: 0.5,
+          imageList.map((item) => (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+            >
+              <ImageListItem key={item.id}>
+                <motion.img
+                  src={item.url}
+                  alt="portfolio pic"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                  loading="lazy"
+                  style={{ display: "block", width: "100%" }}
+                  onClick={() => handleGoToPainting(item.id)}
+                />
+                <ImageListItemBar
+                  title={item.name}
+                  subtitle={<span>price: {item.price}</span>}
+                  actionIcon={
+                    isLogedIn ? (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1 }}
+                        style={{
+                          position: "absolute",
+                          bottom: 0,
+                          right: 0,
+                          color: "red",
+                          fontSize: "24px",
                           cursor: "pointer",
-                          borderRadius: 5,
-                          border: "1px solid #FFF",
                         }}
-                        onClick={() => deleteFile(item, collectionType)}
                       >
-                        <DeleteOutlineIcon color="error" />
-                      </IconButton>
-                    </motion.div>
-                  ) : (
-                    imagesLoaded && (
-                      <IconButton aria-label={`info about ${item.name}`}>
-                        <InfoIcon />
-                      </IconButton>
+                        <IconButton
+                          sx={{
+                            padding: 0.5,
+                            margin: 0.5,
+                            cursor: "pointer",
+                            borderRadius: 5,
+                            border: "1px solid #FFF",
+                          }}
+                          onClick={() => deleteFile(item, collectionType)}
+                        >
+                          <DeleteOutlineIcon color="error" />
+                        </IconButton>
+                      </motion.div>
+                    ) : (
+                      imagesLoaded && (
+                        <IconButton aria-label={`info about ${item.name}`}>
+                          <InfoIcon />
+                        </IconButton>
+                      )
                     )
-                  )
-                }
-              />
-            </ImageListItem>
+                  }
+                />
+              </ImageListItem>
+            </motion.div>
           ))}
       </ImageList>
     </Box>

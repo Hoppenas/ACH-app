@@ -32,7 +32,7 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
   };
 
   return (
-    <Grid container height="100vh" paddingTop="65px">
+    <Grid container height="100%" paddingTop="65px">
       <Grid
         item
         container
@@ -42,7 +42,7 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
         height="100%"
       >
         {matches && <FollowMeBar vertical={true} />}
-        <Grid item xs margin="auto 0" paddingLeft={1}>
+        <Grid item xs paddingLeft={1}>
           <Box maxWidth="1320px" width="80%" margin="0 auto">
             <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
               Portfolio
