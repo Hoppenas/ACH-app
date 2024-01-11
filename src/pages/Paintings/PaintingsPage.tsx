@@ -13,6 +13,12 @@ interface Props {
   isLogedIn: boolean;
 }
 
+//TODO: ADD text:
+// Esu kūrėja, kuri mėgsta tapyti ne tik portretus, bet ir abstrakčius paveikslus. Per skirtingas formas, potėpius, spalvas, tekstūras stengiuosi perteikti savo emocijas, nuotaikas, jausmus ir pasaulėžiūrą.
+
+// Mano meninė interpretacija dažnai sutelkiama į moterų portretus. Stengiuosi išryškinti jų moteriškumą, grakštumą ir gilumą. Kiekviena mano sukurta moteris tampa gyva ir įdomia.
+// Noriu pasidalinti savo kūrybine kelione bei savęs paieškomis. Didžiausias komplimentas, kai mano paveikslas tampa jūsų interjero dalimi. Jeigu domina kuris nors kūrinys - mielai lauksiu Jūsų žinutės.
+
 const collection = CollectionTypes.Paintings;
 
 const PaintingsPage = ({ isLogedIn }: Props) => {

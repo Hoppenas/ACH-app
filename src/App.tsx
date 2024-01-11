@@ -10,6 +10,12 @@ import LoginPage from "./pages/Login/Login";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 
+//TODO: back button from painting page to painting
+//TODO: paintings gallery move label below image
+//TODO: ADD painting dimension field
+//TODO: ADD contact with me button + email at painting overview page
+//TODO: ADD lorem ipsum text to painting gallery
+
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);
   const auth = getAuth();
