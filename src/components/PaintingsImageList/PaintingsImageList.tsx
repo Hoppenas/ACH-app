@@ -5,13 +5,14 @@ import {
   ImageListItem,
   IconButton,
   ImageListItemBar,
+  Typography,
 } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import InfoIcon from "@mui/icons-material//Info";
 import { motion } from "framer-motion";
 import deleteFile from "../../utils/deleteFile";
 import { CollectionTypes, IPaintings } from "../../types/types";
 import { useOnLoadImages } from "../../hooks/useOnLoadImages";
+import CircularProgress from "@mui/material/CircularProgress";
 
 interface IPaintingsImageList {
   imageList: IPaintings[];
@@ -28,18 +29,19 @@ const PaintingsImageList: FC<IPaintingsImageList> = ({
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const imagesLoaded = useOnLoadImages(wrapperRef);
+
   return (
     <Box ref={wrapperRef}>
-      <ImageList variant="masonry" cols={3} gap={8}>
-        {imageList &&
-          imagesLoaded &&
-          imageList.map((item) => (
+      {imagesLoaded ? (
+        <ImageList sx={{ width: "100%", height: "fit-content" }} gap={20}>
+          {imageList.map((item) => (
             <motion.div
+              key={item.id}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
             >
-              <ImageListItem key={item.id}>
+              <ImageListItem>
                 <motion.img
                   src={item.url}
                   alt="portfolio pic"
@@ -51,8 +53,15 @@ const PaintingsImageList: FC<IPaintingsImageList> = ({
                   onClick={() => handleGoToPainting(item.id)}
                 />
                 <ImageListItemBar
-                  title={item.name}
-                  subtitle={<span>price: {item.price}</span>}
+                  position="below"
+                  subtitle={
+                    <Box width="100%" textAlign="center">
+                      <Typography>{item.name}</Typography>
+                      <Typography>
+                        {item.isSold ? "Parduoda" : `kaina: ${item.price} eur`}
+                      </Typography>
+                    </Box>
+                  }
                   actionIcon={
                     isLogedIn ? (
                       <motion.div
@@ -81,19 +90,16 @@ const PaintingsImageList: FC<IPaintingsImageList> = ({
                           <DeleteOutlineIcon color="error" />
                         </IconButton>
                       </motion.div>
-                    ) : (
-                      imagesLoaded && (
-                        <IconButton aria-label={`info about ${item.name}`}>
-                          <InfoIcon />
-                        </IconButton>
-                      )
-                    )
+                    ) : null
                   }
                 />
               </ImageListItem>
             </motion.div>
           ))}
-      </ImageList>
+        </ImageList>
+      ) : (
+        <CircularProgress />
+      )}
     </Box>
   );
 };

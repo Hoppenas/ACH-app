@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Grid,
+  IconButton,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import { minWidth } from "../../constants/styleConstants";
 import { useParams } from "react-router-dom";
@@ -10,6 +16,8 @@ import UploadForm from "../../components/UploadForm/UploadForm";
 import usePaintingPhoto from "../../hooks/usePaintingPhoto";
 import PaintingImagesList from "../../components/PaintingImagesList/PaintingImagesList";
 import Modal from "../../components/Modal/Modal";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { useNavigate } from "react-router-dom";
 
 //https://ubaimutl.github.io/react-portfolio/
 
@@ -29,6 +37,7 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
   const collection = CollectionTypes.Paintings;
   const { painting } = usePainting(collection, paintingId);
   const { paintingPhoto } = usePaintingPhoto(paintingId);
+  const navigate = useNavigate();
 
   const handleopenOtherPhoto = (newIndex: number) => {
     if (
@@ -47,17 +56,22 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
   return (
     <Grid paddingTop="65px">
       <Grid item container xs={12} direction="row">
+        <Box position="absolute" top="105px" left="10px">
+          <IconButton color="inherit" onClick={() => navigate("/paintings")}>
+            <ArrowBackIosNewIcon />
+          </IconButton>
+        </Box>
         {matches && <FollowMeBar vertical={true} />}
         <Grid item xs margin="auto 0" paddingLeft={1}>
           <Box maxWidth="1320px" width="80%" margin="0 auto" textAlign="center">
-            <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
+            <Typography variant="h3" marginBottom={1}>
               {painting.name}
             </Typography>
-            <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
+            <Typography variant="h3" marginBottom={1}>
               Kaina: {painting.price} eur
             </Typography>
             {painting.isSold && (
-              <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
+              <Typography variant="h3" marginBottom={1}>
                 Parduota
               </Typography>
             )}

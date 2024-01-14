@@ -14,10 +14,7 @@ export const useOnLoadImages = (ref: RefObject<HTMLElement>) => {
 
     const imagesLoaded = Array.from(ref.current.querySelectorAll("img"));
 
-    if (imagesLoaded.length === 0) {
-      setStatus(true);
-      return;
-    }
+    console.log(imagesLoaded);
 
     imagesLoaded.forEach((image) => {
       image.addEventListener("load", () => updateStatus(imagesLoaded), {
@@ -28,6 +25,10 @@ export const useOnLoadImages = (ref: RefObject<HTMLElement>) => {
       });
     });
 
+    if (imagesLoaded.length === 0) {
+      setStatus(true);
+      return;
+    }
     return;
   }, [ref]);
 

@@ -54,18 +54,18 @@ const ServicesPage = (props: Props) => {
           marginLeft={matches ? "35px" : 0}
         >
           <Box maxWidth="450px" margin="0 auto">
-            <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
+            <Typography variant="h3" marginBottom={1}>
               Paslaugos:
             </Typography>
-            {/* <Typography variant="h4" marginBottom={3} fontFamily="Marcellus">
+            {/* <Typography variant="h4" marginBottom={3} >
               I will help you to show your inner beauty
             </Typography> */}
             {servicesList.map((service, index) => (
-              <Typography key={index} variant="h6" fontFamily="Marcellus">
+              <Typography key={index} variant="h6">
                 {service}
               </Typography>
             ))}
-            <Typography variant="h6" fontFamily="Marcellus" marginTop={3}>
+            <Typography variant="h6" marginTop={3}>
               Dėl tikslesnių kainų, labai mielai kviečiu brūkštelti
               agne.hopp@gmail.com arba skambinti +370 611 34488
             </Typography>

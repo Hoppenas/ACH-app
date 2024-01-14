@@ -44,7 +44,7 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
         {matches && <FollowMeBar vertical={true} />}
         <Grid item xs paddingLeft={1}>
           <Box maxWidth="1320px" width="80%" margin="0 auto">
-            <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
+            <Typography variant="h3" marginBottom={1}>
               Portfolio
             </Typography>
             <MasonryImageList

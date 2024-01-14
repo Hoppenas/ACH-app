@@ -26,10 +26,10 @@ const AboutMe = () => {
           marginLeft={matches ? "35px" : 0}
         >
           <Box maxWidth="500px" margin="0 auto" paddingX={1}>
-            <Typography variant="h3" marginBottom={1} fontFamily="Marcellus">
+            <Typography variant="h3" marginBottom={1}>
               Aš esu - Agnė.
             </Typography>
-            <Typography variant="h6" fontFamily="Marcellus" textAlign="justify">
+            <Typography variant="h6" textAlign="justify">
               Aistra grimo ir makiažo pasauliui veda mane per neįtikėtinus
               kūrybinius kelius. Esu profesionali vizažistė, grimo dailininkė ir
               šukuosenų meistrė, kaskart siekianti perteikti kiekvienos
@@ -37,15 +37,15 @@ const AboutMe = () => {
               meniniu kūriniu - nuo subtilių natūralių akcentų iki ryškiausio
               šou.
             </Typography>
-            <Typography variant="h6" fontFamily="Marcellus" marginTop={2}>
+            <Typography variant="h6" marginTop={2}>
               Mano tikslas - ne tik sukurti puikų įvaizdį, bet ir skatinti
               kiekvieną moterį labiau pasitikėti savimi.
             </Typography>
-            <Typography variant="h6" fontFamily="Marcellus" marginTop={2}>
+            <Typography variant="h6" marginTop={2}>
               Esu labai pareiginga, atsakinga, darbšti ir maloni specialistė.
               Kiekviena mano klientė yra dovana.
             </Typography>
-            <Typography variant="h6" fontFamily="Marcellus" marginTop={2}>
+            <Typography variant="h6" marginTop={2}>
               Nekantrauju pasimatyti ir su Tavimi!
             </Typography>
             <Grid
