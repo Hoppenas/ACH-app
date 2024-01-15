@@ -26,16 +26,18 @@ interface Props {
   isLogedIn: boolean;
 }
 
+const collection = CollectionTypes.Paintings;
+
 const PaintingOverview = ({ isLogedIn }: Props) => {
   const [selectedImg, setSelectedImg] = useState<{
     index: number;
     url: string;
+    id: string;
   } | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const { paintingId } = useParams();
   const { url, progress } = usePaintingPhotoUpload(file, paintingId);
   const matches = useMediaQuery(`(min-width:${minWidth})`);
-  const collection = CollectionTypes.Paintings;
   const { painting } = usePainting(collection, paintingId);
   const { paintingPhoto } = usePaintingPhoto(paintingId);
   const navigate = useNavigate();
@@ -50,6 +52,7 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
       setSelectedImg({
         index: newIndex,
         url: paintingPhoto[newIndex].url,
+        id: paintingPhoto[newIndex].id,
       });
     }
   };

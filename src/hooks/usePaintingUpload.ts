@@ -4,6 +4,8 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { CollectionTypes, IPaintingData } from "../types/types";
 
+const paintingsCollection = CollectionTypes.Paintings;
+
 const usePaintingUpload = (file: File | null) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
@@ -17,7 +19,7 @@ const usePaintingUpload = (file: File | null) => {
     }
     const storageRef = ref(
       projectStorage,
-      `/${CollectionTypes.Paintings}/${file.name}`
+      `/${paintingsCollection}/${file.name}`
     );
     const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -39,10 +41,7 @@ const usePaintingUpload = (file: File | null) => {
   }, [file]);
 
   const handleAddPainting = (paintingData: IPaintingData) => {
-    const collectionRef = collection(
-      projectFirestore,
-      CollectionTypes.Paintings
-    );
+    const collectionRef = collection(projectFirestore, paintingsCollection);
     const createAt = serverTimestamp();
     const data = { ...paintingData, gallery: [], url: url, createAt: createAt };
     addDoc(collectionRef, data).then((docRef) => setId(docRef.id));

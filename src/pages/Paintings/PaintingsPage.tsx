@@ -8,7 +8,7 @@ import { minWidth } from "../../constants/styleConstants";
 import AddPaintingModal from "../../components/AddPaintingModal/AddPaintingModal";
 import PaintingsImageList from "../../components/PaintingsImageList/PaintingsImageList";
 import { useNavigate } from "react-router-dom";
-import deleteFile from "../../utils/deleteFile";
+import { deleteFileFromStorage } from "../../utils/deleteFile";
 
 interface Props {
   isLogedIn: boolean;
@@ -21,6 +21,7 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
   const [selectedImg, setSelectedImg] = useState<{
     index: number;
     url: string;
+    id: string;
   } | null>(null);
   const { docs } = useFirestore(collection);
 
@@ -33,13 +34,14 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
       setSelectedImg({
         index: newIndex,
         url: docs[newIndex].url,
+        id: docs[newIndex].id,
       });
     }
   };
 
-  const handleCloseAddPaintingModal = () => {
-    if (selectedImg) {
-      deleteFile(selectedImg, collection);
+  const handleCloseAddPaintingModal = (url: string | null) => {
+    if (url) {
+      deleteFileFromStorage(url);
     }
     setOpenAddNewPaintingModal(false);
   };

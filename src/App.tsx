@@ -12,8 +12,10 @@ import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 
 //TODO: Check what can be moved to theme.ts
 //TODO: FIX: logout after sesion?
-//TODO: FIX: Painting overview when upload image and press cancel, image must be deleted from Storage
 //TODO: REMOVE: uploadForm.css
+//TODO: Change folder logo to svg..
+//TODO: ADD: message bar for error, info or etc
+//TODO: ADD: confirmation modal for delete etc
 
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);

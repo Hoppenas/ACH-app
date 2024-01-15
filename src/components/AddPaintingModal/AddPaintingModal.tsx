@@ -7,7 +7,7 @@ import UploadForm from "../UploadForm/UploadForm";
 import { useNavigate } from "react-router-dom";
 
 export interface IAddPaintingModal {
-  handleClose: () => void;
+  handleClose: (url: string | null) => void;
 }
 
 const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
@@ -107,7 +107,7 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
         <Grid item container width="fit-content" gap={2}>
           <Button
             variant="contained"
-            onClick={handleClose}
+            onClick={() => handleClose(url)}
             sx={{
               height: "fit-content",
               color: "#FFF",

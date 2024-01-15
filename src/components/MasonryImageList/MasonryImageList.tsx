@@ -41,7 +41,9 @@ const MasonryImageList: FC<IMasonryImageList> = ({
                 transition={{ delay: 1 }}
                 loading="lazy"
                 style={{ display: "block", width: "100%" }}
-                onClick={() => openImage({ index: index, url: item.url })}
+                onClick={() =>
+                  openImage({ index: index, url: item.url, id: item.id })
+                }
               />
               {isLogedIn && (
                 <motion.div

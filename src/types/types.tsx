@@ -31,4 +31,5 @@ export interface IPaintings {
 export interface IModalImage {
   index: number;
   url: string;
+  id: string;
 }

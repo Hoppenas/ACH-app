@@ -12,13 +12,16 @@ interface Props {
   isLogedIn: boolean;
 }
 
+const collection = CollectionTypes.Images;
+
 const PortfolioPage = ({ isLogedIn }: Props) => {
   const [selectedImg, setSelectedImg] = useState<{
     index: number;
     url: string;
+    id: string;
   } | null>(null);
 
-  const { docs } = useFirestore(CollectionTypes.Images);
+  const { docs } = useFirestore(collection);
 
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
@@ -27,6 +30,7 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
       setSelectedImg({
         index: newIndex,
         url: docs[newIndex].url,
+        id: docs[newIndex].id,
       });
     }
   };
@@ -50,13 +54,11 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
             <MasonryImageList
               imageList={docs as IPhoto[]}
               openImage={setSelectedImg}
-              collectionType={CollectionTypes.Images}
+              collectionType={collection}
               isLogedIn={isLogedIn}
             />
 
-            {isLogedIn && (
-              <UploadFormContainer collection={CollectionTypes.Images} />
-            )}
+            {isLogedIn && <UploadFormContainer collection={collection} />}
 
             {!matches && <FollowMeBar vertical={false} />}
           </Box>

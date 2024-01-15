@@ -6,9 +6,9 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { IconButton } from "@mui/material";
 
 export interface IModal {
-  selectedImg?: { index: number; url: string } | null;
+  selectedImg?: { index: number; url: string; id: string } | null;
   setSelectedImg: Dispatch<
-    SetStateAction<{ index: number; url: string } | null>
+    SetStateAction<{ index: number; url: string; id: string } | null>
   >;
   handleopenOtherPhoto: (newIndex: number) => void;
   totalNumberOfImages: number;

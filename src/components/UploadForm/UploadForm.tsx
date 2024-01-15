@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import "./uploadForm.css";
 import { types } from "../../constants/general";
@@ -24,7 +24,7 @@ const UploadForm: React.FC<IUploadForm> = ({
     }
   }, [url, setFile]);
 
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     let selected = e.target.files;
     if (selected && types.includes(selected[0].type)) {
       setFile(selected[0]);
