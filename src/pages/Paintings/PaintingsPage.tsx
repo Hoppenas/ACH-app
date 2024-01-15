@@ -8,12 +8,11 @@ import { minWidth } from "../../constants/styleConstants";
 import AddPaintingModal from "../../components/AddPaintingModal/AddPaintingModal";
 import PaintingsImageList from "../../components/PaintingsImageList/PaintingsImageList";
 import { useNavigate } from "react-router-dom";
+import deleteFile from "../../utils/deleteFile";
 
 interface Props {
   isLogedIn: boolean;
 }
-
-//TODO: ADD text:
 
 const collection = CollectionTypes.Paintings;
 
@@ -36,6 +35,13 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
         url: docs[newIndex].url,
       });
     }
+  };
+
+  const handleCloseAddPaintingModal = () => {
+    if (selectedImg) {
+      deleteFile(selectedImg, collection);
+    }
+    setOpenAddNewPaintingModal(false);
   };
 
   return (
@@ -100,9 +106,7 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
         />
       )}
       {openAddNewPaintingModal && (
-        <AddPaintingModal
-          handleClose={() => setOpenAddNewPaintingModal(false)}
-        />
+        <AddPaintingModal handleClose={handleCloseAddPaintingModal} />
       )}
     </Grid>
   );

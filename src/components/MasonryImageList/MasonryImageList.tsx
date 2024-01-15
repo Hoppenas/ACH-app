@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { FC } from "react";
 import {
   Box,
   ImageList,
@@ -10,7 +10,6 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { motion } from "framer-motion";
 import deleteFile from "../../utils/deleteFile";
 import { CollectionTypes, IModalImage, IPhoto } from "../../types/types";
-import { useOnLoadImages } from "../../hooks/useOnLoadImages";
 import { minWidth } from "../../constants/styleConstants";
 
 interface IMasonryImageList {
@@ -26,12 +25,10 @@ const MasonryImageList: FC<IMasonryImageList> = ({
   collectionType,
   isLogedIn,
 }) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const imagesLoaded = useOnLoadImages(wrapperRef);
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
   return (
-    <Box ref={wrapperRef}>
+    <Box>
       <ImageList variant="masonry" cols={matches ? 3 : 2} gap={8}>
         {imageList &&
           imageList.map((item, index) => (
@@ -46,7 +43,7 @@ const MasonryImageList: FC<IMasonryImageList> = ({
                 style={{ display: "block", width: "100%" }}
                 onClick={() => openImage({ index: index, url: item.url })}
               />
-              {isLogedIn && imagesLoaded && (
+              {isLogedIn && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}

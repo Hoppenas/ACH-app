@@ -3,6 +3,7 @@ import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import profileImg from "../../images/profileImg.jpg";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import { minWidth } from "../../constants/styleConstants";
+import ContactList from "../../components/ContactList/ContactList";
 
 const ContactMePage = () => {
   const matches = useMediaQuery(`(min-width:${minWidth})`);
@@ -28,12 +29,7 @@ const ContactMePage = () => {
             <Typography variant="h3" marginBottom={1}>
               Susisiek su manimi
             </Typography>
-            <Typography variant="h5" marginBottom={3}>
-              Email agne.hopp@gmail.com
-            </Typography>
-            <Typography variant="h5" marginBottom={3}>
-              Tel +370 611 34488
-            </Typography>
+            <ContactList />
           </Box>
           {!matches && <FollowMeBar vertical={false} />}
         </Grid>

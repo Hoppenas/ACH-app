@@ -1,9 +1,8 @@
-import { FC, useRef } from "react";
+import { FC } from "react";
 import { Box, ImageList, ImageListItem, IconButton } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { motion } from "framer-motion";
 import { IModalImage, IPhoto } from "../../types/types";
-import { useOnLoadImages } from "../../hooks/useOnLoadImages";
 import deletePaintingImage from "../../utils/deletePaintingImage";
 
 interface IPaintingImagesList {
@@ -19,14 +18,10 @@ const PaintingImagesList: FC<IPaintingImagesList> = ({
   isLogedIn,
   paintingId,
 }) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const imagesLoaded = useOnLoadImages(wrapperRef);
-
   return (
-    <Box ref={wrapperRef}>
+    <Box>
       <ImageList cols={3} gap={8}>
         {imageList &&
-          imagesLoaded &&
           imageList.map((item, index) => (
             <ImageListItem key={item.id}>
               <motion.img
@@ -39,7 +34,7 @@ const PaintingImagesList: FC<IPaintingImagesList> = ({
                 style={{ display: "block", width: "100%" }}
                 onClick={() => openImage({ index: index, url: item.url })}
               />
-              {isLogedIn && imagesLoaded && (
+              {isLogedIn && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}

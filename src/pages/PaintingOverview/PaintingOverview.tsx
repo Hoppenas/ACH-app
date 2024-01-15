@@ -18,6 +18,7 @@ import PaintingImagesList from "../../components/PaintingImagesList/PaintingImag
 import Modal from "../../components/Modal/Modal";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useNavigate } from "react-router-dom";
+import ContactList from "../../components/ContactList/ContactList";
 
 //https://ubaimutl.github.io/react-portfolio/
 
@@ -62,7 +63,7 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
           </IconButton>
         </Box>
         {matches && <FollowMeBar vertical={true} />}
-        <Grid item xs margin="auto 0" paddingLeft={1}>
+        <Grid item container xs margin="auto 0" paddingLeft={1}>
           <Box maxWidth="1320px" width="80%" margin="0 auto" textAlign="center">
             <Typography variant="h3" marginBottom={1}>
               {painting.name}
@@ -70,11 +71,22 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
             <Typography variant="h3" marginBottom={1}>
               Kaina: {painting.price} eur
             </Typography>
+            {painting.dimentions && (
+              <Typography variant="h3" marginBottom={1}>
+                {painting.dimentions} cm
+              </Typography>
+            )}
             {painting.isSold && (
               <Typography variant="h3" marginBottom={1}>
                 Parduota
               </Typography>
             )}
+            <Typography variant="h5" marginBottom={1}>
+              Susisiek su manimi
+            </Typography>
+            <Box width="fit-content" margin="0 auto">
+              <ContactList />
+            </Box>
             <PaintingImagesList
               imageList={paintingPhoto}
               openImage={setSelectedImg}

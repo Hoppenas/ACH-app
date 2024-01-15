@@ -10,11 +10,10 @@ import LoginPage from "./pages/Login/Login";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 
-//TODO: ADD painting dimension field
-//TODO: ADD contact with me button + email at painting overview page
 //TODO: Check what can be moved to theme.ts
 //TODO: FIX: logout after sesion?
-//TODO: ADD: loading spinner, WIP + Fix useOnloadingImages hook
+//TODO: FIX: Painting overview when upload image and press cancel, image must be deleted from Storage
+//TODO: REMOVE: uploadForm.css
 
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);

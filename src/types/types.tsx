@@ -8,6 +8,7 @@ export interface IPaintingData {
   name: string;
   price: number;
   isSold: boolean;
+  dimentions?: string;
 }
 
 export interface IPhoto {
@@ -24,6 +25,7 @@ export interface IPaintings {
   name: string;
   price: number;
   isSold: boolean;
+  dimentions?: string;
 }
 
 export interface IModalImage {

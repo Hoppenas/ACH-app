@@ -12,6 +12,7 @@ export interface IAddPaintingModal {
 
 const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
   const [name, setName] = useState("");
+  const [dims, setDims] = useState("");
   const [isSold, setIsSold] = useState(false);
   const [price, setPrice] = useState(0);
   const [file, setFile] = useState<File | null>(null);
@@ -30,6 +31,7 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
       name: name,
       price: price,
       isSold: isSold,
+      dimentions: dims,
     };
     if (name && price && url) {
       handleAddPainting(paintingData);
@@ -38,7 +40,6 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
   return (
     <motion.div
       className="backdrop"
-      //   onClick={handleClose}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
@@ -65,6 +66,11 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
         <TextField
           value={price}
           onChange={(event) => setPrice(Number(event.target.value))}
+        />
+        <Typography>Išmatavimai</Typography>
+        <TextField
+          value={dims}
+          onChange={(event) => setDims(event.target.value)}
         />
         <Grid
           container
@@ -117,7 +123,6 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
           <Button
             color="inherit"
             onClick={handleAdd}
-            // disabled={!name || !price}
             sx={{
               height: "fit-content",
               color: "#FFF",
