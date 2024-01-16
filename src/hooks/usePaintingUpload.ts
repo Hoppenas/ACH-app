@@ -15,11 +15,6 @@ const usePaintingUpload = (file: File | null) => {
 
   useEffect(() => {
     if (!file) {
-      showNotification({
-        type: "error",
-        message: "Please choose a file first!",
-      });
-      setError("Please choose a file first!");
       return;
     }
     const storageRef = ref(
@@ -54,7 +49,12 @@ const usePaintingUpload = (file: File | null) => {
   const handleAddPainting = (paintingData: IPaintingData) => {
     const collectionRef = collection(projectFirestore, paintingsCollection);
     const createAt = serverTimestamp();
-    const data = { ...paintingData, gallery: [], url: url, createAt: createAt };
+    const data = {
+      ...paintingData,
+      gallery: [],
+      url: url,
+      createAt: createAt,
+    };
     addDoc(collectionRef, data).then((docRef) => {
       setId(docRef.id);
       showNotification({

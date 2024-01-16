@@ -5,12 +5,11 @@ import showNotification from "../components/Snackbar/Snackbar";
 
 export const deleteFileFromStorage = async (url: string) => {
   if (!url) {
-    showNotification({ type: "error", message: "Please choose a file first!" });
     return;
   }
 
   const storage = getStorage();
-  const storageRef = ref(storage, "url");
+  const storageRef = ref(storage, url);
 
   deleteObject(storageRef)
     .then(() => {
@@ -26,7 +25,6 @@ export const deleteFileFromStorage = async (url: string) => {
 
 const deleteFile = async (file: DocumentData | null, collection: string) => {
   if (!file) {
-    showNotification({ type: "error", message: "Please choose a file first!" });
     return;
   }
 

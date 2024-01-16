@@ -9,7 +9,6 @@ const deletePaintingImage = async (
   paintingId: string | undefined
 ) => {
   if (!file) {
-    showNotification({ type: "error", message: "Please choose a file first!" });
     return;
   }
   if (paintingId) {

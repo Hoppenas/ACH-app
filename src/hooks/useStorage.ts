@@ -11,11 +11,6 @@ const useStorage = (file: File | null, collectionName: string) => {
 
   useEffect(() => {
     if (!file) {
-      showNotification({
-        type: "error",
-        message: "Please choose a file first!",
-      });
-      setError("Please choose a file first!");
       return;
     }
     const storageRef = ref(projectStorage, `/${collectionName}/${file.name}`);

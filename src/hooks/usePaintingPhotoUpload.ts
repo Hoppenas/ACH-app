@@ -18,11 +18,6 @@ const usePaintingPhotoUpload = (
 
   useEffect(() => {
     if (!file) {
-      showNotification({
-        type: "error",
-        message: "Please choose a file first!",
-      });
-      setError("Please choose a file first!");
       return;
     }
     const storageRef = ref(

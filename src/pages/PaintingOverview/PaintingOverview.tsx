@@ -91,7 +91,14 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
               <ContactList />
             </Box>
             <PaintingImagesList
-              imageList={paintingPhoto}
+              imageList={[
+                {
+                  url: painting.url,
+                  createAt: painting.createAt,
+                  id: paintingId || "1",
+                },
+                ...paintingPhoto,
+              ]}
               openImage={setSelectedImg}
               isLogedIn={isLogedIn}
               paintingId={paintingId}

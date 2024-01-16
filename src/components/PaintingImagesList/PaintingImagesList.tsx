@@ -1,9 +1,10 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Box, ImageList, ImageListItem, IconButton } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { motion } from "framer-motion";
 import { IModalImage, IPhoto } from "../../types/types";
 import deletePaintingImage from "../../utils/deletePaintingImage";
+import ConfirmationDialog from "../ConfirmationDialog/ConfirmationDialog";
 
 interface IPaintingImagesList {
   imageList: IPhoto[];
@@ -18,6 +19,25 @@ const PaintingImagesList: FC<IPaintingImagesList> = ({
   isLogedIn,
   paintingId,
 }) => {
+  const [openDeletePhotoDialog, setOpenDeletePhotoDialog] = useState(false);
+  const [activePhoto, setActivePhoto] = useState<IPhoto | null>(null);
+
+  const handleOpenDeletePhotoDialog = (photo: IPhoto) => {
+    setActivePhoto(photo);
+    setOpenDeletePhotoDialog(true);
+  };
+
+  const handleDeletePhoto = () => {
+    deletePaintingImage(activePhoto, paintingId);
+    setOpenDeletePhotoDialog(false);
+    setActivePhoto(null);
+  };
+
+  const handleCloseDeletePhotoDialog = () => {
+    setActivePhoto(null);
+    setOpenDeletePhotoDialog(false);
+  };
+
   return (
     <Box>
       <ImageList cols={3} gap={8}>
@@ -36,7 +56,7 @@ const PaintingImagesList: FC<IPaintingImagesList> = ({
                   openImage({ index: index, url: item.url, id: item.id })
                 }
               />
-              {isLogedIn && (
+              {isLogedIn && index !== 0 && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -58,7 +78,7 @@ const PaintingImagesList: FC<IPaintingImagesList> = ({
                       borderRadius: 5,
                       border: "1px solid #FFF",
                     }}
-                    onClick={() => deletePaintingImage(item, paintingId)}
+                    onClick={() => handleOpenDeletePhotoDialog(item)}
                   >
                     <DeleteOutlineIcon color="error" />
                   </IconButton>
@@ -67,6 +87,12 @@ const PaintingImagesList: FC<IPaintingImagesList> = ({
             </ImageListItem>
           ))}
       </ImageList>
+      <ConfirmationDialog
+        open={openDeletePhotoDialog}
+        handleClose={handleCloseDeletePhotoDialog}
+        handleConfirm={handleDeletePhoto}
+        question="Are you sure you want to delete?"
+      />
     </Box>
   );
 };
