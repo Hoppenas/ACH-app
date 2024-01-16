@@ -11,10 +11,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 
 //TODO: Check what can be moved to theme.ts, clean theme.ts
-//TODO: FIX: logout after sesion?
-//TODO: Change folder logo to svg..
-//TODO: ADD: confirmation modal for delete etc
-//TODO: Move delete functions to hooks
+//TODO: FIX: PaintingOverview photo modal arrow doesnt get back to profile photo, first one
 
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import {
   Box,
   ImageList,
@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import deleteFile from "../../utils/deleteFile";
 import { CollectionTypes, IModalImage, IPhoto } from "../../types/types";
 import { minWidth } from "../../constants/styleConstants";
+import ConfirmationDialog from "../ConfirmationDialog/ConfirmationDialog";
 
 interface IMasonryImageList {
   imageList: IPhoto[];
@@ -26,6 +27,24 @@ const MasonryImageList: FC<IMasonryImageList> = ({
   isLogedIn,
 }) => {
   const matches = useMediaQuery(`(min-width:${minWidth})`);
+  const [openDeletePhotoDialog, setOpenDeletePhotoDialog] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState<IPhoto | null>(null);
+
+  const handleOpenDeletePhotoDialog = (photo: IPhoto) => {
+    setOpenDeletePhotoDialog(true);
+    setSelectedPhoto(photo);
+  };
+
+  const handleDeletePhoto = () => {
+    deleteFile(selectedPhoto, collectionType);
+    setOpenDeletePhotoDialog(false);
+    setSelectedPhoto(null);
+  };
+
+  const handleCloseDeletePhotoDialog = () => {
+    setOpenDeletePhotoDialog(false);
+    setSelectedPhoto(null);
+  };
 
   return (
     <Box>
@@ -67,7 +86,7 @@ const MasonryImageList: FC<IMasonryImageList> = ({
                       borderRadius: 5,
                       border: "1px solid #FFF",
                     }}
-                    onClick={() => deleteFile(item, collectionType)}
+                    onClick={() => handleOpenDeletePhotoDialog(item)}
                   >
                     <DeleteOutlineIcon color="error" />
                   </IconButton>
@@ -76,6 +95,12 @@ const MasonryImageList: FC<IMasonryImageList> = ({
             </ImageListItem>
           ))}
       </ImageList>
+      <ConfirmationDialog
+        open={openDeletePhotoDialog}
+        handleClose={handleCloseDeletePhotoDialog}
+        handleConfirm={handleDeletePhoto}
+        question="Are you sure you want to delete?"
+      />
     </Box>
   );
 };

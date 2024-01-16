@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./uploadForm.css";
 import useStorage from "../../hooks/useStorage";
 import UploadForm from "./UploadForm";
 

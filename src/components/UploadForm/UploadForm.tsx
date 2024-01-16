@@ -1,7 +1,8 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
-import "./uploadForm.css";
 import { types } from "../../constants/general";
+import { Grid, Typography, Input } from "@mui/material";
+import showNotification from "../Snackbar/Snackbar";
 
 interface IUploadForm {
   file: File | null;
@@ -16,8 +17,6 @@ const UploadForm: React.FC<IUploadForm> = ({
   progress,
   url,
 }) => {
-  const [error, setError] = useState<string | null>(null);
-
   useEffect(() => {
     if (url) {
       setFile(null);
@@ -28,24 +27,35 @@ const UploadForm: React.FC<IUploadForm> = ({
     let selected = e.target.files;
     if (selected && types.includes(selected[0].type)) {
       setFile(selected[0]);
-      setError(null);
     } else {
       setFile(null);
-      setError("Please sellect an image (png or jpg)");
+      showNotification({
+        type: "error",
+        message: "Please sellect an image (png or jpg)",
+      });
     }
   };
 
   return (
     <form>
       <label>
-        <input type="file" onChange={changeHandler} />
-        <span>+</span>
+        <Grid container direction="row" height="100%">
+          <Input
+            type="file"
+            onChange={changeHandler}
+            style={{ height: 0, width: 0, opacity: 0 }}
+          />
+          <Typography
+            variant="h5"
+            style={{ cursor: "pointer" }}
+            width="fit-content"
+            alignSelf="center"
+          >
+            + Add
+          </Typography>
+        </Grid>
       </label>
-      <div className="output">
-        {error && <div className="error">{error}</div>}
-        {file && <div>{file.name}</div>}
-        {file && <ProgressBar progress={progress} />}
-      </div>
+      {file && <ProgressBar progress={progress} />}
     </form>
   );
 };

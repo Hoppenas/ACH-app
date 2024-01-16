@@ -52,9 +52,33 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
         {matches && <FollowMeBar vertical={true} />}
         <Grid item xs margin="auto 0" paddingLeft={1}>
           <Box maxWidth="1320px" width="80%" margin="0 auto">
-            <Typography variant="h3" marginBottom={1}>
-              Paveikslai
-            </Typography>
+            <Grid
+              container
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography variant="h3" marginBottom={1}>
+                Paveikslai
+              </Typography>
+              {isLogedIn && (
+                <Button
+                  variant="contained"
+                  onClick={() => setOpenAddNewPaintingModal(true)}
+                  sx={{
+                    height: "fit-content",
+                    color: "#0e0e0d",
+                    background: "#FFF",
+                    ":hover": {
+                      bgcolor: "#0e0e0d",
+                      color: "#FFF",
+                    },
+                  }}
+                >
+                  + Add
+                </Button>
+              )}
+            </Grid>
             <Typography variant="h6" textAlign="justify" marginBottom={2}>
               Esu kūrėja, kuri mėgsta tapyti ne tik portretus, bet ir
               abstrakčius paveikslus. Per skirtingas formas, potėpius, spalvas,
@@ -78,23 +102,6 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
               collectionType={collection}
               isLogedIn={isLogedIn}
             />
-
-            {isLogedIn && (
-              <Button
-                variant="contained"
-                onClick={() => setOpenAddNewPaintingModal(true)}
-                sx={{
-                  color: "#0e0e0d",
-                  background: "#FFF",
-                  ":hover": {
-                    bgcolor: "#0e0e0d",
-                    color: "#FFF",
-                  },
-                }}
-              >
-                Add painting
-              </Button>
-            )}
             {!matches && <FollowMeBar vertical={false} />}
           </Box>
         </Grid>

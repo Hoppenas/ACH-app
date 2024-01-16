@@ -48,18 +48,16 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
         {matches && <FollowMeBar vertical={true} />}
         <Grid item xs paddingLeft={1}>
           <Box maxWidth="1320px" width="80%" margin="0 auto">
-            <Typography variant="h3" marginBottom={1}>
-              Portfolio
-            </Typography>
+            <Grid container xs direction="row" justifyContent="space-between">
+              <Typography variant="h3">Portfolio</Typography>
+              {isLogedIn && <UploadFormContainer collection={collection} />}
+            </Grid>
             <MasonryImageList
               imageList={docs as IPhoto[]}
               openImage={setSelectedImg}
               collectionType={collection}
               isLogedIn={isLogedIn}
             />
-
-            {isLogedIn && <UploadFormContainer collection={collection} />}
-
             {!matches && <FollowMeBar vertical={false} />}
           </Box>
         </Grid>

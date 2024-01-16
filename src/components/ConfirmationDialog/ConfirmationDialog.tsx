@@ -15,10 +15,44 @@ const ConfirmationDialog = ({
 }: ConfirmationDialogProps) => {
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>{question}</DialogTitle>
-      <Grid container direction="row">
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleConfirm}>Delete</Button>
+      <DialogTitle sx={{ background: "#242321", color: "#FFF" }}>
+        {question}
+      </DialogTitle>
+      <Grid
+        container
+        direction="row"
+        xs
+        justifyContent="space-around"
+        paddingBottom={2}
+        sx={{ background: "#242321", color: "#FFF" }}
+      >
+        <Button
+          variant="contained"
+          onClick={handleClose}
+          sx={{
+            color: "#0e0e0d",
+            background: "#FFF",
+            ":hover": {
+              bgcolor: "#0e0e0d",
+              color: "#FFF",
+            },
+          }}
+        >
+          Cancel
+        </Button>
+        <Button
+          variant="outlined"
+          color="inherit"
+          onClick={handleConfirm}
+          sx={{
+            ":hover": {
+              bgcolor: "#FFF",
+              color: "#0e0e0d",
+            },
+          }}
+        >
+          Delete
+        </Button>
       </Grid>
     </Dialog>
   );

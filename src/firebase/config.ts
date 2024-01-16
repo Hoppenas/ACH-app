@@ -1,11 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
-import {
-  getAuth,
-  setPersistence,
-  browserSessionPersistence,
-} from "firebase/auth";
+import { getAuth, setPersistence, inMemoryPersistence } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -23,6 +19,6 @@ const projectStorage = getStorage(app);
 const projectFirestore = getFirestore(app);
 
 const auth = getAuth();
-setPersistence(auth, browserSessionPersistence);
+setPersistence(auth, inMemoryPersistence);
 
 export { projectStorage, projectFirestore };
