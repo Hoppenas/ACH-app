@@ -43,7 +43,7 @@ const UploadForm: React.FC<IUploadForm> = ({
       </label>
       <div className="output">
         {error && <div className="error">{error}</div>}
-        {file && <div className="">{file.name}</div>}
+        {file && <div>{file.name}</div>}
         {file && <ProgressBar progress={progress} />}
       </div>
     </form>

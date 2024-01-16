@@ -10,9 +10,8 @@ import LoginPage from "./pages/Login/Login";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 
-//TODO: Check what can be moved to theme.ts
+//TODO: Check what can be moved to theme.ts, clean theme.ts
 //TODO: FIX: logout after sesion?
-//TODO: REMOVE: uploadForm.css and all css
 //TODO: Change folder logo to svg..
 //TODO: ADD: confirmation modal for delete etc
 

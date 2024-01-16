@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { getAuth, signOut } from "firebase/auth";
+import showNotification from "../Snackbar/Snackbar";
 
 interface Props {
   isLogedIn: boolean;
@@ -44,9 +45,19 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
   const auth = getAuth();
 
   const handleLogout = () => {
-    signOut(auth).catch((error) => {
-      console.log(error);
-    });
+    signOut(auth)
+      .then(() => {
+        showNotification({
+          type: "success",
+          message: "Sign out succsessful",
+        });
+      })
+      .catch((error) => {
+        showNotification({
+          type: "error",
+          message: error.message,
+        });
+      });
   };
 
   const drawer = (
@@ -145,7 +156,7 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },

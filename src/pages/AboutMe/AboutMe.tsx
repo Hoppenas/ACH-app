@@ -93,7 +93,6 @@ const AboutMe = () => {
         margin={matches ? "none" : "auto 0"}
         xs={matches ? 6 : 12}
         overflow="hidden"
-        // height="100%"
       >
         <img
           src={aboutMeImg}

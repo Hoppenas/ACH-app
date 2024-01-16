@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import profileImg from "../../images/profileImg.jpg";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
