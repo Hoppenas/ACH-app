@@ -3,6 +3,7 @@ import { projectStorage, projectFirestore } from "../firebase/config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { CollectionTypes, IPaintingData } from "../types/types";
+import showNotification from "../components/Snackbar/Snackbar";
 
 const paintingsCollection = CollectionTypes.Paintings;
 
@@ -14,6 +15,10 @@ const usePaintingUpload = (file: File | null) => {
 
   useEffect(() => {
     if (!file) {
+      showNotification({
+        type: "error",
+        message: "Please choose a file first!",
+      });
       setError("Please choose a file first!");
       return;
     }
@@ -31,7 +36,13 @@ const usePaintingUpload = (file: File | null) => {
         );
         setProgress(percent);
       },
-      (err) => setError(err.message),
+      (err) => {
+        showNotification({
+          type: "error",
+          message: err.message,
+        });
+        setError(err.message);
+      },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           setUrl(url);
@@ -44,7 +55,13 @@ const usePaintingUpload = (file: File | null) => {
     const collectionRef = collection(projectFirestore, paintingsCollection);
     const createAt = serverTimestamp();
     const data = { ...paintingData, gallery: [], url: url, createAt: createAt };
-    addDoc(collectionRef, data).then((docRef) => setId(docRef.id));
+    addDoc(collectionRef, data).then((docRef) => {
+      setId(docRef.id);
+      showNotification({
+        type: "success",
+        message: "Painting successfully added!",
+      });
+    });
   };
 
   return { progress, error, url, handleAddPainting, id };

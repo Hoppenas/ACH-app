@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { projectStorage, projectFirestore } from "../firebase/config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import showNotification from "../components/Snackbar/Snackbar";
 
 const useStorage = (file: File | null, collectionName: string) => {
   const [progress, setProgress] = useState(0);
@@ -10,6 +11,10 @@ const useStorage = (file: File | null, collectionName: string) => {
 
   useEffect(() => {
     if (!file) {
+      showNotification({
+        type: "error",
+        message: "Please choose a file first!",
+      });
       setError("Please choose a file first!");
       return;
     }
@@ -26,12 +31,22 @@ const useStorage = (file: File | null, collectionName: string) => {
         );
         setProgress(percent);
       },
-      (err) => setError(err.message),
+      (err) => {
+        setError(err.message);
+        showNotification({
+          type: "error",
+          message: err.message,
+        });
+      },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           const createAt = serverTimestamp();
           addDoc(collectionRef, { url, createAt, images: [] });
           setUrl(url);
+          showNotification({
+            type: "success",
+            message: "Photo uploaded successfully",
+          });
         });
       }
     );

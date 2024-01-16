@@ -2,13 +2,14 @@ import { ref, getStorage, deleteObject } from "firebase/storage";
 import { DocumentData, deleteDoc, doc } from "firebase/firestore";
 import { projectFirestore } from "../firebase/config";
 import { CollectionTypes } from "../types/types";
+import showNotification from "../components/Snackbar/Snackbar";
 
 const deletePaintingImage = async (
   file: DocumentData | null,
   paintingId: string | undefined
 ) => {
   if (!file) {
-    console.log("Please choose a file first!");
+    showNotification({ type: "error", message: "Please choose a file first!" });
     return;
   }
   if (paintingId) {
@@ -17,10 +18,10 @@ const deletePaintingImage = async (
 
     deleteObject(storageRef)
       .then(() => {
-        console.log("deleted");
+        showNotification({ type: "success", message: "Painting deleted" });
       })
       .catch((error) => {
-        console.log(error);
+        showNotification({ type: "error", message: error.message });
       });
 
     await deleteDoc(
@@ -32,8 +33,12 @@ const deletePaintingImage = async (
         file.id
       )
     )
-      .then(() => console.log("database deleted"))
-      .catch((error) => console.log(error));
+      .then(() =>
+        showNotification({ type: "success", message: "Painting deleted" })
+      )
+      .catch((error) =>
+        showNotification({ type: "error", message: error.message })
+      );
   }
 };
 

@@ -3,6 +3,7 @@ import { projectStorage, projectFirestore } from "../firebase/config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { CollectionTypes } from "../types/types";
+import showNotification from "../components/Snackbar/Snackbar";
 
 const collectionName = CollectionTypes.Paintings;
 
@@ -17,6 +18,10 @@ const usePaintingPhotoUpload = (
 
   useEffect(() => {
     if (!file) {
+      showNotification({
+        type: "error",
+        message: "Please choose a file first!",
+      });
       setError("Please choose a file first!");
       return;
     }
@@ -42,7 +47,10 @@ const usePaintingPhotoUpload = (
           );
           setProgress(percent);
         },
-        (err) => setError(err.message),
+        (err) => {
+          setError(err.message);
+          showNotification({ type: "error", message: err.message });
+        },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((url) => {
             const createAt = serverTimestamp();
@@ -50,7 +58,13 @@ const usePaintingPhotoUpload = (
               url: url,
               createAt: createAt,
             };
-            addDoc(collectionRef, data).then((docRef) => setId(docRef.id));
+            addDoc(collectionRef, data).then((docRef) => {
+              setId(docRef.id);
+              showNotification({
+                type: "success",
+                message: "Painting photo uploaded!",
+              });
+            });
             setUrl(url);
           });
         }

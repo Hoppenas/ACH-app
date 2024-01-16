@@ -1,6 +1,3 @@
-import React from "react";
-import "./input.css";
-
 export interface IInput {
   value: string | undefined;
   title: string;

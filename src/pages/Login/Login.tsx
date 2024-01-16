@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Input from "../../components/Input/Input";
+import showNotification from "../../components/Snackbar/Snackbar";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -16,12 +17,17 @@ const LoginPage = () => {
     if (email && password) {
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
+          showNotification({
+            type: "success",
+            message: "Wellcome!",
+          });
           navigate("/");
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
+          showNotification({
+            type: "error",
+            message: error.message,
+          });
         });
     }
   };

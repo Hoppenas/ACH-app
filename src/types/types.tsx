@@ -33,3 +33,5 @@ export interface IModalImage {
   url: string;
   id: string;
 }
+
+export type MessageType = "success" | "error" | "warning" | "info";

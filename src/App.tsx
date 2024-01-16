@@ -12,9 +12,8 @@ import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 
 //TODO: Check what can be moved to theme.ts
 //TODO: FIX: logout after sesion?
-//TODO: REMOVE: uploadForm.css
+//TODO: REMOVE: uploadForm.css and all css
 //TODO: Change folder logo to svg..
-//TODO: ADD: message bar for error, info or etc
 //TODO: ADD: confirmation modal for delete etc
 
 function App() {
