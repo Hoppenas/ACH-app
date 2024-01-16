@@ -14,6 +14,7 @@ import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 //TODO: FIX: logout after sesion?
 //TODO: Change folder logo to svg..
 //TODO: ADD: confirmation modal for delete etc
+//TODO: Move delete functions to hooks
 
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);
