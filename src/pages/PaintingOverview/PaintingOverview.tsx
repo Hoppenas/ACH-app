@@ -78,16 +78,16 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
             <Typography variant="h3" marginBottom={1}>
               {painting.name}
             </Typography>
-            <Typography variant="h3" marginBottom={1}>
+            <Typography variant="h5" marginBottom={1}>
               Kaina: {painting.price} eur
             </Typography>
             {painting.dimentions && (
-              <Typography variant="h3" marginBottom={1}>
+              <Typography variant="h5" marginBottom={1}>
                 {painting.dimentions} cm
               </Typography>
             )}
             {painting.isSold && (
-              <Typography variant="h3" marginBottom={1}>
+              <Typography variant="h5" marginBottom={1}>
                 Parduota
               </Typography>
             )}

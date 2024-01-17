@@ -10,7 +10,8 @@ import LoginPage from "./pages/Login/Login";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 
-//TODO: Check what can be moved to theme.ts, clean theme.ts
+//TODO: add arrow kees navigation for photos
+//TODO: UPD upload form hide add button when file is sellected
 
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);

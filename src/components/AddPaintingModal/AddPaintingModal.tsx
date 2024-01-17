@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Grid, Button, TextField, Checkbox, Typography } from "@mui/material";
-import ProgressBar from "../ProgressBar/ProgressBar";
 import usePaintingUpload from "../../hooks/usePaintingUpload";
 import UploadForm from "../UploadForm/UploadForm";
 import { useNavigate } from "react-router-dom";
@@ -95,7 +94,6 @@ const AddPaintingModal: React.FC<IAddPaintingModal> = ({ handleClose }) => {
           />
         </Grid>
         <Grid item>
-          {file && <ProgressBar progress={progress} />}
           {url && (
             <img
               src={url}

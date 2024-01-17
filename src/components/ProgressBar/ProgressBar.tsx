@@ -1,18 +1,35 @@
-import React from "react";
-import { motion } from "framer-motion";
-import "./progressBar.css";
+import { FC } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 export interface IProgressBar {
   progress: number;
 }
 
-const ProgressBar: React.FC<IProgressBar> = ({ progress }) => {
+const ProgressBar: FC<IProgressBar> = ({ progress }) => {
   return (
-    <motion.div
-      className="progress-bar"
-      initial={{ width: 0 }}
-      animate={{ width: progress + "%" }}
-    ></motion.div>
+    <Box sx={{ position: "relative", display: "inline-flex" }}>
+      <CircularProgress variant="determinate" value={progress} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: "absolute",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography
+          variant="caption"
+          component="div"
+          color="text.secondary"
+        >{`${Math.round(progress)}%`}</Typography>
+      </Box>
+    </Box>
   );
 };
 

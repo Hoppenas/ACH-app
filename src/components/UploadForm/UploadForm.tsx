@@ -39,23 +39,32 @@ const UploadForm: React.FC<IUploadForm> = ({
   return (
     <form>
       <label>
-        <Grid container direction="row" height="100%">
+        <Grid container direction="row" height="100%" alignItems="center">
           <Input
             type="file"
             onChange={changeHandler}
             style={{ height: 0, width: 0, opacity: 0 }}
           />
-          <Typography
-            variant="h5"
-            style={{ cursor: "pointer" }}
-            width="fit-content"
-            alignSelf="center"
-          >
-            + Add
-          </Typography>
+          {!url && (
+            <Typography
+              variant="h6"
+              style={{ cursor: "pointer" }}
+              width="fit-content"
+              alignSelf="center"
+              border={1}
+              padding={1}
+              borderRadius={2}
+            >
+              + Add photo
+            </Typography>
+          )}
         </Grid>
+        {file && (
+          <Grid container justifyContent="center" padding={2}>
+            <ProgressBar progress={progress} />
+          </Grid>
+        )}
       </label>
-      {file && <ProgressBar progress={progress} />}
     </form>
   );
 };
