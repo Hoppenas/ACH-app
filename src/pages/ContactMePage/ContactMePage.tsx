@@ -1,5 +1,5 @@
 import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
-import profileImg from "../../images/profileImg.jpg";
+import aboutMe from "../../images/aboutMe.jpg";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import { minWidth } from "../../constants/styleConstants";
 import ContactList from "../../components/ContactList/ContactList";
@@ -35,7 +35,7 @@ const ContactMePage = () => {
       </Grid>
       <Grid item xs={matches ? 6 : 12} height="100%">
         <img
-          src={profileImg}
+          src={aboutMe}
           alt="Me"
           width="100%"
           height="100%"
