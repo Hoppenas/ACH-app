@@ -74,7 +74,6 @@ const MasonryImageList: FC<IMasonryImageList> = ({
                     bottom: 0,
                     right: 0,
                     color: "red",
-                    fontSize: "24px",
                     cursor: "pointer",
                   }}
                 >
