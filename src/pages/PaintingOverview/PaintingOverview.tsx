@@ -20,8 +20,6 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useNavigate } from "react-router-dom";
 import ContactList from "../../components/ContactList/ContactList";
 
-//https://ubaimutl.github.io/react-portfolio/
-
 interface Props {
   isLogedIn: boolean;
 }
@@ -42,17 +40,26 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
   const { paintingPhoto } = usePaintingPhoto(paintingId);
   const navigate = useNavigate();
 
-  const handleopenOtherPhoto = (newIndex: number) => {
+  const photoList = [
+    {
+      url: painting.url,
+      createAt: painting.createAt,
+      id: paintingId || "1",
+    },
+    ...paintingPhoto,
+  ];
+
+  const handleOpenOtherPhoto = (newIndex: number) => {
     if (
       paintingPhoto &&
       selectedImg &&
-      newIndex < paintingPhoto.length &&
+      newIndex < photoList.length &&
       newIndex >= 0
     ) {
       setSelectedImg({
         index: newIndex,
-        url: paintingPhoto[newIndex].url,
-        id: paintingPhoto[newIndex].id,
+        url: photoList[newIndex].url,
+        id: photoList[newIndex].id,
       });
     }
   };
@@ -91,14 +98,7 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
               <ContactList />
             </Box>
             <PaintingImagesList
-              imageList={[
-                {
-                  url: painting.url,
-                  createAt: painting.createAt,
-                  id: paintingId || "1",
-                },
-                ...paintingPhoto,
-              ]}
+              imageList={photoList}
               openImage={setSelectedImg}
               isLogedIn={isLogedIn}
               paintingId={paintingId}
@@ -119,8 +119,8 @@ const PaintingOverview = ({ isLogedIn }: Props) => {
         <Modal
           selectedImg={selectedImg}
           setSelectedImg={setSelectedImg}
-          handleopenOtherPhoto={handleopenOtherPhoto}
-          totalNumberOfImages={paintingPhoto ? paintingPhoto.length : 0}
+          handleOpenOtherPhoto={handleOpenOtherPhoto}
+          totalNumberOfImages={photoList ? photoList.length : 0}
         />
       )}
     </Grid>

@@ -110,7 +110,7 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
         <Modal
           selectedImg={selectedImg}
           setSelectedImg={setSelectedImg}
-          handleopenOtherPhoto={handleopenOtherPhoto}
+          handleOpenOtherPhoto={handleopenOtherPhoto}
           totalNumberOfImages={docs ? docs.length : 0}
         />
       )}

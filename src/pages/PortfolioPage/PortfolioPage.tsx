@@ -25,7 +25,7 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
 
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
-  const handleopenOtherPhoto = (newIndex: number) => {
+  const handleOpenOtherPhoto = (newIndex: number) => {
     if (docs && selectedImg && newIndex < docs.length && newIndex >= 0) {
       setSelectedImg({
         index: newIndex,
@@ -66,7 +66,7 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
         <Modal
           selectedImg={selectedImg}
           setSelectedImg={setSelectedImg}
-          handleopenOtherPhoto={handleopenOtherPhoto}
+          handleOpenOtherPhoto={handleOpenOtherPhoto}
           totalNumberOfImages={docs ? docs.length : 0}
         />
       )}

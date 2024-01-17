@@ -10,14 +10,14 @@ export interface IModal {
   setSelectedImg: Dispatch<
     SetStateAction<{ index: number; url: string; id: string } | null>
   >;
-  handleopenOtherPhoto: (newIndex: number) => void;
+  handleOpenOtherPhoto: (newIndex: number) => void;
   totalNumberOfImages: number;
 }
 
 const Modal: React.FC<IModal> = ({
   selectedImg,
   setSelectedImg,
-  handleopenOtherPhoto,
+  handleOpenOtherPhoto,
   totalNumberOfImages,
 }) => {
   const handleClick = (event: MouseEvent<HTMLElement>) => {
@@ -29,12 +29,12 @@ const Modal: React.FC<IModal> = ({
   const handleOpenNextPhoto = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
     if (selectedImg) {
-      handleopenOtherPhoto(selectedImg?.index - 1);
+      handleOpenOtherPhoto(selectedImg?.index - 1);
     }
   };
-  const handleOpenprevPhoto = () => {
+  const handleOpenPrevPhoto = () => {
     if (selectedImg) {
-      handleopenOtherPhoto(selectedImg?.index + 1);
+      handleOpenOtherPhoto(selectedImg?.index + 1);
     }
   };
   return (
@@ -66,7 +66,7 @@ const Modal: React.FC<IModal> = ({
         <IconButton color="inherit" onClick={handleOpenNextPhoto}>
           {selectedImg && selectedImg?.index > 0 && <ArrowBackIosIcon />}
         </IconButton>
-        <IconButton color="inherit" onClick={handleOpenprevPhoto}>
+        <IconButton color="inherit" onClick={handleOpenPrevPhoto}>
           {selectedImg && selectedImg?.index < totalNumberOfImages - 1 && (
             <ArrowForwardIosIcon />
           )}
