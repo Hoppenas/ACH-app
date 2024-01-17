@@ -1,4 +1,10 @@
-import React, { Dispatch, MouseEvent, SetStateAction } from "react";
+import React, {
+  Dispatch,
+  MouseEvent,
+  SetStateAction,
+  useCallback,
+  useEffect,
+} from "react";
 import { motion } from "framer-motion";
 import "./modal.css";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -26,17 +32,34 @@ const Modal: React.FC<IModal> = ({
     }
   };
 
-  const handleOpenNextPhoto = (event: MouseEvent<HTMLElement>) => {
-    event.preventDefault();
+  const handleOpenNextPhoto = useCallback(() => {
     if (selectedImg) {
       handleOpenOtherPhoto(selectedImg?.index - 1);
     }
-  };
-  const handleOpenPrevPhoto = () => {
+  }, [selectedImg, handleOpenOtherPhoto]);
+
+  const handleOpenPrevPhoto = useCallback(() => {
     if (selectedImg) {
       handleOpenOtherPhoto(selectedImg?.index + 1);
     }
-  };
+  }, [selectedImg, handleOpenOtherPhoto]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") {
+        handleOpenNextPhoto();
+      } else if (event.key === "ArrowRight") {
+        handleOpenPrevPhoto();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleOpenPrevPhoto, handleOpenNextPhoto]);
+
   return (
     <>
       <motion.div

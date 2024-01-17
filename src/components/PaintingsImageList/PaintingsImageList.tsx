@@ -6,12 +6,14 @@ import {
   IconButton,
   ImageListItemBar,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { motion } from "framer-motion";
 import deleteFile from "../../utils/deleteFile";
 import { CollectionTypes, IPaintings, IPhoto } from "../../types/types";
 import ConfirmationDialog from "../ConfirmationDialog/ConfirmationDialog";
+import { minWidth } from "../../constants/styleConstants";
 
 interface IPaintingsImageList {
   imageList: IPaintings[];
@@ -28,6 +30,7 @@ const PaintingsImageList: FC<IPaintingsImageList> = ({
 }) => {
   const [openDeletePhotoDialog, setOpenDeletePhotoDialog] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<IPhoto | null>(null);
+  const matches = useMediaQuery(`(min-width:${minWidth})`);
 
   const handleOpenDeletePhotoDialog = (photo: IPhoto) => {
     setOpenDeletePhotoDialog(true);
@@ -49,7 +52,7 @@ const PaintingsImageList: FC<IPaintingsImageList> = ({
       <ImageList
         sx={{ width: "100%", height: "fit-content" }}
         gap={20}
-        cols={3}
+        cols={matches ? 3 : 2}
       >
         {imageList.map((item) => (
           <motion.div

@@ -10,10 +10,7 @@ import LoginPage from "./pages/Login/Login";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import PaintingOverview from "./pages/PaintingOverview/PaintingOverview";
 
-//TODO: add arrow kees navigation for photos
-//TODO: UPD upload form hide add button when file is sellected
-
-function App() {
+const App = () => {
   const [isLogedIn, setIsLogedIn] = useState(false);
   const auth = getAuth();
 
@@ -48,6 +45,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

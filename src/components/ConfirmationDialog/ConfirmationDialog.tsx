@@ -21,7 +21,6 @@ const ConfirmationDialog = ({
       <Grid
         container
         direction="row"
-        xs
         justifyContent="space-around"
         paddingBottom={2}
         sx={{ background: "#242321", color: "#FFF" }}

@@ -48,7 +48,7 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
         {matches && <FollowMeBar vertical={true} />}
         <Grid item xs paddingLeft={1}>
           <Box maxWidth="1320px" width="80%" margin="0 auto">
-            <Grid container xs direction="row" justifyContent="space-between">
+            <Grid container direction="row" justifyContent="space-between">
               <Typography variant="h3">Portfolio</Typography>
               {isLogedIn && <UploadFormContainer collection={collection} />}
             </Grid>
