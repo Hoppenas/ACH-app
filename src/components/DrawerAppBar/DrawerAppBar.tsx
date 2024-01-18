@@ -64,15 +64,12 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
     <Box
       onClick={handleDrawerToggle}
       sx={{
-        textAlign: "center",
+        // textAlign: "center",
         color: "#FFF",
         background: "#0e0e0d",
         height: "100%",
       }}
     >
-      <Typography variant="h6" sx={{ my: 2 }}>
-        Agne grimas
-      </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
@@ -120,24 +117,16 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
+          <Box
             sx={{
-              flexGrow: 1,
-              display: { xs: "none", sm: "block", cursor: "pointer" },
+              display: {
+                xs: "none",
+                sm: "block",
+              },
             }}
-            onClick={() => navigate("/")}
           >
-            Agne grimas
-          </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button
-                key={item.name}
-                sx={{ color: "#FFF" }}
-                onClick={() => navigate(item.route)}
-              >
+              <Button key={item.name} onClick={() => navigate(item.route)}>
                 {item.name}
               </Button>
             ))}
