@@ -3,7 +3,7 @@ import * as React from "react";
 import {
   AppBar,
   CssBaseline,
-  Typography,
+  Grid,
   Box,
   Divider,
   Drawer,
@@ -14,6 +14,7 @@ import {
   ListItemText,
   Toolbar,
   Button,
+  Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { getAuth, signOut } from "firebase/auth";
@@ -85,8 +86,10 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
         ))}
         {isLogedIn && (
           <ListItem disablePadding onClick={handleLogout}>
-            <ListItemButton sx={{ textAlign: "center", color: "red" }}>
-              <ListItemText primary="Sign out" />
+            <ListItemButton sx={{ textAlign: "center" }}>
+              <ListItemText
+                primary={<Typography color="error">Sign out</Typography>}
+              />
             </ListItemButton>
           </ListItem>
         )}
@@ -122,19 +125,26 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
               display: {
                 xs: "none",
                 sm: "block",
+                width: "100%",
               },
             }}
           >
-            {navItems.map((item) => (
-              <Button key={item.name} onClick={() => navigate(item.route)}>
-                {item.name}
-              </Button>
-            ))}
-            {isLogedIn && (
-              <Button sx={{ color: "red" }} onClick={handleLogout}>
-                Log out
-              </Button>
-            )}
+            <Grid container xs justifyContent="end" gap={1}>
+              {navItems.map((item) => (
+                <Button
+                  key={item.name}
+                  onClick={() => navigate(item.route)}
+                  size="small"
+                >
+                  {item.name}
+                </Button>
+              ))}
+              {isLogedIn && (
+                <Button onClick={handleLogout} color="error">
+                  Log out
+                </Button>
+              )}
+            </Grid>
           </Box>
         </Toolbar>
       </AppBar>
