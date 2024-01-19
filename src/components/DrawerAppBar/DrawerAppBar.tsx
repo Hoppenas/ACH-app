@@ -65,7 +65,6 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
     <Box
       onClick={handleDrawerToggle}
       sx={{
-        // textAlign: "center",
         color: "#FFF",
         background: "#0e0e0d",
         height: "100%",
