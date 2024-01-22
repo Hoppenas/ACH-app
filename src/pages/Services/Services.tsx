@@ -7,7 +7,9 @@ import { minWidth } from "../../constants/styleConstants";
 import ContactList from "../../components/ContactList/ContactList";
 import AddServiceModal from "../../components/AddServiceModal/AddServiceModal";
 import useFirestore from "../../hooks/useFirestore";
-import { CollectionTypes } from "../../types/types";
+import { CollectionTypes, IService } from "../../types/types";
+import ServiceList from "../../components/ServicesList/ServicesList";
+import Modal from "../../components/Modal/Modal";
 
 const servicesList = [
   "Dieninis makiažas",
@@ -26,17 +28,15 @@ interface IServicesPage {
   isLogedIn: boolean;
 }
 
-interface IService {
-  url: string;
-  createAt: { seconds: number; nanoseconds: number };
-  id: string;
-  name: string;
-}
-
 const collection = CollectionTypes.Services;
 
 const ServicesPage = ({ isLogedIn }: IServicesPage) => {
   const [openAddNewServiceModal, setOpenAddNewServiceModal] = useState(false);
+  const [selectedImg, setSelectedImg] = useState<{
+    index: number;
+    url: string;
+    id: string;
+  } | null>(null);
 
   const navigate = useNavigate();
   const matches = useMediaQuery(`(min-width:${minWidth})`);
@@ -45,6 +45,16 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
 
   const handleCloseAddnewServiceModal = () => {
     setOpenAddNewServiceModal(false);
+  };
+
+  const handleOpenOtherPhoto = (newIndex: number) => {
+    if (docs && selectedImg && newIndex < docs.length && newIndex >= 0) {
+      setSelectedImg({
+        index: newIndex,
+        url: docs[newIndex].url,
+        id: docs[newIndex].id,
+      });
+    }
   };
 
   return (
@@ -70,21 +80,21 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
           paddingLeft={1}
           marginLeft={matches ? "35px" : 0}
         >
-          <Box maxWidth="450px" margin="0 auto">
+          <Box maxWidth="80%" margin="0 auto">
             <Grid
               container
               direction="row"
               justifyContent="space-between"
               alignItems="center"
             >
-              <Typography variant="h4" marginBottom={1}>
+              <Typography variant="h3" marginBottom={1}>
                 Paslaugos:
               </Typography>
               {isLogedIn && (
                 <Button
                   variant="outlined"
                   onClick={() => setOpenAddNewServiceModal(true)}
-                  size="large"
+                  size={matches ? "large" : "medium"}
                   sx={{
                     color: "#FFF",
                     borderRadius: 2,
@@ -95,19 +105,12 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
                 </Button>
               )}
             </Grid>
-            {servicesList.map((service, index) => (
-              <Typography key={index} variant="h6">
-                {service}
-              </Typography>
-            ))}
-            {/* {docs.map((service, index) => (
-              <Typography key={index} variant="h6">
-                {service}
-              </Typography>
-            ))}: IService */}
-            <Typography variant="h6" marginTop={3} marginBottom={3}>
-              Dėl tikslesnių kainų, labai mielai kviečiu susisiekti:
-            </Typography>
+            <ServiceList
+              list={docs as IService[]}
+              isLogedIn={isLogedIn}
+              collectionType={collection}
+              openImage={setSelectedImg}
+            />
             <ContactList />
             <Grid
               container
@@ -119,6 +122,7 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
               <Button
                 variant="contained"
                 onClick={() => navigate("/portfolio")}
+                size={matches ? "large" : "medium"}
                 sx={{
                   color: "#0e0e0d",
                   background: "#FFF",
@@ -133,6 +137,7 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
               <Button
                 variant="outlined"
                 color="inherit"
+                size="large"
                 onClick={() => navigate("/contacts")}
               >
                 Susisiek su manimi!
@@ -160,6 +165,14 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
       </Grid>
       {openAddNewServiceModal && (
         <AddServiceModal handleClose={handleCloseAddnewServiceModal} />
+      )}
+      {selectedImg && (
+        <Modal
+          selectedImg={selectedImg}
+          setSelectedImg={setSelectedImg}
+          handleOpenOtherPhoto={handleOpenOtherPhoto}
+          totalNumberOfImages={docs ? docs.length : 0}
+        />
       )}
     </Grid>
   );

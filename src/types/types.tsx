@@ -36,3 +36,10 @@ export interface IModalImage {
 }
 
 export type MessageType = "success" | "error" | "warning" | "info";
+
+export interface IService {
+  url: string;
+  createAt: { seconds: number; nanoseconds: number };
+  id: string;
+  name: string;
+}
