@@ -13,7 +13,7 @@ const AboutMe = () => {
     <Grid
       container
       direction={matches ? "row" : "column-reverse"}
-      height={matches ? "100%" : "auto"}
+      height={matches ? "100vh" : "auto"}
       padding="65px 10px 10px"
     >
       <Grid item container xs={matches ? 6 : 12} direction="row">
@@ -25,10 +25,7 @@ const AboutMe = () => {
           paddingLeft={1}
           marginLeft={matches ? "35px" : 0}
         >
-          <Box maxWidth="500px" margin="0 auto" paddingX={1}>
-            <Typography variant="h3" marginBottom={1}>
-              Aš esu - Agnė.
-            </Typography>
+          <Box maxWidth="600px" margin="0 auto" paddingX={1}>
             <Typography variant="h6" textAlign="justify">
               Aistra grimo ir makiažo pasauliui veda mane per neįtikėtinus
               kūrybinius kelius. Esu profesionali vizažistė, grimo dailininkė ir
@@ -48,10 +45,13 @@ const AboutMe = () => {
             <Typography variant="h6" marginTop={2}>
               Nekantrauju pasimatyti ir su Tavimi!
             </Typography>
+            <Typography variant="h3" marginY={2} textAlign="right">
+              Agnė
+            </Typography>
             <Grid
               container
               direction="row"
-              gap={1}
+              gap={3}
               marginY={4}
               justifyContent={matches ? "left" : "space-around"}
             >
@@ -92,7 +92,6 @@ const AboutMe = () => {
         container
         margin={matches ? "none" : "auto 0"}
         xs={matches ? 6 : 12}
-        overflow="hidden"
       >
         <img
           src={aboutMeImg}
