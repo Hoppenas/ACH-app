@@ -133,7 +133,8 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
                 <Button
                   key={item.name}
                   onClick={() => navigate(item.route)}
-                  size="small"
+                  size="medium"
+                  style={{ letterSpacing: 3 }}
                 >
                   {item.name}
                 </Button>

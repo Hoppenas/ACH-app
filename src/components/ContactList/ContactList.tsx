@@ -39,10 +39,10 @@ const ContactList = () => {
           target="_blank"
         >
           <InstagramIcon />
+          <Typography variant="h5" marginLeft={1}>
+            {instagramName}
+          </Typography>
         </IconButton>
-        <Typography variant="h5" marginLeft={1}>
-          {instagramName}
-        </Typography>
       </Grid>
       <Grid container direction="row" alignItems="center">
         <IconButton
@@ -52,10 +52,10 @@ const ContactList = () => {
           target="_blank"
         >
           <FacebookIcon />
+          <Typography variant="h5" marginLeft={1}>
+            {facebookName}
+          </Typography>
         </IconButton>
-        <Typography variant="h5" marginLeft={1}>
-          {facebookName}
-        </Typography>
       </Grid>
     </Box>
   );

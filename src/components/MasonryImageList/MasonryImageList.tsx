@@ -57,7 +57,7 @@ const MasonryImageList: FC<IMasonryImageList> = ({
                 alt="portfolio pic"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
+                transition={{ delay: 0.4 }}
                 loading="lazy"
                 style={{ display: "block", width: "100%" }}
                 onClick={() =>

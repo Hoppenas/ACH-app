@@ -59,15 +59,12 @@ const PaintingsImageList: FC<IPaintingsImageList> = ({
             key={item.id}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            transition={{ delay: 0.4 }}
           >
             <ImageListItem>
-              <motion.img
+              <img
                 src={item.url}
                 alt="portfolio pic"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
                 loading="lazy"
                 style={{ display: "block", width: "100%" }}
                 onClick={() => handleGoToPainting(item.id)}
