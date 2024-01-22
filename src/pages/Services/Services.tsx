@@ -47,7 +47,7 @@ const ServicesPage = () => {
           marginLeft={matches ? "35px" : 0}
         >
           <Box maxWidth="450px" margin="0 auto">
-            <Typography variant="h3" marginBottom={1}>
+            <Typography variant="h4" marginBottom={1}>
               Paslaugos:
             </Typography>
             {servicesList.map((service, index) => (

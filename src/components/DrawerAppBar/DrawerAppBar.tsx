@@ -79,7 +79,9 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
             onClick={() => navigate(item.route)}
           >
             <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item.name} />
+              <ListItemText
+                primary={<Typography variant="h6">{item.name}</Typography>}
+              />
             </ListItemButton>
           </ListItem>
         ))}
@@ -87,7 +89,11 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
           <ListItem disablePadding onClick={handleLogout}>
             <ListItemButton sx={{ textAlign: "center" }}>
               <ListItemText
-                primary={<Typography color="error">Sign out</Typography>}
+                primary={
+                  <Typography color="error" variant="h6">
+                    Sign out
+                  </Typography>
+                }
               />
             </ListItemButton>
           </ListItem>

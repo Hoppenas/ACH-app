@@ -99,7 +99,7 @@ const AboutMe = () => {
           alt="Me"
           width="100%"
           height="100%"
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "contain" }}
         />
       </Grid>
     </Grid>
