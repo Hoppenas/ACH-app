@@ -2,6 +2,7 @@ export enum CollectionTypes {
   Images = "images",
   Hair = "hair",
   Paintings = "paintings",
+  Services = "services",
 }
 
 export interface IPaintingData {

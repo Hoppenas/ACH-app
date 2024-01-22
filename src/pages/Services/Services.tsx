@@ -1,10 +1,13 @@
-import * as React from "react";
+import { useState } from "react";
 import { Box, Button, Grid, Typography, useMediaQuery } from "@mui/material";
 import aboutMeImg from "../../images/aboutMe.jpg";
 import { useNavigate } from "react-router-dom";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import { minWidth } from "../../constants/styleConstants";
 import ContactList from "../../components/ContactList/ContactList";
+import AddServiceModal from "../../components/AddServiceModal/AddServiceModal";
+import useFirestore from "../../hooks/useFirestore";
+import { CollectionTypes } from "../../types/types";
 
 const servicesList = [
   "Dieninis makiažas",
@@ -19,9 +22,30 @@ const servicesList = [
   "Individualūs šukuosenų mokymai",
 ];
 
-const ServicesPage = () => {
+interface IServicesPage {
+  isLogedIn: boolean;
+}
+
+interface IService {
+  url: string;
+  createAt: { seconds: number; nanoseconds: number };
+  id: string;
+  name: string;
+}
+
+const collection = CollectionTypes.Services;
+
+const ServicesPage = ({ isLogedIn }: IServicesPage) => {
+  const [openAddNewServiceModal, setOpenAddNewServiceModal] = useState(false);
+
   const navigate = useNavigate();
   const matches = useMediaQuery(`(min-width:${minWidth})`);
+
+  const { docs } = useFirestore(collection);
+
+  const handleCloseAddnewServiceModal = () => {
+    setOpenAddNewServiceModal(false);
+  };
 
   return (
     <Grid
@@ -47,14 +71,40 @@ const ServicesPage = () => {
           marginLeft={matches ? "35px" : 0}
         >
           <Box maxWidth="450px" margin="0 auto">
-            <Typography variant="h4" marginBottom={1}>
-              Paslaugos:
-            </Typography>
+            <Grid
+              container
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography variant="h4" marginBottom={1}>
+                Paslaugos:
+              </Typography>
+              {isLogedIn && (
+                <Button
+                  variant="outlined"
+                  onClick={() => setOpenAddNewServiceModal(true)}
+                  size="large"
+                  sx={{
+                    color: "#FFF",
+                    borderRadius: 2,
+                    fontSize: "1.2rem",
+                  }}
+                >
+                  + Add service
+                </Button>
+              )}
+            </Grid>
             {servicesList.map((service, index) => (
               <Typography key={index} variant="h6">
                 {service}
               </Typography>
             ))}
+            {/* {docs.map((service, index) => (
+              <Typography key={index} variant="h6">
+                {service}
+              </Typography>
+            ))}: IService */}
             <Typography variant="h6" marginTop={3} marginBottom={3}>
               Dėl tikslesnių kainų, labai mielai kviečiu susisiekti:
             </Typography>
@@ -108,6 +158,9 @@ const ServicesPage = () => {
           style={{ objectFit: "cover" }}
         />
       </Grid>
+      {openAddNewServiceModal && (
+        <AddServiceModal handleClose={handleCloseAddnewServiceModal} />
+      )}
     </Grid>
   );
 };

@@ -10,13 +10,13 @@ import PaintingsImageList from "../../components/PaintingsImageList/PaintingsIma
 import { useNavigate } from "react-router-dom";
 import { deleteFileFromStorage } from "../../utils/deleteFile";
 
-interface Props {
+interface IPaintingsPage {
   isLogedIn: boolean;
 }
 
 const collection = CollectionTypes.Paintings;
 
-const PaintingsPage = ({ isLogedIn }: Props) => {
+const PaintingsPage = ({ isLogedIn }: IPaintingsPage) => {
   const [openAddNewPaintingModal, setOpenAddNewPaintingModal] = useState(false);
   const [selectedImg, setSelectedImg] = useState<{
     index: number;
@@ -63,19 +63,16 @@ const PaintingsPage = ({ isLogedIn }: Props) => {
               </Typography>
               {isLogedIn && (
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   onClick={() => setOpenAddNewPaintingModal(true)}
+                  size="large"
                   sx={{
-                    height: "fit-content",
-                    color: "#0e0e0d",
-                    background: "#FFF",
-                    ":hover": {
-                      bgcolor: "#0e0e0d",
-                      color: "#FFF",
-                    },
+                    color: "#FFF",
+                    borderRadius: 2,
+                    fontSize: "1.2rem",
                   }}
                 >
-                  + Add
+                  + Add painting
                 </Button>
               )}
             </Grid>

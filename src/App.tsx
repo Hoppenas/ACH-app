@@ -26,7 +26,10 @@ const App = () => {
         <Route path="/" element={<Layout isLogedIn={isLogedIn} />}>
           <Route index element={<AboutMe />} />
           <Route path="about" element={<AboutMe />} />
-          <Route path="services" element={<ServicesPage />} />
+          <Route
+            path="services"
+            element={<ServicesPage isLogedIn={isLogedIn} />}
+          />
           <Route
             path="portfolio"
             element={<PortfolioPage isLogedIn={isLogedIn} />}
