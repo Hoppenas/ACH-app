@@ -54,7 +54,7 @@ const ServiceList: FC<IMasonryImageList> = ({
 
   return (
     <Box>
-      <ImageList variant="masonry" gap={20}>
+      <ImageList variant="standard" gap={20} cols={matches ? 2 : 1}>
         {list &&
           list.map((item, index) => (
             <ImageListItem key={item.id}>
