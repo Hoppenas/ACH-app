@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Box, Button, Grid, Typography, useMediaQuery } from "@mui/material";
-import aboutMeImg from "../../images/aboutMe.jpg";
 import { useNavigate } from "react-router-dom";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import { minWidth } from "../../constants/styleConstants";
@@ -64,14 +63,7 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
       height={matches ? "100%" : "auto"}
       padding="65px 10px 10px"
     >
-      <Grid
-        item
-        container
-        xs={matches ? 6 : 12}
-        direction="row"
-        overflow="hidden"
-        height="100%"
-      >
+      <Grid item container direction="row" overflow="scroll" height="100%">
         {matches && <FollowMeBar vertical={true} />}
         <Grid
           item
@@ -86,6 +78,7 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
               direction="row"
               justifyContent="space-between"
               alignItems="center"
+              marginBottom={2}
             >
               <Typography variant="h3" marginBottom={1}>
                 Paslaugos:
@@ -146,22 +139,6 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
             {!matches && <FollowMeBar vertical={false} />}
           </Box>
         </Grid>
-      </Grid>
-      <Grid
-        item
-        container
-        margin={matches ? "none" : "auto 0"}
-        xs={matches ? 6 : 12}
-        overflow="hidden"
-        height="100%"
-      >
-        <img
-          src={aboutMeImg}
-          alt="Me"
-          width="100%"
-          height="100%"
-          style={{ objectFit: "cover" }}
-        />
       </Grid>
       {openAddNewServiceModal && (
         <AddServiceModal handleClose={handleCloseAddnewServiceModal} />

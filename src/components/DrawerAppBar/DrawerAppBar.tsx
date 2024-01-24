@@ -139,7 +139,7 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
                 <Button
                   key={item.name}
                   onClick={() => navigate(item.route)}
-                  size="large"
+                  size="medium"
                   style={{ letterSpacing: 3 }}
                 >
                   {item.name}
@@ -147,7 +147,7 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
               ))}
               {isLogedIn && (
                 <Button onClick={handleLogout} color="error">
-                  Log out
+                  Sign out
                 </Button>
               )}
             </Grid>
