@@ -14,7 +14,7 @@ import {
 
 const ContactList = () => {
   return (
-    <Box width="fit-content">
+    <Box width="fit-content" marginTop={2}>
       <Grid container direction="row" alignItems="center">
         <IconButton
           color="inherit"

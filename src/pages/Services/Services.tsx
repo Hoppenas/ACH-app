@@ -58,88 +58,81 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
 
   return (
     <Grid
+      item
       container
-      direction={matches ? "row" : "column-reverse"}
-      height={matches ? "100%" : "auto"}
+      direction="row"
+      overflow="scroll"
+      height="fit-content"
       padding="65px 10px 10px"
     >
-      <Grid item container direction="row" overflow="scroll" height="100%">
-        {matches && <FollowMeBar vertical={true} />}
+      {matches && <FollowMeBar vertical={true} />}
+      <Box marginLeft={matches ? 10 : 0}>
         <Grid
-          item
-          xs
-          margin="auto 0"
-          paddingLeft={1}
-          marginLeft={matches ? "35px" : 0}
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          marginBottom={2}
+          marginLeft={5}
         >
-          <Box maxWidth="80%" margin="0 auto">
-            <Grid
-              container
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              marginBottom={2}
+          <Typography variant="h3" marginBottom={1}>
+            Paslaugos:
+          </Typography>
+          {isLogedIn && (
+            <Button
+              variant="outlined"
+              onClick={() => setOpenAddNewServiceModal(true)}
+              size={matches ? "large" : "medium"}
+              sx={{
+                color: "#FFF",
+                borderRadius: 2,
+                fontSize: "1.2rem",
+              }}
             >
-              <Typography variant="h3" marginBottom={1}>
-                Paslaugos:
-              </Typography>
-              {isLogedIn && (
-                <Button
-                  variant="outlined"
-                  onClick={() => setOpenAddNewServiceModal(true)}
-                  size={matches ? "large" : "medium"}
-                  sx={{
-                    color: "#FFF",
-                    borderRadius: 2,
-                    fontSize: "1.2rem",
-                  }}
-                >
-                  + Add service
-                </Button>
-              )}
-            </Grid>
-            <ServiceList
-              list={docs as IService[]}
-              isLogedIn={isLogedIn}
-              collectionType={collection}
-              openImage={setSelectedImg}
-            />
-            <ContactList />
-            <Grid
-              container
-              direction="row"
-              gap={2}
-              marginY={5}
-              justifyContent={matches ? "left" : "space-around"}
-            >
-              <Button
-                variant="contained"
-                onClick={() => navigate("/portfolio")}
-                size={matches ? "large" : "medium"}
-                sx={{
-                  color: "#0e0e0d",
-                  background: "#FFF",
-                  ":hover": {
-                    bgcolor: "#0e0e0d",
-                    color: "#FFF",
-                  },
-                }}
-              >
-                Mano darbai
-              </Button>
-              <Button
-                variant="outlined"
-                color="inherit"
-                size="large"
-                onClick={() => navigate("/contacts")}
-              >
-                Susisiek su manimi!
-              </Button>
-            </Grid>
-            {!matches && <FollowMeBar vertical={false} />}
-          </Box>
+              + Add service
+            </Button>
+          )}
         </Grid>
-      </Grid>
+        <ServiceList
+          list={docs as IService[]}
+          isLogedIn={isLogedIn}
+          collectionType={collection}
+          openImage={setSelectedImg}
+        />
+        <ContactList />
+        <Grid
+          container
+          direction="row"
+          gap={2}
+          marginY={5}
+          justifyContent={matches ? "left" : "space-around"}
+        >
+          <Button
+            variant="contained"
+            onClick={() => navigate("/portfolio")}
+            size={matches ? "large" : "medium"}
+            sx={{
+              color: "#0e0e0d",
+              background: "#FFF",
+              ":hover": {
+                bgcolor: "#0e0e0d",
+                color: "#FFF",
+              },
+            }}
+          >
+            Mano darbai
+          </Button>
+          <Button
+            variant="outlined"
+            color="inherit"
+            size="large"
+            onClick={() => navigate("/contacts")}
+          >
+            Susisiek su manimi!
+          </Button>
+        </Grid>
+      </Box>
+      {!matches && <FollowMeBar vertical={false} />}
       {openAddNewServiceModal && (
         <AddServiceModal handleClose={handleCloseAddnewServiceModal} />
       )}
