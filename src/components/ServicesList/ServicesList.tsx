@@ -44,7 +44,14 @@ const ServiceList: FC<IMasonryImageList> = ({
   };
 
   return (
-    <Grid container direction="row" gap={1} justifyContent="space-around">
+    <Grid
+      container
+      direction="row"
+      gap={5}
+      width="80%"
+      margin="auto"
+      justifyContent="center"
+    >
       {list &&
         list.map((item, index) => (
           <Grid

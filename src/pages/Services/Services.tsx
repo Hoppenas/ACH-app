@@ -66,16 +66,20 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
       padding="65px 10px 10px"
     >
       {matches && <FollowMeBar vertical={true} />}
-      <Box marginLeft={matches ? 10 : 0}>
+      <Box marginX={matches ? 10 : 0}>
         <Grid
           container
           direction="row"
           justifyContent="space-between"
           alignItems="center"
           marginBottom={2}
-          marginLeft={5}
         >
-          <Typography variant="h3" marginBottom={1}>
+          <Typography
+            variant="h3"
+            marginBottom={4}
+            // borderBottom={1}
+            // width="70%"
+          >
             Paslaugos:
           </Typography>
           {isLogedIn && (
