@@ -74,12 +74,7 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
           alignItems="center"
           marginBottom={2}
         >
-          <Typography
-            variant="h3"
-            marginBottom={4}
-            // borderBottom={1}
-            // width="70%"
-          >
+          <Typography variant="h3" marginBottom={4} marginX="auto">
             Paslaugos:
           </Typography>
           {isLogedIn && (
