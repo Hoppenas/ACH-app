@@ -45,7 +45,7 @@ const AboutMe = () => {
             <Typography variant="h6" marginTop={2}>
               Nekantrauju pasimatyti ir su Tavimi!
             </Typography>
-            <Typography variant="h3" marginY={2} textAlign="right">
+            <Typography variant="subtitle1" marginY={2} textAlign="right">
               Agnė
             </Typography>
             <Grid

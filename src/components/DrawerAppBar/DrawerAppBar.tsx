@@ -32,7 +32,7 @@ const navItems = [
   { name: "Paslaugos", route: "/services" },
   { name: "Portfolio", route: "/portfolio" },
   { name: "Paveikslai", route: "/paintings" },
-  { name: "Susisiek su manim", route: "/contacts" },
+  { name: "Kontaktai", route: "/contacts" },
 ];
 
 const DrawerAppBar = ({ isLogedIn, window }: Props) => {

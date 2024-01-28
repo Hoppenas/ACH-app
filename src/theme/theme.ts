@@ -3,8 +3,12 @@ import { createTheme } from "@mui/material/styles";
 export const theme = createTheme({
   typography: {
     fontFamily: "DM Sans",
-    h3: {
+    subtitle1: {
       fontFamily: "Dancing Script",
+      fontSize: "4.5rem",
+      fontWeight: 300,
+    },
+    h3: {
       fontSize: "4.5rem",
       fontWeight: 300,
     },

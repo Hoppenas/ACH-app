@@ -24,10 +24,10 @@ const ServiceListItem: FC<IServiceListItem> = ({
       item
       key={service.id}
       maxWidth={250}
+      maxHeight={350}
       borderRadius={10}
       overflow="hidden"
       position="relative"
-      border={1}
     >
       <motion.img
         src={service.url}

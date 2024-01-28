@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Box, Button, Grid, Typography, useMediaQuery } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import { minWidth } from "../../constants/styleConstants";
-import ContactList from "../../components/ContactList/ContactList";
 import AddServiceModal from "../../components/AddServiceModal/AddServiceModal";
 import useFirestore from "../../hooks/useFirestore";
 import { CollectionTypes, IService } from "../../types/types";
@@ -37,7 +35,6 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
     id: string;
   } | null>(null);
 
-  const navigate = useNavigate();
   const matches = useMediaQuery(`(min-width:${minWidth})`);
 
   const { docs } = useFirestore(collection);
@@ -98,38 +95,6 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
           collectionType={collection}
           openImage={setSelectedImg}
         />
-        <ContactList />
-        <Grid
-          container
-          direction="row"
-          gap={2}
-          marginY={5}
-          justifyContent={matches ? "left" : "space-around"}
-        >
-          <Button
-            variant="contained"
-            onClick={() => navigate("/portfolio")}
-            size={matches ? "large" : "medium"}
-            sx={{
-              color: "#0e0e0d",
-              background: "#FFF",
-              ":hover": {
-                bgcolor: "#0e0e0d",
-                color: "#FFF",
-              },
-            }}
-          >
-            Mano darbai
-          </Button>
-          <Button
-            variant="outlined"
-            color="inherit"
-            size="large"
-            onClick={() => navigate("/contacts")}
-          >
-            Susisiek su manimi!
-          </Button>
-        </Grid>
       </Box>
       {!matches && <FollowMeBar vertical={false} />}
       {openAddNewServiceModal && (
