@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import DrawerAppBar from "../DrawerAppBar/DrawerAppBar";
 import { Box, useMediaQuery } from "@mui/material";
 import { minWidth } from "../../constants/styleConstants";
+import Footer from "../Footer/Footer";
 
 interface Props {
   isLogedIn: boolean;
@@ -17,6 +18,7 @@ const Layout = ({ isLogedIn }: Props) => {
     >
       <DrawerAppBar isLogedIn={isLogedIn} />
       <Outlet />
+      <Footer />
     </Box>
   );
 };

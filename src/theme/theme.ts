@@ -8,6 +8,10 @@ export const theme = createTheme({
       fontSize: "4.5rem",
       fontWeight: 300,
     },
+    subtitle2: {
+      fontSize: "1rem",
+      fontWeight: 300,
+    },
     h3: {
       fontSize: "4.5rem",
       fontWeight: 300,

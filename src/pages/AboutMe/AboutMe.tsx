@@ -13,7 +13,7 @@ const AboutMe = () => {
     <Grid
       container
       direction={matches ? "row" : "column-reverse"}
-      height={matches ? "100vh" : "auto"}
+      height={matches ? "100%" : "auto"}
       padding="65px 10px 10px"
     >
       <Grid item container xs={matches ? 6 : 12} direction="row">
@@ -98,7 +98,7 @@ const AboutMe = () => {
           alt="Me"
           width="100%"
           height="100%"
-          style={{ objectFit: "contain" }}
+          style={{ objectFit: "cover" }}
         />
       </Grid>
     </Grid>
