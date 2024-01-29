@@ -47,61 +47,56 @@ const PaintingsPage = ({ isLogedIn }: IPaintingsPage) => {
   };
 
   return (
-    <Grid height="100%" paddingTop="65px">
-      <Grid item container xs={12} direction="row">
-        {matches && <FollowMeBar vertical={true} />}
-        <Grid item xs margin="auto 0" paddingLeft={1}>
-          <Box maxWidth="1320px" width="80%" margin="0 auto">
-            <Grid
-              container
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
+    <Grid paddingTop="65px" item container xs={12} direction="row">
+      {matches && <FollowMeBar vertical={true} />}
+      <Grid item margin="auto" paddingLeft={1} maxWidth="1320px" width="80%">
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Typography variant="h3" marginBottom={1}>
+            Paveikslai
+          </Typography>
+          {isLogedIn && (
+            <Button
+              variant="outlined"
+              onClick={() => setOpenAddNewPaintingModal(true)}
+              size="large"
+              sx={{
+                color: "#FFF",
+                borderRadius: 2,
+                fontSize: "1.2rem",
+              }}
             >
-              <Typography variant="h3" marginBottom={1}>
-                Paveikslai
-              </Typography>
-              {isLogedIn && (
-                <Button
-                  variant="outlined"
-                  onClick={() => setOpenAddNewPaintingModal(true)}
-                  size="large"
-                  sx={{
-                    color: "#FFF",
-                    borderRadius: 2,
-                    fontSize: "1.2rem",
-                  }}
-                >
-                  + Add painting
-                </Button>
-              )}
-            </Grid>
-            <Typography variant="h6" textAlign="justify" marginBottom={2}>
-              Esu kūrėja, kuri mėgsta tapyti ne tik portretus, bet ir
-              abstrakčius paveikslus. Per skirtingas formas, potėpius, spalvas,
-              tekstūras stengiuosi perteikti savo emocijas, nuotaikas, jausmus
-              ir pasaulėžiūrą.
-            </Typography>
-            <Typography variant="h6" textAlign="justify" marginBottom={2}>
-              Mano meninė interpretacija dažnai sutelkiama į moterų portretus.
-              Stengiuosi išryškinti jų moteriškumą, grakštumą ir gilumą.
-              Kiekviena mano sukurta moteris tampa gyva ir įdomia.
-            </Typography>
-            <Typography variant="h6" textAlign="justify" marginBottom={5}>
-              Noriu pasidalinti savo kūrybine kelione bei savęs paieškomis.
-              Didžiausias komplimentas, kai mano paveikslas tampa jūsų interjero
-              dalimi. Jeigu domina kuris nors kūrinys - mielai lauksiu Jūsų
-              žinutės.
-            </Typography>
-            <PaintingsImageList
-              imageList={docs as IPaintings[]}
-              handleGoToPainting={(id) => navigate(`/paintings/${id}/overview`)}
-              collectionType={collection}
-              isLogedIn={isLogedIn}
-            />
-            {!matches && <FollowMeBar vertical={false} />}
-          </Box>
+              + Add painting
+            </Button>
+          )}
         </Grid>
+        <Typography variant="h6" textAlign="justify" marginBottom={2}>
+          Esu kūrėja, kuri mėgsta tapyti ne tik portretus, bet ir abstrakčius
+          paveikslus. Per skirtingas formas, potėpius, spalvas, tekstūras
+          stengiuosi perteikti savo emocijas, nuotaikas, jausmus ir
+          pasaulėžiūrą.
+        </Typography>
+        <Typography variant="h6" textAlign="justify" marginBottom={2}>
+          Mano meninė interpretacija dažnai sutelkiama į moterų portretus.
+          Stengiuosi išryškinti jų moteriškumą, grakštumą ir gilumą. Kiekviena
+          mano sukurta moteris tampa gyva ir įdomia.
+        </Typography>
+        <Typography variant="h6" textAlign="justify" marginBottom={5}>
+          Noriu pasidalinti savo kūrybine kelione bei savęs paieškomis.
+          Didžiausias komplimentas, kai mano paveikslas tampa jūsų interjero
+          dalimi. Jeigu domina kuris nors kūrinys - mielai lauksiu Jūsų žinutės.
+        </Typography>
+        <PaintingsImageList
+          imageList={docs as IPaintings[]}
+          handleGoToPainting={(id) => navigate(`/paintings/${id}/overview`)}
+          collectionType={collection}
+          isLogedIn={isLogedIn}
+        />
+        {!matches && <FollowMeBar vertical={false} />}
       </Grid>
       {selectedImg && (
         <Modal

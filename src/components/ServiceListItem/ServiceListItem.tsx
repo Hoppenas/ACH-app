@@ -28,6 +28,7 @@ const ServiceListItem: FC<IServiceListItem> = ({
       borderRadius={10}
       overflow="hidden"
       position="relative"
+      boxShadow="0px 0px 5px #fff"
     >
       <motion.img
         src={service.url}

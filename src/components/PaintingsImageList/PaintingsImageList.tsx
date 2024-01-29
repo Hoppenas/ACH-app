@@ -6,6 +6,7 @@ import {
   IconButton,
   ImageListItemBar,
   Typography,
+  Grid,
   useMediaQuery,
 } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
@@ -14,6 +15,7 @@ import deleteFile from "../../utils/deleteFile";
 import { CollectionTypes, IPaintings, IPhoto } from "../../types/types";
 import ConfirmationDialog from "../ConfirmationDialog/ConfirmationDialog";
 import { minWidth } from "../../constants/styleConstants";
+import ServiceListItem from "../ServiceListItem/ServiceListItem";
 
 interface IPaintingsImageList {
   imageList: IPaintings[];
@@ -48,20 +50,32 @@ const PaintingsImageList: FC<IPaintingsImageList> = ({
     setSelectedPhoto(null);
   };
   return (
-    <Box>
-      <ImageList
-        sx={{ width: "100%", height: "fit-content" }}
+    <Grid container direction="row">
+      {/* <ImageList
+        sx={{ width: "100%", height: "fit-content", marginTop: 100 }}
         gap={20}
         cols={matches ? 3 : 2}
-      >
-        {imageList.map((item) => (
+      > */}
+      {imageList.map((item, index) => (
+        <Grid key={item.id} item xs={matches ? 4 : 6}>
           <motion.div
             key={item.id}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
+            style={{
+              justifyContent: "center",
+              display: "flex",
+            }}
           >
-            <ImageListItem>
+            <ServiceListItem
+              index={index}
+              isLogedIn={isLogedIn}
+              service={item}
+              handleOpenDeletePhotoDialog={handleOpenDeletePhotoDialog}
+              openImage={() => handleGoToPainting(item.id)}
+            />
+            {/* <ImageListItem>
               <img
                 src={item.url}
                 alt="portfolio pic"
@@ -113,17 +127,18 @@ const PaintingsImageList: FC<IPaintingsImageList> = ({
                   ) : null
                 }
               />
-            </ImageListItem>
+            </ImageListItem> */}
           </motion.div>
-        ))}
-      </ImageList>
+        </Grid>
+      ))}
+      {/* </ImageList> */}
       <ConfirmationDialog
         open={openDeletePhotoDialog}
         handleClose={handleCloseDeletePhotoDialog}
         handleConfirm={handleDeletePhoto}
         question="Are you sure you want to delete?"
       />
-    </Box>
+    </Grid>
   );
 };
 
