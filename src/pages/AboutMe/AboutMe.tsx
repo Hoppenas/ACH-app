@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Button, Grid, Typography, useMediaQuery } from "@mui/material";
 import aboutMeImg from "../../images/aboutMe.jpg";
 import { useNavigate } from "react-router-dom";

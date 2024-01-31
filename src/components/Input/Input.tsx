@@ -7,8 +7,8 @@ export interface IInput {
 
 const Input: React.FC<IInput> = ({ value, title, type, handleChange }) => {
   return (
-    <div className="input-container">
-      <p className="input-title">{title}</p>
+    <div>
+      <p>{title}</p>
       <input
         value={value}
         name={title}

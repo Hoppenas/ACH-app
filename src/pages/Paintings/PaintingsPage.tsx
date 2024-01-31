@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Grid, Typography, useMediaQuery, Button } from "@mui/material";
+import { Grid, Typography, useMediaQuery, Button } from "@mui/material";
 import FollowMeBar from "../../components/FollowMeBar/FollowMeBar";
 import Modal from "../../components/Modal/Modal";
 import { CollectionTypes, IPaintings } from "../../types/types";

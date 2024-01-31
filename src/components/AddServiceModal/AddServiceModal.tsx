@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, FC } from "react";
 import { motion } from "framer-motion";
 import { Grid, Button, TextField, Typography } from "@mui/material";
 import UploadForm from "../UploadForm/UploadForm";
@@ -9,7 +9,7 @@ export interface IAddServiceModal {
   handleClose: () => void;
 }
 
-const AddServiceModal: React.FC<IAddServiceModal> = ({ handleClose }) => {
+const AddServiceModal: FC<IAddServiceModal> = ({ handleClose }) => {
   const [name, setName] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
