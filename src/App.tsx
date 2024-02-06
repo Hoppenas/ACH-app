@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import AboutMe from "./pages/AboutMe/AboutMe";
-import PaintingsPage from "./pages/Paintings/PaintingsPage";
 import ContactMePage from "./pages/ContactMePage/ContactMePage";
 import ServicesPage from "./pages/Services/Services";
 import PortfolioPage from "./pages/PortfolioPage/PortfolioPage";
@@ -33,10 +32,6 @@ const App = () => {
           <Route
             path="portfolio"
             element={<PortfolioPage isLogedIn={isLogedIn} />}
-          />
-          <Route
-            path="paintings"
-            element={<PaintingsPage isLogedIn={isLogedIn} />}
           />
           <Route
             path="paintings/:paintingId/overview"

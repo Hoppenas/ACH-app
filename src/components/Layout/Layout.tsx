@@ -12,9 +12,14 @@ const Layout = ({ isLogedIn }: Props) => {
   const matches = useMediaQuery(`(min-width:${minWidth})`);
   return (
     <Box
-      height="100vh"
       overflow={matches ? "auto" : "scroll"}
-      sx={{ background: "#0e0e0d", color: "#FFF" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+        background: "#0e0e0d",
+        color: "#FFF",
+      }}
     >
       <DrawerAppBar isLogedIn={isLogedIn} />
       <Outlet />

@@ -31,7 +31,6 @@ const navItems = [
   { name: "Apie mane", route: "/about" },
   { name: "Paslaugos", route: "/services" },
   { name: "Portfolio", route: "/portfolio" },
-  { name: "Paveikslai", route: "/paintings" },
   { name: "Kontaktai", route: "/contacts" },
 ];
 

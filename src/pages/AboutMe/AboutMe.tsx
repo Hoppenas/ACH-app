@@ -12,7 +12,7 @@ const AboutMe = () => {
     <Grid
       container
       direction={matches ? "row" : "column-reverse"}
-      height={matches ? "100%" : "auto"}
+      height={matches ? "97vh" : "auto"}
       padding="65px 10px 10px"
     >
       <Grid item container xs={matches ? 6 : 12} direction="row">
