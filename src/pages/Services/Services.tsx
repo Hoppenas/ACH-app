@@ -58,8 +58,7 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
       item
       container
       direction="row"
-      overflow="scroll"
-      height="fit-content"
+      overflow="hidden"
       padding="65px 10px 10px"
     >
       {matches && <FollowMeBar vertical={true} />}

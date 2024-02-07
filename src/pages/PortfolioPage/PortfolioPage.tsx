@@ -37,14 +37,7 @@ const PortfolioPage = ({ isLogedIn }: Props) => {
 
   return (
     <Grid container height="100%" paddingTop="65px">
-      <Grid
-        item
-        container
-        xs={12}
-        direction="row"
-        sx={{ overflowY: "scroll" }}
-        height="100%"
-      >
+      <Grid item container xs={12} direction="row" overflow="hidden">
         {matches && <FollowMeBar vertical={true} />}
         <Grid item xs paddingLeft={1}>
           <Box maxWidth="1320px" width="80%" margin="0 auto">
