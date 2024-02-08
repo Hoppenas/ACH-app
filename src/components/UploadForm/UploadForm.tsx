@@ -45,19 +45,17 @@ const UploadForm: React.FC<IUploadForm> = ({
             onChange={changeHandler}
             style={{ height: 0, width: 0, opacity: 0 }}
           />
-          {!url && (
-            <Typography
-              variant="h6"
-              style={{ cursor: "pointer" }}
-              width="fit-content"
-              alignSelf="center"
-              border={1}
-              padding={1}
-              borderRadius={2}
-            >
-              + Add photo
-            </Typography>
-          )}
+          <Typography
+            variant="h6"
+            style={{ cursor: "pointer" }}
+            width="fit-content"
+            alignSelf="center"
+            border={1}
+            padding={1}
+            borderRadius={2}
+          >
+            + Add photo
+          </Typography>
         </Grid>
         {file && (
           <Grid container justifyContent="center" padding={2}>

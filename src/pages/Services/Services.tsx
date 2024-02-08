@@ -8,19 +8,6 @@ import { CollectionTypes, IService } from "../../types/types";
 import ServiceList from "../../components/ServicesList/ServicesList";
 import Modal from "../../components/Modal/Modal";
 
-const servicesList = [
-  "Dieninis makiažas",
-  "Vakarinis, sceninis makiažas",
-  "Vestuvinis grimas",
-  "Teminis grimas/makiažas",
-  "Šukuosena",
-  "Makiažas ir šukuosena",
-  "Grimas",
-  "Verslo portretai",
-  "Individualūs makiažo mokymai",
-  "Individualūs šukuosenų mokymai",
-];
-
 interface IServicesPage {
   isLogedIn: boolean;
 }
