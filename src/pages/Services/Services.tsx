@@ -41,13 +41,7 @@ const ServicesPage = ({ isLogedIn }: IServicesPage) => {
   };
 
   return (
-    <Grid
-      item
-      container
-      direction="row"
-      overflow="hidden"
-      padding="65px 10px 10px"
-    >
+    <Grid item container direction="row" overflow="hidden" marginTop="65px">
       {matches && <FollowMeBar vertical={true} />}
       <Box marginX={matches ? 10 : 0}>
         <Grid

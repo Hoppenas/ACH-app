@@ -50,6 +50,7 @@ const ServiceList: FC<IMasonryImageList> = ({
       width="80%"
       margin="auto"
       justifyContent="center"
+      padding={1}
     >
       {list &&
         list.map((item, index) => (

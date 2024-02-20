@@ -7,7 +7,7 @@ const Footer: FC = () => {
     <Box width="100%" component="footer" marginTop="auto">
       <Typography variant="subtitle2" align="center">
         {"Copyright © "}
-        <Link color="inherit" href="https://www.agnegrimas.com/">
+        <Link color="inherit" href="https://www.agnegrimas.lt/">
           Agne
         </Link>{" "}
         {new Date().getFullYear()}

@@ -24,8 +24,13 @@ const AboutMe = () => {
           paddingLeft={1}
           marginLeft={matches ? "35px" : 0}
         >
-          <Box maxWidth="600px" margin="0 auto" paddingX={1}>
-            <Typography variant="h6" textAlign="justify">
+          <Box
+            maxWidth="600px"
+            margin="0 auto"
+            paddingX={1}
+            textAlign="justify"
+          >
+            <Typography variant="h6">
               Aistra grimo ir makiažo pasauliui veda mane per neįtikėtinus
               kūrybinius kelius. Esu profesionali vizažistė, grimo dailininkė ir
               šukuosenų meistrė, kaskart siekianti perteikti kiekvienos
