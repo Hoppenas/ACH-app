@@ -22,7 +22,6 @@ const ServiceListItem: FC<IServiceListItem> = ({
   return (
     <Grid
       item
-      key={service.id}
       maxWidth={250}
       maxHeight={350}
       borderRadius={10}

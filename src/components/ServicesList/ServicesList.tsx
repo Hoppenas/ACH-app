@@ -52,9 +52,10 @@ const ServiceList: FC<IMasonryImageList> = ({
       justifyContent="center"
       padding={1}
     >
-      {list &&
+      {list.length &&
         list.map((item, index) => (
           <ServiceListItem
+            key={item.id}
             service={item}
             handleOpenDeletePhotoDialog={handleOpenDeletePhotoDialog}
             isLogedIn={isLogedIn}
