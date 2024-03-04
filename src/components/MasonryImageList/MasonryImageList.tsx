@@ -53,7 +53,7 @@ const MasonryImageList: FC<IMasonryImageList> = ({
           imageList.map((item, index) => (
             <ImageListItem key={item.id}>
               <motion.img
-                src={item.url}
+                src={item.thumbnail || item.url}
                 alt="portfolio pic"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

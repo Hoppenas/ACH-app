@@ -133,7 +133,7 @@ const DrawerAppBar = ({ isLogedIn, window }: Props) => {
               },
             }}
           >
-            <Grid container xs justifyContent="end" gap={1}>
+            <Grid container justifyContent="end" gap={1}>
               {navItems.map((item) => (
                 <Button
                   key={item.name}

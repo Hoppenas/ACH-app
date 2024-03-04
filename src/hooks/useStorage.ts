@@ -3,52 +3,43 @@ import { projectStorage, projectFirestore } from "../firebase/config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import showNotification from "../components/Snackbar/Snackbar";
-import Resizer from "react-image-file-resizer";
+import { resizeFile } from "../utils/resizeFile";
 
 const useStorage = (file: File | null, collectionName: string) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [url, setUrl] = useState<string | null>(null);
   const [convertedFile, setConvertedFile] = useState<File | null>(null);
-
-  const resizeFile = (file: File) =>
-    new Promise((resolve) => {
-      Resizer.imageFileResizer(
-        file,
-        1200,
-        1200,
-        "JPEG",
-        100,
-        0,
-        (uri) => {
-          resolve(uri);
-        },
-        "file"
-      );
-    });
+  const [thumbnail, setThumbnail] = useState<File | null>(null);
 
   useEffect(() => {
     if (!file) {
       return;
     }
 
-    resizeFile(file).then((image) => setConvertedFile(image as File));
+    resizeFile(file, 1200, 1200).then((image) =>
+      setConvertedFile(image as File)
+    );
+    resizeFile(file, 600, 600).then((image) => setThumbnail(image as File));
   }, [file, collectionName]);
 
   useEffect(() => {
-    if (!convertedFile) {
+    if (!convertedFile || !thumbnail) {
       return;
     }
 
-    const storageRef = ref(
+    const mainImageStorageRef = ref(
       projectStorage,
       `/${collectionName}/${convertedFile.name}`
     );
-    const uploadTask = uploadBytesResumable(storageRef, convertedFile);
+    const mainUploadTask = uploadBytesResumable(
+      mainImageStorageRef,
+      convertedFile
+    );
 
     const collectionRef = collection(projectFirestore, collectionName);
 
-    uploadTask.on(
+    mainUploadTask.on(
       "state_changed",
       (snapshot) => {
         const percent = Math.round(
@@ -64,19 +55,55 @@ const useStorage = (file: File | null, collectionName: string) => {
         });
       },
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          const createAt = serverTimestamp();
-          addDoc(collectionRef, { url, createAt, images: [] });
-          setUrl(url);
-          showNotification({
-            type: "success",
-            message: "Photo uploaded successfully",
-          });
-          setConvertedFile(null);
+        getDownloadURL(mainUploadTask.snapshot.ref).then((mainUrl) => {
+          const timestamp = new Date().getTime();
+          const fileName = convertedFile.name.split(".");
+          const modifiedThumbnailName = `${fileName[0]}-thumbnail-${timestamp}.${fileName[1]}`;
+
+          const thumbnailStorageRef = ref(
+            projectStorage,
+            `/${collectionName}/${modifiedThumbnailName}`
+          );
+          const thumbnailUploadTask = uploadBytesResumable(
+            thumbnailStorageRef,
+            thumbnail
+          );
+
+          thumbnailUploadTask.on(
+            "state_changed",
+            () => {},
+            (err) => {
+              setError(err.message);
+              showNotification({
+                type: "error",
+                message: err.message,
+              });
+            },
+            () => {
+              getDownloadURL(thumbnailUploadTask.snapshot.ref).then(
+                (thumbnailUrl) => {
+                  const createAt = serverTimestamp();
+                  addDoc(collectionRef, {
+                    url: mainUrl,
+                    createAt,
+                    images: [],
+                    thumbnail: thumbnailUrl,
+                  });
+                  setUrl(mainUrl);
+                  showNotification({
+                    type: "success",
+                    message: "Photo and thumbnail uploaded successfully",
+                  });
+                  setConvertedFile(null);
+                  setThumbnail(null);
+                }
+              );
+            }
+          );
         });
       }
     );
-  }, [convertedFile, collectionName]);
+  }, [convertedFile, thumbnail, collectionName]);
   return { progress, error, url };
 };
 

@@ -16,6 +16,7 @@ export interface IPhoto {
   url: string;
   createAt: { seconds: number; nanoseconds: number };
   id: string;
+  thumbnail?: string;
 }
 
 export interface IPaintings {

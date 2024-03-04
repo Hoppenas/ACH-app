@@ -28,6 +28,10 @@ const deleteFile = async (file: DocumentData | null, collection: string) => {
     return;
   }
 
+  if (file.thumbnail) {
+    deleteFileFromStorage(file.thumbnail);
+  }
+
   deleteFileFromStorage(file.url);
   await deleteDoc(doc(projectFirestore, collection, file.id))
     .then(() =>
