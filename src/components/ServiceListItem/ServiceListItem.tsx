@@ -22,8 +22,8 @@ const ServiceListItem: FC<IServiceListItem> = ({
   return (
     <Grid
       item
-      maxWidth={250}
-      maxHeight={350}
+      width={250}
+      height={350}
       borderRadius={10}
       overflow="hidden"
       position="relative"
