@@ -4,6 +4,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import showNotification from "../components/Snackbar/Snackbar";
 import { resizeFile } from "../utils/resizeFile";
+import { imageSize } from "../constants/general";
 
 const useStorage = (file: File | null, collectionName: string) => {
   const [progress, setProgress] = useState(0);
@@ -17,10 +18,12 @@ const useStorage = (file: File | null, collectionName: string) => {
       return;
     }
 
-    resizeFile(file, 1200, 1200).then((image) =>
-      setConvertedFile(image as File)
+    resizeFile(file, imageSize.mainImage.wide, imageSize.mainImage.height).then(
+      (image) => setConvertedFile(image as File)
     );
-    resizeFile(file, 600, 600).then((image) => setThumbnail(image as File));
+    resizeFile(file, imageSize.thumbnail.wide, imageSize.thumbnail.height).then(
+      (image) => setThumbnail(image as File)
+    );
   }, [file, collectionName]);
 
   useEffect(() => {

@@ -30,7 +30,7 @@ const ServiceListItem: FC<IServiceListItem> = ({
       boxShadow="0px 0px 5px #fff"
     >
       <motion.img
-        src={service.url}
+        src={service.thumbnail || service.url}
         alt="portfolio pic"
         loading="lazy"
         style={{

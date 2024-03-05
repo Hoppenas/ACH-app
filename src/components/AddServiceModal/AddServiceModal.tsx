@@ -13,11 +13,15 @@ const AddServiceModal: FC<IAddServiceModal> = ({ handleClose }) => {
   const [name, setName] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
-  const { url, progress, handleAddService } = useServiceUpload(file);
+  const { url, progress, handleAddService, thumbnailUrl } =
+    useServiceUpload(file);
 
   const handleCancel = () => {
     if (url) {
       deleteFileFromStorage(url);
+    }
+    if (thumbnailUrl) {
+      deleteFileFromStorage(thumbnailUrl);
     }
     handleClose();
   };

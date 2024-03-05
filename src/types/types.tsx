@@ -34,6 +34,7 @@ export interface IModalImage {
   index: number;
   url: string;
   id: string;
+  thumbnail?: string;
 }
 
 export type MessageType = "success" | "error" | "warning" | "info";
@@ -43,4 +44,5 @@ export interface IService {
   createAt: { seconds: number; nanoseconds: number };
   id: string;
   name: string;
+  thumbnail?: string;
 }
